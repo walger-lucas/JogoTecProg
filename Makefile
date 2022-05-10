@@ -54,7 +54,7 @@ $(OBJ_DIR)/Posicao.o : Entidades/Componentes/Posicao.cpp Entidades/Componentes/P
 $(OBJ_DIR)/Grafico.o : Entidades/Componentes/Grafico.cpp Entidades/Componentes/Grafico.h Entidades/Componentes/Componente.h
 	@ g++ $(CFLAGS) -c -o $@ $< $(PRE_HEADERS)
 	@ echo 'Compilando $@'
-$(OBJ_DIR)/GraficoSprite.o : Entidades/Componentes/GraficoSprite.cpp Entidades/Componentes/GraficoSprite.h Entidades/Componentes/Grafico.h Entidades/Componentes/Componente.h
+$(OBJ_DIR)/GraficoSprite.o : Entidades/Componentes/GraficoSprite.cpp Entidades/Componentes/GraficoSprite.h Entidades/Componentes/Grafico.h Entidades/Componentes/Componente.h Entidades/Componentes/Posicao.h
 	@ g++ $(CFLAGS) -c -o $@ $< $(PRE_HEADERS)
 	@ echo 'Compilando $@'
 #Filhos de Componente End

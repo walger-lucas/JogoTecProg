@@ -37,11 +37,16 @@ namespace Graficos{
     {
         dimensao = dim;
     }
+    void ImgSprite::setOrigin(const Vector2f pos)
+    {
+        sprite.setOrigin(pos);
+    }
     //A Fazer: fazer funcao de local de camera para local de
     Drawable* ImgSprite::Desenhar()
     {
         Vector2f dimReal = Vector2f(dimensao.x*escala->x,dimensao.y*escala->y);
-        Colisor col(posicao,&dimReal);
+        Vector2f pos = *posicao;
+        Colisor col(&pos,&dimReal);
         if(GerenciadorGrafico::cam.BoxDentro(col))
         {
             sprite.setPosition(GerenciadorGrafico::PosGlobalParaTela(*posicao));
@@ -57,7 +62,8 @@ namespace Graficos{
     Drawable* ImgSprite::DesenharUI()
     {
         Vector2f dimReal = Vector2f(dimensao.x*escala->x,dimensao.y*escala->y);
-        Colisor col(posicao,&dimReal);
+        Vector2f pos = *posicao;
+        Colisor col(&pos,&dimReal);
         sprite.setPosition(GerenciadorGrafico::PosUiParaTela(*posicao));
         Vector2f dim = GerenciadorGrafico::cam.getPPU()*dimReal;
         IntRect rect = sprite.getTextureRect();

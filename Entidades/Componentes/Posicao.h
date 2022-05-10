@@ -16,8 +16,8 @@ namespace Componentes{
             const float getEscY() const;
             const Vector2f getPos() const;
             const Vector2f getEscala() const;
-            Vector2f* getPPos();
-            Vector2f* getPEsc();
+            const Vector2f* getPPos() const;
+            const Vector2f* getPEsc() const;
             void setPos(Vector2f pos);
             void setEscala(Vector2f esc);
             Posicao(float x =0,float y = 0)
