@@ -64,3 +64,5 @@ $(OBJ_DIR)/GraficoSprite.o : Entidades/Componentes/GraficoSprite.cpp Entidades/C
 clean:
 	@ rm $(OBJ_DIR)/commons.o $(addprefix $(OBJ_DIR)/,$(OBJ)) 
 	@ echo 'Removendo antigos .o'
+
+#oi
