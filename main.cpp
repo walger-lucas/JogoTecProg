@@ -3,6 +3,7 @@
 #include"Jogador.h"
 #include"commons.h"
 #include"ImgSprite.h"
+#include"ImgTexto.h"
 #include"GerenciadorGrafico.h"
 using namespace Graficos;
 using namespace sf;
@@ -28,10 +29,16 @@ int main()
     VideoMode vM(5000,500);
     RenderWindow rw(vM,"HeyListen",Style::Titlebar | Style::Close |Style::Resize);
     rw.setFramerateLimit(20);
+    Vector2f pos3(3,-3);
+    ImgTexto* txt= new ImgTexto(&pos3,0.2);
+    txt->setTexto("Hola que Tal");
+    Font f;
+    f.loadFromFile("ARIAL.TTF");
+    txt->setFont(f);
     
-
     Gerenciadores::GerenciadorGrafico ger(&rw);
    // ger.cam.setDim(Vector2f(10,10));
+   Gerenciadores::GerenciadorGrafico::addUI(txt,2);
     Gerenciadores::GerenciadorGrafico::setCorBorda(Color::Blue);
     //ger.cam.Centralizar(img->getCentro());
     
