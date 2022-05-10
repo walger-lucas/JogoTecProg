@@ -45,7 +45,7 @@ namespace Graficos{
     Drawable* ImgSprite::Desenhar()
     {
         Vector2f dimReal = Vector2f(dimensao.x*escala->x,dimensao.y*escala->y);
-        Vector2f pos = *posicao;
+        Vector2f pos = *posicao+sprite.getOrigin()/GerenciadorGrafico::cam.getPPU();
         Colisor col(&pos,&dimReal);
         if(GerenciadorGrafico::cam.BoxDentro(col))
         {
@@ -62,7 +62,7 @@ namespace Graficos{
     Drawable* ImgSprite::DesenharUI()
     {
         Vector2f dimReal = Vector2f(dimensao.x*escala->x,dimensao.y*escala->y);
-        Vector2f pos = *posicao;
+        Vector2f pos = *posicao+sprite.getOrigin()/GerenciadorGrafico::cam.getPPU();
         Colisor col(&pos,&dimReal);
         sprite.setPosition(GerenciadorGrafico::PosUiParaTela(*posicao));
         Vector2f dim = GerenciadorGrafico::cam.getPPU()*dimReal;

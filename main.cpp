@@ -38,8 +38,8 @@ int main()
     
     Gerenciadores::GerenciadorGrafico ger(&rw);
    // ger.cam.setDim(Vector2f(10,10));
-   Gerenciadores::GerenciadorGrafico::addUI(txt,2);
-    Gerenciadores::GerenciadorGrafico::setCorBorda(Color::Blue);
+    Gerenciadores::GerenciadorGrafico::addUI(txt,2);
+    Gerenciadores::GerenciadorGrafico::setCorBorda(Color::Black);
     //ger.cam.Centralizar(img->getCentro());
     
     Event ev;

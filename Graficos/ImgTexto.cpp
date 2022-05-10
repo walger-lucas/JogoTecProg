@@ -40,12 +40,11 @@ namespace Graficos{
     {
         if(posicao == nullptr)
             return nullptr;
-        //texto.setCharacterSize(tamanho*GerenciadorGrafico::cam.getPPU());
         FloatRect fR = texto.getLocalBounds();
         Vector2f dim(fR.width/GerenciadorGrafico::cam.getPPU(),fR.width/GerenciadorGrafico::cam.getPPU());
-        Vector2f pos(*posicao);
+        Vector2f pos = *posicao + texto.getOrigin()/GerenciadorGrafico::cam.getPPU();
         Colisor col(&pos,&dim);
-        if(GerenciadorGrafico::cam.BoxDentro(col))
+        if(GerenciadorGrafico::cam.BoxDentro(col))//testa para ver se esta dentro da tela
         {
             float size = texto.getCharacterSize();
             texto.setPosition(GerenciadorGrafico::PosGlobalParaTela(*posicao));
@@ -59,19 +58,11 @@ namespace Graficos{
     {
         if(posicao == nullptr)
             return nullptr;
-        //texto.setCharacterSize(tamanho*GerenciadorGrafico::cam.getPPU());
-        FloatRect fR = texto.getLocalBounds();
-        Vector2f dim(fR.width/GerenciadorGrafico::cam.getPPU(),fR.width/GerenciadorGrafico::cam.getPPU());
         Vector2f pos(*posicao);
-        Colisor col(&pos,&dim);
-        if(GerenciadorGrafico::cam.BoxDentro(col))
-        {
-            float size = texto.getCharacterSize();
-            texto.setPosition(GerenciadorGrafico::PosUiParaTela(*posicao));
-            texto.setScale(GerenciadorGrafico::cam.getPPU()*tamanho/size,GerenciadorGrafico::cam.getPPU()*tamanho/size);
-            return static_cast<Drawable*>(&texto);
-        } 
-        return nullptr;
+        float size = texto.getCharacterSize();
+        texto.setPosition(GerenciadorGrafico::PosUiParaTela(*posicao));
+        texto.setScale(GerenciadorGrafico::cam.getPPU()*tamanho/size,GerenciadorGrafico::cam.getPPU()*tamanho/size);
+        return static_cast<Drawable*>(&texto);
     }
     ImgTexto::ImgTexto(const Vector2f* pos, const float tam)
     : posicao(pos),tamanho(tam)

@@ -94,10 +94,8 @@ namespace Gerenciadores{
             {
                 if((*it)->getDestruir())//testa se deve destruir imagem
                 {
-                    cout<<"Funf1"<<endl;
                     delete *it;
                     layers[i].erase(it);
-                    cout<<"Funf2"<<endl;
                 }
                 else if((*it)->getAtivo())
                 {
