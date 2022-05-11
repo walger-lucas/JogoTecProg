@@ -7,7 +7,7 @@ namespace Componentes{
         inicializado = true;
         img=Construir();
         
-         if(img==nullptr) 
+        if(img==nullptr) 
             return;     
         if(ui)
             GerenciadorGrafico::addUI(img,layer);
@@ -17,7 +17,6 @@ namespace Componentes{
     }
     Grafico::~Grafico()
     {
-        
         if(!inicializado)
         {
             delete img;
@@ -26,9 +25,6 @@ namespace Componentes{
         {
             img->Destruir();
         }
-            
-        
-    
     }
     void Grafico::setAtivado(bool atv)
     {
