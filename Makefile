@@ -61,6 +61,14 @@ $(OBJ_DIR)/GraficoSprite.o : Entidades/Componentes/GraficoSprite.cpp Entidades/C
 #Filhos de Entidade Start
 
 #Filhos de Entidade End
+#Gerenciador de Colisoes
+$(OBJ_DIR)/GerenciadorColisoes.o : Gerenciadores/GerenciadorColisoes.cpp  Gerenciadores/GerenciadorColisoes.h Colisoes/Colisor.h Colisoes/ObjetoFisico.h
+	@ g++ $(CFLAGS) $(SFMLFLAGS) -c -o $@ $< $(PRE_HEADERS)
+	@ echo 'Compilando $@'
+#ObjetoFisico
+$(OBJ_DIR)/ObjetoFisico.o : Colisoes/ObjetoFisico.cpp Colisoes/Colisor.h Colisoes/Colisor.h
+	@ g++ $(CFLAGS) -c -o $@ $< $(PRE_HEADERS)
+	@ echo 'Compilando $@'
 clean:
 	@ rm $(OBJ_DIR)/commons.o $(addprefix $(OBJ_DIR)/,$(OBJ)) 
 	@ echo 'Removendo antigos .o'

@@ -31,7 +31,7 @@ int main()
     rw.setFramerateLimit(20);
     Vector2f pos3(3,-3);
     ImgTexto* txt= new ImgTexto(&pos3,0.2);
-    txt->setTexto("Hola que Tal");
+    txt->setTexto("Hola que\nTal");
     Font f;
     f.loadFromFile("ARIAL.TTF");
     txt->setFont(f);

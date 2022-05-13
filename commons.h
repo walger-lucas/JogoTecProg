@@ -6,6 +6,8 @@
 #include<vector>
 #include<list>
 #include<iostream>
+#include<limits>
+#include<iterator>
 //sfml library
 #include<SFML/System.hpp>
 #include<SFML/Audio.hpp>

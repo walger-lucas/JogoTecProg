@@ -28,7 +28,8 @@ namespace Colisoes{
         void setVel(const Vector2f vel);
         void addVel(const Vector2f vel);
         void Destruir();
-        const Vector2f Resolver(ObjetoFisico& obj);
+        static void Resolver(ObjetoFisico& obj,ObjetoFisico& obj2);
+        void AtualizarVel();
 
         ObjetoFisico(Vector2f* pos=nullptr, Vector2f* dim=nullptr,bool col=true, bool cine=false)
         :colisor(pos,dim),colidivel(col),cinematico(cine),ativo(true),destruir(false),massa(1)

@@ -59,37 +59,15 @@ namespace Colisoes{
     {
         destruir = true;
     }
-    const Vector2f ObjetoFisico::Resolver(ObjetoFisico& obj)
+    //refazer
+    void ObjetoFisico::Resolver(ObjetoFisico& obj,ObjetoFisico& obj2)
     {
-        Colisor& col = obj.getColisor();
-        if(cinematico&& obj.getColidivel() && Colisor::Colide(colisor,col))
-        {
-            if(colidivel)
-            {
-                Vector2f interseccao = Colisor::Interseccao(colisor,col);
-                Vector2f velsoma= (obj.getCinematico()) ? obj.getVel()+velocidade:velocidade;
-                if(velsoma==Vector2f(0,0))
-                    return Vector2f(0,0);
-                Vector2f tempoInter(abs(interseccao.x/velsoma.x),abs(interseccao.y/velsoma.y));
-                Vector2f mover(0,0);
-                Vector2f moverObj(0,0);
-                float massaT = massa+obj.getMassa();
-                if(tempoInter.x>tempoInter.y)
-                {
-                    mover.x+=interseccao.x*obj.getMassa()/massaT;
-                    moverObj.x-=interseccao.x*massa/massaT;
-                }
-                else
-                {
-                    mover.y+=interseccao.y*obj.getMassa()/massaT;
-                    moverObj.y-=interseccao.y*massa/massaT;
-                }
-                if(obj.getCinematico())
-                    col.Mover(moverObj);
-                colisor.Mover(mover);
-                return tempoInter;
-            }
-            return Vector2f(0,0);
-        }
+        
+      
     }
+    void Atualizar()
+    {
+        
+    }
+    
 }
