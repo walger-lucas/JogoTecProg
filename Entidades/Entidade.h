@@ -35,7 +35,7 @@ private:
 	
 	void Atualizar();
 	
-	void AtualizarFixo();
+	
 	
 	
 	
@@ -43,6 +43,7 @@ private:
 
 public: 
 	void Iniciar();
+	void AtualizarFixo();
 	//testa componentes para o tipo e os converte com downcast caso encontrado o do TIPO.
 	template<class TIPO> 
 	TIPO* getComponente()

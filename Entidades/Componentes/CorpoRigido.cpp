@@ -70,9 +70,17 @@ namespace Componentes
             GerenciadorColisoes::AddObjeto(obj);
         }
     }
+    void CorpoRigido::setAtivado(bool atv)
+    {
+        Componente::setAtivado(atv);
+        if(obj!=nullptr)
+            obj->setAtivo(atv);
+    }
+
     void CorpoRigido::AtualizarFixo()
     {
-        obj->addVel(Vector2f(0,-GerenciadorColisoes::gravidade*GerenciadorColisoes::tempoFixo));
+        if(gravidade)
+            obj->addVel(Vector2f(0,-GerenciadorColisoes::gravidade*GerenciadorColisoes::tempoFixo));
     }
 
 }

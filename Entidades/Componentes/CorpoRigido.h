@@ -34,6 +34,7 @@ namespace Componentes
             void AvisarEscuta(ObjetoFisico* obj);
             void setColidivel(const bool col);
             void setCinematico(const bool cine);
+            void setAtivado(const bool atv);
 
             CorpoRigido( const bool colidivel=true, const bool cinematico=false,const float massa =1, bool gravidade=true)
             : Componente(),gravidade(gravidade), colidivel(colidivel),

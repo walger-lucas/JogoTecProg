@@ -9,7 +9,7 @@ namespace Gerenciadores{
     list<ObjetoFisico*> GerenciadorColisoes::objetos=list<ObjetoFisico*>();
     const int GerenciadorColisoes::atualizacaoMax(10);
     const float GerenciadorColisoes::tempoFixo(1/80.0);
-    const float GerenciadorColisoes::gravidade(1);
+    const float GerenciadorColisoes::gravidade(3);
     
     void GerenciadorColisoes::AddObjeto(ObjetoFisico* objeto)
     {
@@ -33,7 +33,8 @@ namespace Gerenciadores{
         colisoes.clear();
         for(auto it = objetos.begin();it!= objetos.end();it++)
         {
-            if(!tenteDestruir(it) && it!=objetos.end()&&Colisor::Colide((*it)->getColisor(),ponto))
+            tenteDestruir(it);
+            if(it!=objetos.end()&&Colisor::Colide((*it)->getColisor(),ponto))
             {
                 colisoes.push_back(*it);
             }
@@ -46,7 +47,8 @@ namespace Gerenciadores{
         colisoes.clear();
         for(auto it = objetos.begin();it!= objetos.end();it++)
         {
-            if(!tenteDestruir(it) && it!=objetos.end()&&Colisor::Colide((*it)->getColisor(),colisor))
+            tenteDestruir(it);
+            if( it!=objetos.end()&&Colisor::Colide((*it)->getColisor(),colisor))
             {
                 colisoes.push_back(*it);
             }
@@ -71,16 +73,24 @@ namespace Gerenciadores{
     }
     void GerenciadorColisoes::ResolverColisoes()
     {
-        //remove objetos com destruir setado para true
+        //remove objetos com destruir setado para true atualiza posicao
         for(auto it = objetos.begin();it!= objetos.end();it++)
         {
             tenteDestruir(it);
+            if(it!=objetos.end())
+            {
+                if((*it)->getCinematico())
+                    (*it)->getColisor().Mover((*it)->getVel()*tempoFixo);
+                else
+                    (*it)->setVel(Vector2f(0,0));
+            }
         }
         //compara todos sem comparar duas vezes, entao atualiza o objeto
         for(auto ob = objetos.begin();ob!= objetos.end();ob++)
         {
             for(auto ob2 = next(ob);ob2!=objetos.end();ob2++)
             {
+                
                 ObjetoFisico::Resolver(**ob,**ob2);
             }
             (*ob)->Atualizar();

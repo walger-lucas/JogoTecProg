@@ -12,7 +12,7 @@ namespace Gerenciadores{
             static const int atualizacaoMax;
             static float tempoUltAtualizacao;
             static bool tenteDestruir(list<ObjetoFisico*>::iterator& it);
-            void ResolverColisoes();
+            
         public:
             static const float tempoFixo;
             static const float gravidade;
@@ -21,6 +21,7 @@ namespace Gerenciadores{
             static list<ObjetoFisico*> EncontraColisao(Vector2f ponto);
             static list<ObjetoFisico*> EncontraColisao(Colisor& colisor);
             void Atualizar();
+            void ResolverColisoes();
 
             GerenciadorColisoes()
             {}

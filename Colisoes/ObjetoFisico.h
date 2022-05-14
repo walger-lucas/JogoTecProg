@@ -17,6 +17,7 @@ namespace Colisoes{
                 ativo,//avisa se esse objeto deve ser simulado
                 destruir; //avisa se esse objeto deve ser destruido
             Vector2f velocidade;//guarda a velocidade do objeto
+            Vector2f tempoMaiorCol;
             float massa;
             CorpoRigido* corpo;
 
@@ -36,11 +37,16 @@ namespace Colisoes{
         void addVel(const Vector2f vel);
         void Destruir();
         static void Resolver(ObjetoFisico& obj,ObjetoFisico& obj2);
+        void Avisar(ObjetoFisico& obj);
         void Atualizar();
 
         ObjetoFisico(Vector2f* pos=nullptr, Vector2f* dim=nullptr,CorpoRigido* corpo=nullptr,bool col=true, bool cine=false)
         :colisor(pos,dim),colidivel(col),cinematico(cine),ativo(true),destruir(false),massa(1),corpo(corpo)
-        {}
+        {
+            velocidade=Vector2f(0,0);
+            tempoMaiorCol= Vector2f(0,0);
+
+        }
         ~ObjetoFisico()
         {}
 

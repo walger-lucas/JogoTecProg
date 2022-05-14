@@ -5,6 +5,7 @@
 #include"ImgSprite.h"
 #include"ImgTexto.h"
 #include"GerenciadorGrafico.h"
+#include"GerenciadorColisoes.h"
 using namespace Graficos;
 using namespace sf;
 using namespace std;
@@ -21,7 +22,7 @@ int main()
     cout<<v->getVida()<<endl;
     v->machucar(15);
     cout<<v->getVida()<<endl;
-    Jogador* k = new Jogador("Elis","car.png",true);
+    Jogador* k = new Jogador("Elis","car.png",false);
     k->Carregar();
     k->Iniciar();
     
@@ -37,11 +38,21 @@ int main()
     txt->setFont(f);
     
     Gerenciadores::GerenciadorGrafico ger(&rw);
+    GerenciadorColisoes gerC = GerenciadorColisoes();
+    Vector2f posc(0,-6);
+    Vector2f dimc(10,1);
+    Posicao* posC= k->getComponente<Posicao>();
+    posC->setPos(Vector2f(3.1,-5));
+    ObjetoFisico* chao= new ObjetoFisico(&posc,&dimc,nullptr,true,false);
+    gerC.AddObjeto(chao);
+    
+    
    // ger.cam.setDim(Vector2f(10,10));
     Gerenciadores::GerenciadorGrafico::addUI(txt,2);
     Gerenciadores::GerenciadorGrafico::setCorBorda(Color::Black);
+    rw.setFramerateLimit(80);
     //ger.cam.Centralizar(img->getCentro());
-    
+    CorpoRigido* cp = j->getComponente<CorpoRigido>();
     Event ev;
     while (rw.isOpen())
     {
@@ -67,8 +78,15 @@ int main()
                 else if(Keyboard::isKeyPressed(Keyboard::Key::Up))
                     ger.cam.Mover(Vector2f(0,1));
                 else if(Keyboard::isKeyPressed(Keyboard::Key::Down))
-                    ger.cam.Mover(Vector2f(0,-1));    
-                
+                    ger.cam.Mover(Vector2f(0,-1));
+                if(Keyboard::isKeyPressed(Keyboard::Key::A)) 
+                       cp->setVelocidade(Vector2f(-1.5,cp->getVelocidade().y));
+                if(Keyboard::isKeyPressed(Keyboard::Key::D)) 
+                       cp->setVelocidade(Vector2f(+1.5,cp->getVelocidade().y));
+                if(Keyboard::isKeyPressed(Keyboard::Key::Space)) 
+                       cp->setVelocidade(cp->getVelocidade()+Vector2f(0,2));
+                if(Keyboard::isKeyPressed(Keyboard::Key::Y))
+                        cp->setVelocidade(Vector2f(0,0));       
                 break;
             }
             default:
@@ -77,6 +95,8 @@ int main()
             
         }
         ger.Render();
+        j->AtualizarFixo();
+        gerC.ResolverColisoes();
 
     }
     delete j;
