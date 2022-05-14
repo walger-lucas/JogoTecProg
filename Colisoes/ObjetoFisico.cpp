@@ -1,6 +1,8 @@
 #include"ObjetoFisico.h"
+#include"CorpoRigido.h"
 using namespace std;
 using namespace sf;
+using namespace Componentes;
 namespace Colisoes{
     const bool ObjetoFisico::getColidivel() const
     {
@@ -65,9 +67,9 @@ namespace Colisoes{
         
       
     }
-    void Atualizar()
+    void ObjetoFisico::Atualizar()
     {
-        
+
     }
     
 }

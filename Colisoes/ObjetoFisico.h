@@ -3,6 +3,11 @@
 #include"Colisor.h"
 using namespace std;
 using namespace sf;
+namespace Componentes
+{
+    class CorpoRigido;
+}
+using namespace Componentes;
 namespace Colisoes{
     class ObjetoFisico{
         private:
@@ -13,6 +18,8 @@ namespace Colisoes{
                 destruir; //avisa se esse objeto deve ser destruido
             Vector2f velocidade;//guarda a velocidade do objeto
             float massa;
+            CorpoRigido* corpo;
+
         public:
         const bool getColidivel() const;
         const bool getCinematico() const;
@@ -29,10 +36,10 @@ namespace Colisoes{
         void addVel(const Vector2f vel);
         void Destruir();
         static void Resolver(ObjetoFisico& obj,ObjetoFisico& obj2);
-        void AtualizarVel();
+        void Atualizar();
 
-        ObjetoFisico(Vector2f* pos=nullptr, Vector2f* dim=nullptr,bool col=true, bool cine=false)
-        :colisor(pos,dim),colidivel(col),cinematico(cine),ativo(true),destruir(false),massa(1)
+        ObjetoFisico(Vector2f* pos=nullptr, Vector2f* dim=nullptr,CorpoRigido* corpo=nullptr,bool col=true, bool cine=false)
+        :colisor(pos,dim),colidivel(col),cinematico(cine),ativo(true),destruir(false),massa(1),corpo(corpo)
         {}
         ~ObjetoFisico()
         {}

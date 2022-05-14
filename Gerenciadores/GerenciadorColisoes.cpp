@@ -1,4 +1,5 @@
 #include"GerenciadorColisoes.h"
+#include"ObjetoFisico.h"
 #include"commons.h"
 using namespace sf;
 using namespace std;
@@ -8,6 +9,7 @@ namespace Gerenciadores{
     list<ObjetoFisico*> GerenciadorColisoes::objetos=list<ObjetoFisico*>();
     const int GerenciadorColisoes::atualizacaoMax(10);
     const float GerenciadorColisoes::tempoFixo(1/80.0);
+    const float GerenciadorColisoes::gravidade(1);
     
     void GerenciadorColisoes::AddObjeto(ObjetoFisico* objeto)
     {
@@ -27,23 +29,29 @@ namespace Gerenciadores{
     }
     list<ObjetoFisico*> GerenciadorColisoes::EncontraColisao(Vector2f ponto)
     {
+        list<ObjetoFisico*> colisoes= list<ObjetoFisico*>();
+        colisoes.clear();
         for(auto it = objetos.begin();it!= objetos.end();it++)
         {
-            if(!tenteDestruir(it) && it!=objetos.end())
+            if(!tenteDestruir(it) && it!=objetos.end()&&Colisor::Colide((*it)->getColisor(),ponto))
             {
-                Colisor::Colide((*it)->getColisor(),ponto);
+                colisoes.push_back(*it);
             }
         }
+        return colisoes;
     }
     list<ObjetoFisico*> GerenciadorColisoes::EncontraColisao(Colisor& colisor)
     {
+        list<ObjetoFisico*> colisoes= list<ObjetoFisico*>();
+        colisoes.clear();
         for(auto it = objetos.begin();it!= objetos.end();it++)
         {
-            if(!tenteDestruir(it) && it!=objetos.end())
+            if(!tenteDestruir(it) && it!=objetos.end()&&Colisor::Colide((*it)->getColisor(),colisor))
             {
-                Colisor::Colide((*it)->getColisor(),colisor);
+                colisoes.push_back(*it);
             }
         }
+        return colisoes;
     }
     void GerenciadorColisoes::Atualizar()
     {
