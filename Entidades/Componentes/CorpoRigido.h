@@ -17,6 +17,10 @@ namespace Componentes
             const float massa;
             ObjetoFisico* obj;
             vector<IEscutaColisao*> escutas;
+        protected:
+            Vector2f dimensao;
+            void Iniciar();
+            void AtualizarFixo();
         public:
             const Vector2f getVelocidade() const;
             const Vector2f getDim() const;
@@ -33,7 +37,7 @@ namespace Componentes
 
             CorpoRigido( const bool colidivel=true, const bool cinematico=false,const float massa =1, bool gravidade=true)
             : Componente(),gravidade(gravidade), colidivel(colidivel),
-            cinematico(cinematico),massa(massa), obj(nullptr)
+            cinematico(cinematico),massa(massa), obj(nullptr), dimensao(1,1)
             {
                 escutas.clear();
             }
@@ -42,10 +46,7 @@ namespace Componentes
                 if(obj!=nullptr)
                     obj->Destruir();
             }
-        protected:
-            Vector2f dimensao;
-            void Iniciar();
-            void AtualizarFixo();
+
 
             
     };
