@@ -120,6 +120,7 @@ namespace Entidades{
     }
 
     void Entidade::Iniciar() {
+        Carregar();
         int i;
         int size = componentes.size();
         for (i=0;i<size;i++)

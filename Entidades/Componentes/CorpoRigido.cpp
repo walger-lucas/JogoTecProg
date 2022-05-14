@@ -80,7 +80,7 @@ namespace Componentes
     void CorpoRigido::AtualizarFixo()
     {
         if(gravidade)
-            obj->addVel(Vector2f(0,-GerenciadorColisoes::gravidade*GerenciadorColisoes::tempoFixo));
+            obj->addVel(Vector2f(0,-GerenciadorColisoes::gravidade*GerenciadorColisoes::tempoFixo));//Tempo::getDeltaTempoFixo()
     }
 
 }

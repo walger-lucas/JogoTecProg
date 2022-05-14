@@ -8,7 +8,7 @@ namespace Gerenciadores{
     float GerenciadorColisoes::tempoUltAtualizacao(0.0F);
     list<ObjetoFisico*> GerenciadorColisoes::objetos=list<ObjetoFisico*>();
     const int GerenciadorColisoes::atualizacaoMax(10);
-    const float GerenciadorColisoes::tempoFixo(1/80.0);
+    const float GerenciadorColisoes::tempoFixo(1/80.0); //remover quando adicionado tempo
     const float GerenciadorColisoes::gravidade(3);
     
     void GerenciadorColisoes::AddObjeto(ObjetoFisico* objeto)
@@ -60,13 +60,13 @@ namespace Gerenciadores{
         /* Ainda não feito
         tempoUltAtualizacao += Tempo::getDeltaTime();
         */   
-       if(tempoUltAtualizacao/atualizacaoMax > tempoFixo)
+       if(tempoUltAtualizacao/atualizacaoMax > tempoFixo)//if(tempoUltAtualizacao/atualizacaoMax > Tempo::getDeltaTempoFixo())
        {
            tempoUltAtualizacao =0;
        }
        else
        {
-           int vezes = tempoUltAtualizacao/tempoFixo;
+           int vezes = tempoUltAtualizacao/tempoFixo;//Tempo::getDeltaTempoFixo();
            for(int i=0;i<vezes;i++)
                 ResolverColisoes();
        }
@@ -80,7 +80,7 @@ namespace Gerenciadores{
             if(it!=objetos.end())
             {
                 if((*it)->getCinematico())
-                    (*it)->getColisor().Mover((*it)->getVel()*tempoFixo);
+                    (*it)->getColisor().Mover((*it)->getVel()*tempoFixo);//Tempo::getDeltaTempoFixo()
                 else
                     (*it)->setVel(Vector2f(0,0));
             }

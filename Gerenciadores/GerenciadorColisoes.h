@@ -14,7 +14,7 @@ namespace Gerenciadores{
             static bool tenteDestruir(list<ObjetoFisico*>::iterator& it);
             
         public:
-            static const float tempoFixo;
+            static const float tempoFixo; //remover quando adiconado Tempo
             static const float gravidade;
             static void AddObjeto(ObjetoFisico* obj);
             //encontra colisao com ponto e colisor

@@ -67,8 +67,14 @@ namespace Gerenciadores{
     }
 
 
-    const int GerenciadorGrafico::Render()
+    void GerenciadorGrafico::Render()
     {
+        /* Apenas quando tempo estiver presente
+        tempUltRender+=Tempo::getDeltaTempo();
+        if(tempUltRender<Tempo::getDeltaTempoRender())
+            return;
+        tempUltRender=0;
+        */
         Vector2u dim =window->getSize();
         Vector2f dimCam = cam.getDim();
 
@@ -137,7 +143,6 @@ namespace Gerenciadores{
         window->draw(rect);
         //-------------------------------------
         window->display();
-        return 1;
     }
     void GerenciadorGrafico::setCorBorda(const Color cor)
     {

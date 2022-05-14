@@ -13,7 +13,6 @@ int main()
 {
     
     Jogador* j= new Jogador("Roger","cubo.png",false);
-    j->Carregar();
     j->Iniciar();
     Posicao *p = j->getComponente<Posicao>();
     p->setPos(Vector2f(3,-2));
@@ -23,7 +22,6 @@ int main()
     v->machucar(15);
     cout<<v->getVida()<<endl;
     Jogador* k = new Jogador("Elis","car.png",false);
-    k->Carregar();
     k->Iniciar();
     
     
