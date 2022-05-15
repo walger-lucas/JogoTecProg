@@ -13,9 +13,19 @@ namespace Entidades{
         return destruir;
     }
 
-    //seta a ativacao do objeto
+    //seta a ativacao do objeto e coloca todos os seus componentes com essa ativacao.
     void Entidade::setAtivo(bool ativo) {
-        this->ativo = ativo;
+        this->ativo = ativo;       
+        int i;
+        int size = componentes.size();
+        for (i=0;i<size;i++)
+        {
+            if(componentes[i]!=nullptr)
+                componentes[i]->setAtivado(ativo);
+            else
+                return;
+        }
+
     }
 
     //ve a ativacao do objeto
@@ -100,7 +110,7 @@ namespace Entidades{
         int size = componentes.size();
         for (i=0;i<size;i++)
         {
-            if(componentes[i]!=nullptr)
+            if(componentes[i]!=nullptr&& componentes[i]->getAtivado())
                 componentes[i]->Atualizar();
             else
                 return;
@@ -112,7 +122,7 @@ namespace Entidades{
        int size = componentes.size();
         for (i=0;i<size;i++)
         {
-            if(componentes[i]!=nullptr)
+            if(componentes[i]!=nullptr&& componentes[i]->getAtivado())
                 componentes[i]->AtualizarFixo();
             else
                 return;
@@ -137,7 +147,7 @@ namespace Entidades{
         int size = componentes.size();
         for (i=0;i<size;i++)
         {
-            if(componentes[i]!=nullptr)
+            if(componentes[i]!=nullptr && componentes[i]->getAtivado())
                 componentes[i]->Render();
             else
                 return;

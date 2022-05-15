@@ -69,6 +69,7 @@ namespace Gerenciadores{
 
     void GerenciadorGrafico::Render()
     {
+        //maybe isso vai pra Principal
         /* Apenas quando tempo estiver presente
         tempUltRender+=Tempo::getDeltaTempo();
         if(tempUltRender<Tempo::getDeltaTempoRender())
