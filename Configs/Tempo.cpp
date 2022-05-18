@@ -1,22 +1,19 @@
 #include "Tempo.h"
 using namespace std;
-
-/*
-    Confirmar os cálculos e uso com o Fps
-    @HBWho @walger-lucas
-*/
+using namespace chrono;
 
 namespace Configs
 {
     double Tempo::deltaTempo = 0;
-    double Tempo::deltaTempoRender = 0;
-    const double Tempo::getDeltaTempoFixo = 0;
+    double Tempo::deltaTempoRender = (float) 1.0/24.0;
+    const double Tempo::deltaTempoFixo = (float) 1.0/80.0;
 
     void Tempo::atualizaDeltaTempo()
     {
-        tempoFinal = chorno::steady_clock::now();
-        deltaTempo = static_cast<double>(tempoFinal - tempoInicio); 
-        tempoInicio = chorno::steady_clock::now();
+        tempoFinal = steady_clock::now();
+        duration<double> time_span = duration_cast<duration<double>>(tempoFinal - tempoInicio);
+        deltaTempo = static_cast<double>(time_span.count()); 
+        tempoInicio = steady_clock::now();
     }
 
     const double Tempo::getDeltaTempo()
@@ -29,15 +26,19 @@ namespace Configs
     { return deltaTempoRender; }
 
     const int Tempo::getFps()
-    {   }
+    { return (int) ((1/deltaTempoRender) + 0.5); }
 
     void Tempo::setFps(const int fps)
-    {   }
+    {
+        if(fps > 0)
+            deltaTempoRender = (float) 1.0/fps;
+    }    
 
-    Tempo():
-    tempoInicio(chrono::steady_clock::now()),
-    tempoFinal(chrono::steady_clock::now())
-    {   }
+    Tempo::Tempo()
+    {
+        tempoInicio = steady_clock::now();
+        tempoFinal = steady_clock::now();
+    }
 
-    ~Tempo() {  }
+    Tempo::~Tempo() {  }
 }

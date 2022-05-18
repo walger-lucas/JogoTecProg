@@ -21,6 +21,7 @@ namespace Listas
         void Descarregar();
         void AtualizarFixo();
         void Atualizar();
-        Elemento* getEntidade(string& nome);
+        Entidade* getEntidade(string& nome);
         void Render();
+    };
 }

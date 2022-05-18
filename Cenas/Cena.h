@@ -5,13 +5,12 @@
 using namespace Listas;
 using namespace std;
 
-class GerenciadorCenas;
+namespace Gerenciadores
+{
+    class GerenciadorCenas;
+}
 
-/*
-    Realizei uma sobrecarga de operadores += para adicionar elementos na lista
-    e [] para acessar elementos com "index" o nome
-    @HBWho @walger-lucas
-*/
+using namespace Gerenciadores;
 
 namespace Cenas
 {
@@ -21,27 +20,26 @@ namespace Cenas
         GerenciadorCenas* gerenciador;
         ListaEntidade lista;
 
-
         void Descarregar();
         void Atualizar();
         void AtualizarFixo();
         void Render();
 
-        void iniciar();
+        friend class Gerenciadores::GerenciadorCenas;
 
     public:
         Cena(GerenciadorCenas* ger = NULL);
         virtual ~Cena();
 
-        void MudaCena(const int cena);
+        void MudarCena(const int cena);
         void AdicionarEntidade(Entidade* ent);
         Entidade* getEntidade(string& nome);
 
         void operator+=(Entidade* ent);
-        Entidade* operator[](string& nome)
+        Entidade* operator[](string& nome);
 
     protected:
-        virtual void Carregar();
+        virtual void Carregar() = 0;
         
-    }
+    };
 }

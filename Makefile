@@ -1,5 +1,5 @@
-HEADERS = ./Entidades/Componentes ./Entidades ./ ./Colisoes ./Gerenciadores ./Graficos
-OBJ = Entidade.o Componente.o Posicao.o Colisor.o Camera.o GerenciadorGrafico.o ImgSprite.o ImgTexto.o Grafico.o GraficoSprite.o
+HEADERS = ./Entidades/Componentes ./Entidades . ./ ./Colisoes ./Gerenciadores ./Graficos ./Listas ./Cenas ./Configs
+OBJ = Entidade.o Componente.o Posicao.o Colisor.o Camera.o GerenciadorGrafico.o ImgSprite.o ImgTexto.o Grafico.o GraficoSprite.o ListaEntidades.o Cena.o GerenciadorCenas.o Tempo.o
 OBJ_DIR = ./obj
 PROJ_NAME = JOGO
 PRE_HEADERS = $(addprefix -I ,$(HEADERS))
@@ -61,6 +61,24 @@ $(OBJ_DIR)/GraficoSprite.o : Entidades/Componentes/GraficoSprite.cpp Entidades/C
 #Filhos de Entidade Start
 
 #Filhos de Entidade End
+
+#Lista Entidades
+$(OBJ_DIR)/ListaEntidades.o : Listas/ListaEntidades.cpp Listas/ListaEntidades.h Entidades/Entidade.h
+	@ g++ $(CFLAGS) -c -o $@ $< $(PRE_HEADERS)
+	@ echo 'Compilando $@'
+#Cena
+$(OBJ_DIR)/Cena.o : Cenas/Cena.cpp Cenas/Cena.h Listas/ListaEntidades.h
+	@ g++ $(CFLAGS) -c -o $@ $< $(PRE_HEADERS)
+	@ echo 'Compilando $@'	
+#Gerenciador Cenas
+$(OBJ_DIR)/GerenciadorCenas.o : Gerenciadores/GerenciadorCenas.cpp  Gerenciadores/GerenciadorCenas.h Cenas/Cena.h
+	@ g++ $(CFLAGS) -c -o $@ $< $(PRE_HEADERS)
+	@ echo 'Compilando $@'
+#Tempo
+$(OBJ_DIR)/Tempo.o : Configs/Tempo.cpp Configs/Tempo.h
+	@ g++ $(CFLAGS) -c -o $@ $< $(PRE_HEADERS)
+	@ echo 'Compilando $@'
+
 clean:
 	@ rm $(OBJ_DIR)/commons.o $(addprefix $(OBJ_DIR)/,$(OBJ)) 
 	@ echo 'Removendo antigos .o'

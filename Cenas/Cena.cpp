@@ -3,19 +3,8 @@
 using namespace std;
 using namespace Gerenciadores;
 
-/*
-    Carregar; Iniciar; MudarCena 
-    Confirmar uso das funções
-    @HBWho @walger-lucas
-*/
-
 namespace Cenas
 {
-    void Cenas::Carregar()
-    {
-
-    }
-
     void Cena::Descarregar()
     { lista.Descarregar(); }
 
@@ -25,31 +14,27 @@ namespace Cenas
     void Cena::AtualizarFixo()
     { lista.AtualizarFixo(); }
 
-    void Render() const
+    void Cena::Render()
     { lista.Render(); }
 
-    void Cena::Iniciar()
-    {
-
-    }
-
-    Cena::Cena(GerenciaadorCenas* ger):
+    Cena::Cena(GerenciadorCenas* ger):
     gerenciador(ger),
     lista()
     {}
 
     Cena::~Cena()
-    { ger = NULL; }
+    { gerenciador = NULL; }
 
     void Cena::MudarCena(const int cena)
     {
-
+        if(gerenciador)
+            gerenciador->setCena(cena);
     }
 
     void Cena::AdicionarEntidade(Entidade* ent)
-    { lista.Adicionar(ent) }
+    { lista.Adicionar(ent); }
 
-    Entidade* Cena::getEntidade(string& nome) const
+    Entidade* Cena::getEntidade(string& nome)
     { return lista.getEntidade(nome); }
 
     void Cena::operator+=(Entidade* ent)
