@@ -11,7 +11,10 @@ using namespace sf;
 using namespace std;
 int main()
 {
-    
+        Vector2f posc(0,-6);
+    Vector2f dimc(10,1);
+        ObjetoFisico* chao= new ObjetoFisico(&posc,&dimc,nullptr,true,false);
+    GerenciadorColisoes::AddObjeto(chao);
     Jogador* j= new Jogador("Roger","cubo.png",false);
     j->Iniciar();
     Posicao *p = j->getComponente<Posicao>();
@@ -21,7 +24,7 @@ int main()
     cout<<v->getVida()<<endl;
     v->machucar(15);
     cout<<v->getVida()<<endl;
-    Jogador* k = new Jogador("Elis","car.png",false);
+    Jogador* k = new Jogador("Elis","hi.png",false);
     k->Iniciar();
     
     
@@ -37,12 +40,10 @@ int main()
     
     Gerenciadores::GerenciadorGrafico ger(&rw);
     GerenciadorColisoes gerC = GerenciadorColisoes();
-    Vector2f posc(0,-6);
-    Vector2f dimc(10,1);
+
     Posicao* posC= k->getComponente<Posicao>();
     posC->setPos(Vector2f(3.1,-5));
-    ObjetoFisico* chao= new ObjetoFisico(&posc,&dimc,nullptr,true,false);
-    gerC.AddObjeto(chao);
+
     
     
    // ger.cam.setDim(Vector2f(10,10));
@@ -94,6 +95,7 @@ int main()
         }
         ger.Render();
         j->AtualizarFixo();
+        k->AtualizarFixo();
         gerC.ResolverColisoes();
 
     }

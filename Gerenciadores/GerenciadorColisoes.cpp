@@ -79,10 +79,12 @@ namespace Gerenciadores{
             tenteDestruir(it);
             if(it!=objetos.end())
             {
-                if((*it)->getCinematico())
-                    (*it)->getColisor().Mover((*it)->getVel()*tempoFixo);//Tempo::getDeltaTempoFixo()
-                else
+                if(!(*it)->getCinematico())
+                {
                     (*it)->setVel(Vector2f(0,0));
+                    
+                }
+                (*it)->AtualizarPos();
             }
         }
         //compara todos sem comparar duas vezes, entao atualiza o objeto
@@ -93,7 +95,6 @@ namespace Gerenciadores{
                 
                 ObjetoFisico::Resolver(**ob,**ob2);
             }
-            (*ob)->Atualizar();
         }
     }
     

@@ -57,6 +57,8 @@ namespace Entidades{
         componentes.clear();
         tags.reserve(RES_TAGS);
         componentes.reserve(RES_COMPONENTES);
+        ativo=true;
+        destruir=false;
     }
 
     /**

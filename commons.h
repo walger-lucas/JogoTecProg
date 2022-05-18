@@ -14,5 +14,6 @@
 #include<SFML/Graphics.hpp>
 #include<SFML/Window.hpp>
 #include<SFML/Network.hpp>
+#include<cmath>
 
 //help code

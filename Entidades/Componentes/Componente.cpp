@@ -30,7 +30,7 @@ namespace Componentes{
      * Construtor
      */
     Componente::Componente()
-    : entidade(nullptr) {}
+    : entidade(nullptr),ativado(true) {}
     
 
     /**
