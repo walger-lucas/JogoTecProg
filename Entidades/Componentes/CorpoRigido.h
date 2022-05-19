@@ -14,7 +14,6 @@ namespace Componentes
         private:
             bool gravidade;
             const bool colidivel,cinematico;
-            const float massa;
             ObjetoFisico* obj;
             vector<IEscutaColisao*> escutas;
         protected:
@@ -26,8 +25,6 @@ namespace Componentes
             const Vector2f getDim() const;
             void setDim(const Vector2f dim);
             const bool getGravidade() const;
-            const float getMassa() const;
-            void setMassa(const float massa);
             void setVelocidade(const Vector2f vel);
             void setGravidade(const bool grav);
             void addEscuta(IEscutaColisao* escuta);
@@ -36,9 +33,9 @@ namespace Componentes
             void setCinematico(const bool cine);
             void setAtivado(const bool atv);
 
-            CorpoRigido( const bool colidivel=true, const bool cinematico=false,const float massa =1, bool gravidade=true)
+            CorpoRigido( const bool colidivel=true, const bool cinematico=false, bool gravidade=true)
             : Componente(),gravidade(gravidade), colidivel(colidivel),
-            cinematico(cinematico),massa(massa), obj(nullptr), dimensao(1,1)
+            cinematico(cinematico), obj(nullptr), dimensao(1,1)
             {
                 escutas.clear();
             }

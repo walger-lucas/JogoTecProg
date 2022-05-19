@@ -24,14 +24,7 @@ namespace Componentes
     {
         dimensao=dim;
     }
-    const float CorpoRigido::getMassa() const
-    {
-        return obj->getMassa();
-    }
-    void CorpoRigido::setMassa(const float massa)
-    {
-        obj->setMassa(massa);
-    }
+
     const bool CorpoRigido::getGravidade() const
     {
         return gravidade;

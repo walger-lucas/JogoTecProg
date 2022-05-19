@@ -7,28 +7,35 @@ namespace Colisoes
 {
     const Vector2f Colisor::getPos() const
     {
+        if(dimensao==nullptr)
+            return Vector2f(0,0);
         return *posicao;
     }
     const Vector2f Colisor::getDim() const
     {
+        if(dimensao==nullptr)
+            return Vector2f(0,0);
         return *dimensao;
     }
     const Vector2f Colisor::getCentro() const
     {
-        return Vector2f(posicao->x+dimensao->x*0.5,posicao->y-dimensao->y*0.5);
+        return Vector2f(this->getPos().x+this->getDim().x*0.5,this->getPos().y-this->getDim().y*0.5);
     }
     void Colisor::setPos(const Vector2f pos){
-        *posicao=pos;
+        if(posicao!=nullptr)
+            *posicao=pos;
     }
     void Colisor::setDim(const Vector2f dim){
-        *dimensao=dim;
+        if(dimensao!=nullptr)
+            *dimensao=dim;
     }
     void Colisor::setCentro(const Vector2f pos){
         *posicao= Vector2f(pos.x-dimensao->x*0.5,pos.y+dimensao->y*0.5);
     }
     void Colisor::Mover(const Vector2f movimento)
     {
-        *posicao+=movimento;
+        if(posicao!= nullptr)
+            *posicao+=movimento;
     }
     const bool Colisor::Colide(const Colisor& col1,const Colisor& col2)
     {

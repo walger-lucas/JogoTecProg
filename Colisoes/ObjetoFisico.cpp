@@ -27,10 +27,7 @@ namespace Colisoes
     {
         return velocidade;
     }
-    const float ObjetoFisico::getMassa() const
-    {
-        return massa;
-    }
+
     Colisor &ObjetoFisico::getColisor()
     {
         return colisor;
@@ -38,11 +35,6 @@ namespace Colisoes
     void ObjetoFisico::setColidivel(const bool col)
     {
         colidivel = col;
-    }
-    void ObjetoFisico::setMassa(const float massa)
-    {
-        if (massa != 0)
-            this->massa = massa;
     }
     void ObjetoFisico::setCinematico(const bool cine)
     {
