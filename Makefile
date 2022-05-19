@@ -1,5 +1,5 @@
 HEADERS = ./Entidades/Componentes ./Entidades ./ ./Colisoes ./Gerenciadores ./Graficos
-OBJ = Entidade.o Componente.o Posicao.o Colisor.o Camera.o GerenciadorGrafico.o ImgSprite.o ImgTexto.o Grafico.o GraficoSprite.o ObjetoFisico.o GerenciadorColisoes.o CorpoRigido.o GerenciadorInputs.o EventoBotao.o
+OBJ = Entidade.o Componente.o Posicao.o Colisor.o Camera.o GerenciadorGrafico.o ImgSprite.o ImgTexto.o Grafico.o GraficoSprite.o ObjetoFisico.o GerenciadorColisoes.o CorpoRigido.o GerenciadorInputs.o EventoBotao.o GerenciadorArquivos.o
 OBJ_DIR = ./obj
 PROJ_NAME = JOGO
 PRE_HEADERS = $(addprefix -I ,$(HEADERS))
@@ -78,6 +78,10 @@ $(OBJ_DIR)/GerenciadorInputs.o : Gerenciadores/GerenciadorInputs.cpp  Gerenciado
 	@ echo 'Compilando $@'
 #Evento Botao
 $(OBJ_DIR)/EventoBotao.o : Gerenciadores/EventoBotao.cpp  Gerenciadores/GerenciadorInputs.h Colisoes/Colisor.h Gerenciadores/EventoBotao.h  
+	@ g++ $(CFLAGS) $(SFMLFLAGS) -c -o $@ $< $(PRE_HEADERS)
+	@ echo 'Compilando $@'
+#Gerenciador Arquivos
+$(OBJ_DIR)/GerenciadorArquivos.o : Gerenciadores/GerenciadorArquivos.cpp  Gerenciadores/GerenciadorArquivos.h
 	@ g++ $(CFLAGS) $(SFMLFLAGS) -c -o $@ $< $(PRE_HEADERS)
 	@ echo 'Compilando $@'
 clean:

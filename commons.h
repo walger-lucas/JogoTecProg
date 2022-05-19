@@ -8,6 +8,7 @@
 #include<iostream>
 #include<limits>
 #include<iterator>
+#include<unordered_map>
 //sfml library
 #include<SFML/System.hpp>
 #include<SFML/Audio.hpp>
