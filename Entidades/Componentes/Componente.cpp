@@ -15,7 +15,10 @@ namespace Componentes{
     {
         this->ativado = atv;
     }
-
+    const bool Componente::getAtivado() const
+    {
+        return ativado;
+    }
     /**
      * retorna entidade de pertencimento do componente
      */
@@ -27,7 +30,7 @@ namespace Componentes{
      * Construtor
      */
     Componente::Componente()
-    : entidade(nullptr) {}
+    : entidade(nullptr),ativado(true) {}
     
 
     /**

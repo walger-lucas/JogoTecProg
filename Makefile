@@ -1,5 +1,5 @@
 HEADERS = ./Entidades/Componentes ./Entidades ./ ./Colisoes ./Gerenciadores ./Graficos
-OBJ = Entidade.o Componente.o Posicao.o Colisor.o Camera.o GerenciadorGrafico.o ImgSprite.o ImgTexto.o Grafico.o GraficoSprite.o
+OBJ = Entidade.o Componente.o Posicao.o Colisor.o Camera.o GerenciadorGrafico.o ImgSprite.o ImgTexto.o Grafico.o GraficoSprite.o ObjetoFisico.o GerenciadorColisoes.o CorpoRigido.o GerenciadorInputs.o EventoBotao.o GerenciadorArquivos.o Botao.o BotaoEntidade.o
 OBJ_DIR = ./obj
 PROJ_NAME = JOGO
 PRE_HEADERS = $(addprefix -I ,$(HEADERS))
@@ -57,10 +57,41 @@ $(OBJ_DIR)/Grafico.o : Entidades/Componentes/Grafico.cpp Entidades/Componentes/G
 $(OBJ_DIR)/GraficoSprite.o : Entidades/Componentes/GraficoSprite.cpp Entidades/Componentes/GraficoSprite.h Entidades/Componentes/Grafico.h Entidades/Componentes/Componente.h Entidades/Componentes/Posicao.h
 	@ g++ $(CFLAGS) -c -o $@ $< $(PRE_HEADERS)
 	@ echo 'Compilando $@'
+$(OBJ_DIR)/CorpoRigido.o : Entidades/Componentes/CorpoRigido.cpp Colisoes/Colisor.h Colisoes/ObjetoFisico.h Entidades/Componentes/Componente.h Entidades/Componentes/Posicao.h
+	@ g++ $(CFLAGS) -c -o $@ $< $(PRE_HEADERS)
+$(OBJ_DIR)/Botao.o : Entidades/Componentes/Botao.cpp Gerenciadores/GerenciadorArquivos.h Gerenciadores/EventoBotao.h Gerenciadores/GerenciadorGrafico.h Entidades/Componentes/Componente.h Entidades/Componentes/Posicao.h Entidades/Componentes/GraficoSprite.h Graficos/ImgTexto.h
+	@ g++ $(CFLAGS) -c -o $@ $< $(PRE_HEADERS)
+	@ echo 'Compilando $@'
 #Filhos de Componente End
 #Filhos de Entidade Start
 
 #Filhos de Entidade End
+#Gerenciador de Colisoes
+$(OBJ_DIR)/GerenciadorColisoes.o : Gerenciadores/GerenciadorColisoes.cpp  Gerenciadores/GerenciadorColisoes.h Colisoes/Colisor.h Colisoes/ObjetoFisico.h
+	@ g++ $(CFLAGS) $(SFMLFLAGS) -c -o $@ $< $(PRE_HEADERS)
+	@ echo 'Compilando $@'
+#ObjetoFisico
+$(OBJ_DIR)/ObjetoFisico.o : Colisoes/ObjetoFisico.cpp Colisoes/Colisor.h Colisoes/Colisor.h Colisoes/IEscutaColisao.h
+	@ g++ $(CFLAGS) -c -o $@ $< $(PRE_HEADERS)
+	@ echo 'Compilando $@'
+#GerenciadorInputs
+$(OBJ_DIR)/GerenciadorInputs.o : Gerenciadores/GerenciadorInputs.cpp  Gerenciadores/GerenciadorInputs.h Gerenciadores/GerenciadorGrafico.h Gerenciadores/EventoBotao.h  
+	@ g++ $(CFLAGS) $(SFMLFLAGS) -c -o $@ $< $(PRE_HEADERS)
+	@ echo 'Compilando $@'
+#Evento Botao
+$(OBJ_DIR)/EventoBotao.o : Gerenciadores/EventoBotao.cpp  Gerenciadores/GerenciadorInputs.h Colisoes/Colisor.h Gerenciadores/EventoBotao.h  
+	@ g++ $(CFLAGS) $(SFMLFLAGS) -c -o $@ $< $(PRE_HEADERS)
+	@ echo 'Compilando $@'
+#Gerenciador Arquivos
+$(OBJ_DIR)/GerenciadorArquivos.o : Gerenciadores/GerenciadorArquivos.cpp  Gerenciadores/GerenciadorArquivos.h
+	@ g++ $(CFLAGS) $(SFMLFLAGS) -c -o $@ $< $(PRE_HEADERS)
+	@ echo 'Compilando $@'
+
+$(OBJ_DIR)/BotaoEntidade.o : Entidades/BotaoEntidade.cpp  Entidades/BotaoEntidade.h $(OBJ_DIR)/Botao.o
+	@ g++ $(CFLAGS) $(SFMLFLAGS) -c -o $@ $< $(PRE_HEADERS)
+	@ echo 'Compilando $@'
 clean:
 	@ rm $(OBJ_DIR)/commons.o $(addprefix $(OBJ_DIR)/,$(OBJ)) 
 	@ echo 'Removendo antigos .o'
+
+#oi

@@ -5,82 +5,95 @@
 #include"ImgSprite.h"
 #include"ImgTexto.h"
 #include"GerenciadorGrafico.h"
+#include"GerenciadorColisoes.h"
+#include"GerenciadorInputs.h"
+#include"GerenciadorArquivos.h"
+#include"EventoBotao.h"
+#include "BotaoEntidade.h"
 using namespace Graficos;
 using namespace sf;
 using namespace std;
+void apt()
+{
+    cout<<"botao apertado\n";
+}
+void dapt()
+{
+    cout << "botao desapertado\n";
+}
 int main()
 {
-    
-    Jogador* j= new Jogador("Roger","cubo.png",false);
-    j->Carregar();
+    GerenciadorArquivos::CarregarFonte("arial","ARIAL.TTF");
+    GerenciadorArquivos::CarregarTextura("cubo","cubo.png");
+    GerenciadorArquivos::CarregarTextura("button0","button0.png");
+    GerenciadorArquivos::CarregarTextura("hi","hi.png");
+    Vector2f posc(0,-6);
+    Vector2f dimc(10,1);
+    ObjetoFisico* chao= new ObjetoFisico(&posc,&dimc,nullptr,true,false);
+    GerenciadorColisoes::AddObjeto(chao);
+    Jogador* j= new Jogador("Roger","cubo",false);
     j->Iniciar();
     Posicao *p = j->getComponente<Posicao>();
     p->setPos(Vector2f(3,-2));
-    Vida *v = j->getComponente<Vida>();
-    cout<<p->getX()<<endl;
-    cout<<v->getVida()<<endl;
-    v->machucar(15);
-    cout<<v->getVida()<<endl;
-    Jogador* k = new Jogador("Elis","car.png",true);
-    k->Carregar();
+    Jogador* k = new Jogador("Elis","hi",false);
     k->Iniciar();
-    
+    /*EventoBotao bot(p->getPPos(),p->getPEsc());
+    bot.setFuncApertar(apt);
+    bot.setFuncDesapertar(dapt);*/
+    BotaoEntidade* bot = new BotaoEntidade(Vector2f(1,-2),0.3,"Hola",Vector2f(-40,-25),"button0","arial",apt,dapt);
+    bot->Iniciar();
     
     VideoMode vM(5000,500);
     RenderWindow rw(vM,"HeyListen",Style::Titlebar | Style::Close |Style::Resize);
     rw.setFramerateLimit(20);
     Vector2f pos3(3,-3);
+
     ImgTexto* txt= new ImgTexto(&pos3,0.2);
-    txt->setTexto("Hola que Tal");
-    Font f;
-    f.loadFromFile("ARIAL.TTF");
-    txt->setFont(f);
+    txt->setTexto("Hola que\nTal");
+
+    txt->setFont(*GerenciadorArquivos::getFonte("arial"));
     
     Gerenciadores::GerenciadorGrafico ger(&rw);
-   // ger.cam.setDim(Vector2f(10,10));
+    GerenciadorColisoes gerC = GerenciadorColisoes();
+    GerenciadorInputs gerI = GerenciadorInputs();
+    gerI.setWindowAtual(&rw);
+    
+
+    Posicao* posC= k->getComponente<Posicao>();
+    posC->setPos(Vector2f(3.1,20));
     Gerenciadores::GerenciadorGrafico::addUI(txt,2);
     Gerenciadores::GerenciadorGrafico::setCorBorda(Color::Black);
-    //ger.cam.Centralizar(img->getCentro());
-    
-    Event ev;
+    rw.setFramerateLimit(80);
+    CorpoRigido* cp = j->getComponente<CorpoRigido>();
     while (rw.isOpen())
     {
-        while(rw.pollEvent(ev))
-        {
-            switch (ev.type)
-            {
-            case sf::Event::Closed:
-                rw.close();
-                break;
-            case Event::Resized:
-            {
-                FloatRect visibleArea(0, 0, ev.size.width, ev.size.height);
-                rw.setView(sf::View(visibleArea));
-                break;
-            }
-            case Event::KeyPressed:
-            {
-                if(Keyboard::isKeyPressed(Keyboard::Key::Left))
-                    ger.cam.Mover(Vector2f(-1,0));
-                else if(Keyboard::isKeyPressed(Keyboard::Key::Right))
-                    ger.cam.Mover(Vector2f(1,0));
-                else if(Keyboard::isKeyPressed(Keyboard::Key::Up))
-                    ger.cam.Mover(Vector2f(0,1));
-                else if(Keyboard::isKeyPressed(Keyboard::Key::Down))
-                    ger.cam.Mover(Vector2f(0,-1));    
-                
-                break;
-            }
-            default:
-                break;
-            }
-            
-        }
+        gerI.PollEvents();
         ger.Render();
+        j->AtualizarFixo();
+        k->AtualizarFixo();
+        gerC.ResolverColisoes();
+        if(Keyboard::isKeyPressed(Keyboard::Key::Left))
+        {
+            cp->setVelocidade(Vector2f(-4.0,cp->getVelocidade().y));
+        } 
+        else if(Keyboard::isKeyPressed(Keyboard::Key::Right))
+        {
+            cp->setVelocidade(Vector2f(4.0,cp->getVelocidade().y));
+        }
+        else
+        {
+            cp->setVelocidade(Vector2f(0,cp->getVelocidade().y));
+        }
+
+        if(Keyboard::isKeyPressed(Keyboard::Key::Space))
+        {
+            cp->setVelocidade(Vector2f(cp->getVelocidade().x,2));
+        }
 
     }
     delete j;
     delete k;
+    delete bot;
     
 
 }

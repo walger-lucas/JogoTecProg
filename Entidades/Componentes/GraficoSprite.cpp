@@ -25,6 +25,10 @@ namespace Componentes{
         sprite->setTextura(*texture);
         return sprite;
     }
+    ImgSprite* GraficoSprite::getSprite()
+    {
+        return sprite;
+    }
 
     GraficoSprite::GraficoSprite(Texture* txt,int layer, bool ui)
     :Grafico(layer,ui),sprite(nullptr),texture(txt)

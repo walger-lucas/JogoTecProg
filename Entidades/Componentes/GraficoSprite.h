@@ -16,6 +16,7 @@ namespace Componentes
             virtual void Render() {}
         public:
             GraficoSprite(Texture* txt=nullptr,int layer = 0, bool ui=false);
+            ImgSprite* getSprite();
             virtual ~GraficoSprite();
     };
 }
