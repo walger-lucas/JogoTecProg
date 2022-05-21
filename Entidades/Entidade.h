@@ -27,7 +27,7 @@ using namespace std;
 namespace Entidades{
 
 	class Entidade {
-
+		friend class Listas::ListaEntidade;
 	private: 
 
 		vector<Componente*> componentes;
@@ -39,41 +39,23 @@ namespace Entidades{
 
 		
 		void Atualizar();
-		
-		void AtualizarFixo();
-		
-		
-		
 		void Render();
 
 
-		friend class Listas::ListaEntidade;
+		
 
-	
-	void Atualizar();
-	
-	
-	
-	
-	
-	void Render();
-
-public: 
-	void Iniciar();
-	void AtualizarFixo();
-	//testa componentes para o tipo e os converte com downcast caso encontrado o do TIPO.
-	template<class TIPO> 
-	TIPO* getComponente()
-	{
-		int i;
-		int size = componentes.size();
-		for(i=0;i<size;i++)
+	public: 
+		void Iniciar();
+		void AtualizarFixo();
+		//testa componentes para o tipo e os converte com downcast caso encontrado o do TIPO.
+		template<class TIPO> 
+		TIPO* getComponente()
 		{
 			int i;
 			int size = componentes.size();
+			type_index t (typeid(TIPO));
 			for(i=0;i<size;i++)
 			{
-				type_index t (typeid(TIPO));
 				if(t== typeid(*(componentes[i])) )
 				{
 					return (dynamic_cast<TIPO*> (componentes[i]) );
@@ -81,47 +63,47 @@ public:
 			}
 			return nullptr;
 		}
-		
-		void Destruir();
-		
-		const bool getDestruir() const;
-		
-		void setAtivo(bool ativo);
-		
-		const bool getAtivo() const;
-		
-		const string& getNome() const;
-		
-	/**
-	 * testa se ha tags
-	 */
-		const bool temTag(const string& tag) const;
-		
-	/**
-		* Construtor e Destrutor
-		* 
-	*/
-		Entidade(Cena* cena = nullptr, string nome = "");
-		virtual ~Entidade();
-		//pega a cena atual
-		Cena* getCena();
+			
+			void Destruir();
+			
+			const bool getDestruir() const;
+			
+			void setAtivo(bool ativo);
+			
+			const bool getAtivo() const;
+			
+			const string& getNome() const;
+			
+		/**
+		 * testa se ha tags
+		 */
+			const bool temTag(const string& tag) const;
+			
+		/**
+			* Construtor e Destrutor
+			* 
+		*/
+			Entidade(Cena* cena = nullptr, string nome = "");
+			virtual ~Entidade();
+			//pega a cena atual
+			Cena* getCena();
 
-	protected: 
-		
-		void setNome(const string& nome);
+		protected: 
 			
-		/**
-		 * adiciona tags ao array
-		 */
-		void addTag(const string& tag);
-			
-		/**
-		 * adiciona componentes ao array.
-		 */
-		void addComponente(Componente* comp);
-			
-			
-		virtual void Carregar()=0;
+			void setNome(const string& nome);
+				
+			/**
+			 * adiciona tags ao array
+			 */
+			void addTag(const string& tag);
+				
+			/**
+			 * adiciona componentes ao array.
+			 */
+			void addComponente(Componente* comp);
+				
+				
+			virtual void Carregar()=0;
 
 	};
 }
