@@ -2,3 +2,5 @@
 **/obj/*.o
 **/.vscode
 JOGO
+JOGO.exe
+*.dll
