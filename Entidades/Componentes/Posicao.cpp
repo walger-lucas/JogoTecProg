@@ -33,11 +33,11 @@ namespace Componentes{
     {
         escala= esc;
     }
-    const Vector2f* Posicao::getPPos() const
+    Vector2f* Posicao::getPPos()
     {
         return &posicao;
     }
-    const Vector2f* Posicao::getPEsc() const
+    Vector2f* Posicao::getPEsc()
     {
         return &escala;
     }

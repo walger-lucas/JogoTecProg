@@ -46,13 +46,28 @@ namespace Entidades{
 		
 		void Render();
 
+
 		friend class Listas::ListaEntidade;
 
-	public: 
-		void Iniciar();
-		//testa componentes para o tipo e os converte com downcast caso encontrado o do TIPO.
-		template<class TIPO> 
-		TIPO* getComponente()
+	
+	void Atualizar();
+	
+	
+	
+	
+	
+	void Render();
+
+public: 
+	void Iniciar();
+	void AtualizarFixo();
+	//testa componentes para o tipo e os converte com downcast caso encontrado o do TIPO.
+	template<class TIPO> 
+	TIPO* getComponente()
+	{
+		int i;
+		int size = componentes.size();
+		for(i=0;i<size;i++)
 		{
 			int i;
 			int size = componentes.size();

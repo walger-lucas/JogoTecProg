@@ -16,6 +16,7 @@ class Componente {
 public: 
 
 	virtual void setAtivado(bool atv);
+	const bool getAtivado() const;
 	
 	Entidade* getEntidade();
 	
