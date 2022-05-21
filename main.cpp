@@ -8,13 +8,24 @@
 #include"GerenciadorColisoes.h"
 #include"GerenciadorInputs.h"
 #include"GerenciadorArquivos.h"
+#include"EventoBotao.h"
+#include "BotaoEntidade.h"
 using namespace Graficos;
 using namespace sf;
 using namespace std;
+void apt()
+{
+    cout<<"botao apertado\n";
+}
+void dapt()
+{
+    cout << "botao desapertado\n";
+}
 int main()
 {
     GerenciadorArquivos::CarregarFonte("arial","ARIAL.TTF");
     GerenciadorArquivos::CarregarTextura("cubo","cubo.png");
+    GerenciadorArquivos::CarregarTextura("button0","button0.png");
     GerenciadorArquivos::CarregarTextura("hi","hi.png");
     Vector2f posc(0,-6);
     Vector2f dimc(10,1);
@@ -26,7 +37,11 @@ int main()
     p->setPos(Vector2f(3,-2));
     Jogador* k = new Jogador("Elis","hi",false);
     k->Iniciar();
-    
+    /*EventoBotao bot(p->getPPos(),p->getPEsc());
+    bot.setFuncApertar(apt);
+    bot.setFuncDesapertar(dapt);*/
+    BotaoEntidade* bot = new BotaoEntidade(Vector2f(1,-2),0.3,"Hola",Vector2f(-40,-25),"button0","arial",apt,dapt);
+    bot->Iniciar();
     
     VideoMode vM(5000,500);
     RenderWindow rw(vM,"HeyListen",Style::Titlebar | Style::Close |Style::Resize);
@@ -45,7 +60,7 @@ int main()
     
 
     Posicao* posC= k->getComponente<Posicao>();
-    posC->setPos(Vector2f(3.1,-5));
+    posC->setPos(Vector2f(3.1,20));
     Gerenciadores::GerenciadorGrafico::addUI(txt,2);
     Gerenciadores::GerenciadorGrafico::setCorBorda(Color::Black);
     rw.setFramerateLimit(80);
@@ -78,6 +93,7 @@ int main()
     }
     delete j;
     delete k;
+    delete bot;
     
 
 }

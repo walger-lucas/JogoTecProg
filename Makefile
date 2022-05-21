@@ -1,5 +1,5 @@
 HEADERS = ./Entidades/Componentes ./Entidades ./ ./Colisoes ./Gerenciadores ./Graficos
-OBJ = Entidade.o Componente.o Posicao.o Colisor.o Camera.o GerenciadorGrafico.o ImgSprite.o ImgTexto.o Grafico.o GraficoSprite.o ObjetoFisico.o GerenciadorColisoes.o CorpoRigido.o GerenciadorInputs.o EventoBotao.o GerenciadorArquivos.o
+OBJ = Entidade.o Componente.o Posicao.o Colisor.o Camera.o GerenciadorGrafico.o ImgSprite.o ImgTexto.o Grafico.o GraficoSprite.o ObjetoFisico.o GerenciadorColisoes.o CorpoRigido.o GerenciadorInputs.o EventoBotao.o GerenciadorArquivos.o Botao.o BotaoEntidade.o
 OBJ_DIR = ./obj
 PROJ_NAME = JOGO
 PRE_HEADERS = $(addprefix -I ,$(HEADERS))
@@ -59,6 +59,8 @@ $(OBJ_DIR)/GraficoSprite.o : Entidades/Componentes/GraficoSprite.cpp Entidades/C
 	@ echo 'Compilando $@'
 $(OBJ_DIR)/CorpoRigido.o : Entidades/Componentes/CorpoRigido.cpp Colisoes/Colisor.h Colisoes/ObjetoFisico.h Entidades/Componentes/Componente.h Entidades/Componentes/Posicao.h
 	@ g++ $(CFLAGS) -c -o $@ $< $(PRE_HEADERS)
+$(OBJ_DIR)/Botao.o : Entidades/Componentes/Botao.cpp Gerenciadores/GerenciadorArquivos.h Gerenciadores/EventoBotao.h Gerenciadores/GerenciadorGrafico.h Entidades/Componentes/Componente.h Entidades/Componentes/Posicao.h Entidades/Componentes/GraficoSprite.h Graficos/ImgTexto.h
+	@ g++ $(CFLAGS) -c -o $@ $< $(PRE_HEADERS)
 	@ echo 'Compilando $@'
 #Filhos de Componente End
 #Filhos de Entidade Start
@@ -82,6 +84,10 @@ $(OBJ_DIR)/EventoBotao.o : Gerenciadores/EventoBotao.cpp  Gerenciadores/Gerencia
 	@ echo 'Compilando $@'
 #Gerenciador Arquivos
 $(OBJ_DIR)/GerenciadorArquivos.o : Gerenciadores/GerenciadorArquivos.cpp  Gerenciadores/GerenciadorArquivos.h
+	@ g++ $(CFLAGS) $(SFMLFLAGS) -c -o $@ $< $(PRE_HEADERS)
+	@ echo 'Compilando $@'
+
+$(OBJ_DIR)/BotaoEntidade.o : Entidades/BotaoEntidade.cpp  Entidades/BotaoEntidade.h $(OBJ_DIR)/Botao.o
 	@ g++ $(CFLAGS) $(SFMLFLAGS) -c -o $@ $< $(PRE_HEADERS)
 	@ echo 'Compilando $@'
 clean:

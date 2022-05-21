@@ -10,6 +10,8 @@ namespace Colisoes{
             const Vector2f getPos() const;
             const Vector2f getDim() const;
             const Vector2f getCentro() const;
+            void setPPos(Vector2f* pos);
+            void setPDim(Vector2f* dim);
             void setPos(const Vector2f pos);
             void setDim(const Vector2f dim);
             void setCentro(const Vector2f centro);

@@ -8,7 +8,7 @@ using namespace Graficos;
 //max de layers graficos
 #define LAYERS_MAX 5
 //layers de ui
-#define UI_MAX 3
+#define UI_MAX 5
 namespace Gerenciadores{
     class GerenciadorGrafico
     {

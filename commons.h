@@ -9,6 +9,7 @@
 #include<limits>
 #include<iterator>
 #include<unordered_map>
+#include<functional>
 //sfml library
 #include<SFML/System.hpp>
 #include<SFML/Audio.hpp>

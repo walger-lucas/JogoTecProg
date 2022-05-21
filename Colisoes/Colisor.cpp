@@ -29,6 +29,13 @@ namespace Colisoes
         if(dimensao!=nullptr)
             *dimensao=dim;
     }
+    void Colisor::setPDim(Vector2f* dim){
+        dimensao=dim;
+    }
+    void Colisor::setPPos(Vector2f* pos){
+        posicao=pos;
+    }
+
     void Colisor::setCentro(const Vector2f pos){
         *posicao= Vector2f(pos.x-dimensao->x*0.5,pos.y+dimensao->y*0.5);
     }

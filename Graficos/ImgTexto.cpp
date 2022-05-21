@@ -73,5 +73,9 @@ namespace Graficos{
     {
 
     }
+    void ImgTexto::setPPos(Vector2f* pos)
+    {
+        posicao = pos;
+    }
     
 }

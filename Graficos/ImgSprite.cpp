@@ -22,6 +22,7 @@ namespace Graficos{
     void ImgSprite::setTextura(const Texture& textura)
     {
         sprite.setTexture(textura);
+        sprite.setTextureRect(IntRect(Vector2i(0,0),Vector2i(textura.getSize().x,textura.getSize().y)));
         setDim();
     }
     void ImgSprite::setDim(bool x)

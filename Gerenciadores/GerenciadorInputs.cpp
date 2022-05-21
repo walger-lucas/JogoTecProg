@@ -25,10 +25,24 @@ namespace Gerenciadores
                 case Event::MouseButtonPressed:
                 {
                     //tenta apertar botoes dando a posicao do mouse em UI na tela.
-                    Vector2f posMouse = getMouseUIPos();
-                    for(auto botao : botoes)
+                    if(evento.mouseButton.button==Mouse::Button::Left)
                     {
-                        botao->Apertar(posMouse);
+                        Vector2f posMouse = getMouseUIPos();
+                        for(auto botao : botoes)
+                        {
+                            botao->Apertar(posMouse);
+                        }
+                    }
+                    break;
+                }
+                case Event::MouseButtonReleased:
+                {
+                    if(evento.mouseButton.button==Mouse::Button::Left)
+                    {
+                        for(auto botao : botoes)
+                        {
+                            botao->Desapertar();
+                        }
                     }
                     break;
                 }
