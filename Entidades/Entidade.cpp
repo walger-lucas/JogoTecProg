@@ -50,8 +50,8 @@ namespace Entidades{
     }
 
     
-    Entidade::Entidade(Cena* cena,string nome):
-    nome(nome),cena(cena)
+    Entidade::Entidade(string nome):
+    nome(nome)
     {
         tags.clear();
         componentes.clear();
@@ -154,5 +154,9 @@ namespace Entidades{
             else
                 return;
         }
+    }
+    void Entidade::setCena(Cena* cena)
+    {
+        this->cena = cena;
     }
 }

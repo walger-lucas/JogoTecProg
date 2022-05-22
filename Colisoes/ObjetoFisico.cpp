@@ -4,7 +4,7 @@
 using namespace std;
 using namespace sf;
 using namespace Componentes;
-#define MOVE_ERROR 1.05F
+
 namespace Colisoes
 {
     const bool ObjetoFisico::getColidivel() const
@@ -90,22 +90,23 @@ namespace Colisoes
             if(tempo.x<tempo.y)
             {
                 
-                mov1.x = -obj1.velocidade.x*(Gerenciadores::GerenciadorColisoes::tempoFixo-tempo.x)*MOVE_ERROR;
-                mov2.x= -obj2.velocidade.x*(Gerenciadores::GerenciadorColisoes::tempoFixo-tempo.x)*MOVE_ERROR;
+                mov1.x = -obj1.velocidade.x*(Gerenciadores::GerenciadorColisoes::tempoFixo-tempo.x);
+                mov2.x= -obj2.velocidade.x*(Gerenciadores::GerenciadorColisoes::tempoFixo-tempo.x);
                 obj1.velocidade.x=0;
                 obj2.velocidade.x=0;
             }
             else
             {
                 
-                mov1.y = -obj1.velocidade.y*(Gerenciadores::GerenciadorColisoes::tempoFixo-tempo.y)*MOVE_ERROR;
-                mov2.y= -obj2.velocidade.y*(Gerenciadores::GerenciadorColisoes::tempoFixo-tempo.y)*MOVE_ERROR;
+                mov1.y = -obj1.velocidade.y*(Gerenciadores::GerenciadorColisoes::tempoFixo-tempo.y);
+                mov2.y= -obj2.velocidade.y*(Gerenciadores::GerenciadorColisoes::tempoFixo-tempo.y);
                 obj1.velocidade.y=0;
                 obj2.velocidade.y=0;
             }
             col1.Mover(mov1);
             col2.Mover(mov2);
         }
+        
     }
     void ObjetoFisico::Avisar(ObjetoFisico &obj)
     {

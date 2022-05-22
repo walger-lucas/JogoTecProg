@@ -1,5 +1,6 @@
 #include "Cena.h"
 #include "GerenciadorCenas.h"
+#include "Entidade.h"
 using namespace std;
 using namespace Gerenciadores;
 
@@ -32,7 +33,14 @@ namespace Cenas
     }
 
     void Cena::AdicionarEntidade(Entidade* ent)
-    { lista.Adicionar(ent); }
+    { 
+        if(ent!=nullptr)
+        {
+            lista.Adicionar(ent); 
+            ent->setCena(this);
+        }
+        
+    }
 
     Entidade* Cena::getEntidade(string& nome)
     { return lista.getEntidade(nome); }

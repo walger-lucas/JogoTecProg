@@ -47,6 +47,7 @@ namespace Entidades{
 	public: 
 		void Iniciar();
 		void AtualizarFixo();
+		void setCena(Cena* cena);
 		//testa componentes para o tipo e os converte com downcast caso encontrado o do TIPO.
 		template<class TIPO> 
 		TIPO* getComponente()
@@ -83,7 +84,7 @@ namespace Entidades{
 			* Construtor e Destrutor
 			* 
 		*/
-			Entidade(Cena* cena = nullptr, string nome = "");
+			Entidade(string nome = "");
 			virtual ~Entidade();
 			//pega a cena atual
 			Cena* getCena();
@@ -101,7 +102,7 @@ namespace Entidades{
 			 * adiciona componentes ao array.
 			 */
 			void addComponente(Componente* comp);
-				
+			
 				
 			virtual void Carregar()=0;
 

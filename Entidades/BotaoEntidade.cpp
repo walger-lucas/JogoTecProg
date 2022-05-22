@@ -6,6 +6,7 @@ using namespace Componentes;
 namespace Entidades
 {
     BotaoEntidade::BotaoEntidade(Vector2f pos,float tam,const string& txt, Vector2f offset,const string& textura,const string& fonte,function<void()> apt,function<void()> dapt)
+    :Entidade("Botao "+txt)
     {
         addComponente(new Posicao(pos.x,pos.y));
         addComponente(new GraficoSprite(GerenciadorArquivos::getTextura("cubo"),2,true));

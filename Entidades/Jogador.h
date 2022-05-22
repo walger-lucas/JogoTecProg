@@ -19,7 +19,7 @@ class Jogador: public Entidade{
             this->addComponente(static_cast<Componente*> (new CorpoRigido(true,true,true)));
 
         }
-        Jogador(string nome ="",string text ="cubo",bool ui = false): Entidade(nullptr,nome){
+        Jogador(string nome ="",string text ="cubo",bool ui = false): Entidade(nome){
             txt=text;
             this->ui=ui;
         }
