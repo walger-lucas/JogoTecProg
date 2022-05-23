@@ -9,12 +9,9 @@ namespace Gerenciadores{
     class GerenciadorColisoes{
         private:
             static list<ObjetoFisico*> objetos;
-            static const int atualizacaoMax;
-            static float tempoUltAtualizacao;
             static bool tenteDestruir(list<ObjetoFisico*>::iterator& it);
             
         public:
-            static const float tempoFixo; //remover quando adiconado Tempo
             static const float gravidade;
             static void AddObjeto(ObjetoFisico* obj);
             //encontra colisao com ponto e colisor

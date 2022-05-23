@@ -1,4 +1,5 @@
 #include "GerenciadorCenas.h"
+#include "CenaTeste.h"
 using namespace std;
 using namespace Cenas;
 
@@ -6,11 +7,15 @@ namespace Gerenciadores
 {
     void GerenciadorCenas::setCena(const int cena)
     {
-        if(cena >= 0 && cena < cenaMax)
-        {
-            cenas[cenaAtual]->Descarregar();
+        if(cena!=cenaAtual && cena>=0 && cena<=MAXCENAS)
+        {   if(cenaAtual>=0 && cenaAtual<MAXCENAS)
+                cenas[cenaAtual]->Descarregar();
             cenaAtual = cena;
-            emCena = true;
+            cenas[cenaAtual]->Carregar();
+        }
+        else
+        {
+            cout<< "Esta cena nao existe ou ja eh a atual!\n";
         }
     }
 
@@ -24,15 +29,18 @@ namespace Gerenciadores
     { cenas[cenaAtual]->Render(); }
 
     GerenciadorCenas::GerenciadorCenas():
-    cenaAtual(-1),
-    cenaMax(MAXCENAS),
-    emCena(false)
+    cenaAtual(-1)
     {
-        //cenas[i] = static_cast<Cena*>();
+        cenas[0]= new CenaTeste();
+        /*cenas[1]= new Cena();
+        cenas[2]= new Cena();
+        */
     }
 
     GerenciadorCenas::~GerenciadorCenas()
     {
-        //delete[] cenas;
+        int i;
+        for(i=0;i<MAXCENAS;i++)
+            delete cenas[i];
     }
 }

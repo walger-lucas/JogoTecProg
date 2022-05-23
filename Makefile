@@ -1,5 +1,5 @@
 HEADERS = ./Entidades/Componentes ./Entidades ./ ./Colisoes ./Gerenciadores ./Graficos . ./Listas ./Cenas ./Configs
-OBJ = Entidade.o Componente.o Posicao.o Colisor.o Camera.o GerenciadorGrafico.o ImgSprite.o ImgTexto.o Grafico.o GraficoSprite.o ObjetoFisico.o GerenciadorColisoes.o CorpoRigido.o GerenciadorInputs.o EventoBotao.o GerenciadorArquivos.o Botao.o BotaoEntidade.o ListaEntidades.o Cena.o GerenciadorCenas.o Tempo.o
+OBJ = Jogo.o Entidade.o Componente.o Posicao.o Colisor.o Camera.o GerenciadorGrafico.o ImgSprite.o ImgTexto.o Grafico.o GraficoSprite.o ObjetoFisico.o GerenciadorColisoes.o CorpoRigido.o GerenciadorInputs.o EventoBotao.o GerenciadorArquivos.o Botao.o BotaoEntidade.o ListaEntidades.o Cena.o GerenciadorCenas.o Tempo.o CenaTeste.o Plataforma.o ControleJogador.o
 OBJ_DIR = ./obj
 PROJ_NAME = JOGO
 PRE_HEADERS = $(addprefix -I ,$(HEADERS))
@@ -62,6 +62,9 @@ $(OBJ_DIR)/CorpoRigido.o : Entidades/Componentes/CorpoRigido.cpp Colisoes/Coliso
 $(OBJ_DIR)/Botao.o : Entidades/Componentes/Botao.cpp Gerenciadores/GerenciadorArquivos.h Gerenciadores/EventoBotao.h Gerenciadores/GerenciadorGrafico.h Entidades/Componentes/Componente.h Entidades/Componentes/Posicao.h Entidades/Componentes/GraficoSprite.h Graficos/ImgTexto.h
 	@ g++ $(CFLAGS) -c -o $@ $< $(PRE_HEADERS)
 	@ echo 'Compilando $@'
+$(OBJ_DIR)/ControleJogador.o : Entidades/Componentes/ControleJogador.cpp Entidades/Componentes/ControleJogador.h  Gerenciadores/GerenciadorColisoes.h Entidades/Componentes/Componente.h Entidades/Componentes/Posicao.h Entidades/Componentes/CorpoRigido.h
+	@ g++ $(CFLAGS) -c -o $@ $< $(PRE_HEADERS)
+	@ echo 'Compilando $@'
 #Filhos de Componente End
 #Filhos de Entidade Start
 
@@ -108,6 +111,16 @@ $(OBJ_DIR)/GerenciadorArquivos.o : Gerenciadores/GerenciadorArquivos.cpp  Gerenc
 	@ echo 'Compilando $@'
 
 $(OBJ_DIR)/BotaoEntidade.o : Entidades/BotaoEntidade.cpp  Entidades/BotaoEntidade.h $(OBJ_DIR)/Botao.o
+	@ g++ $(CFLAGS) $(SFMLFLAGS) -c -o $@ $< $(PRE_HEADERS)
+	@ echo 'Compilando $@'
+$(OBJ_DIR)/Jogo.o : Jogo.cpp  Jogo.h Gerenciadores/GerenciadorArquivos.h Gerenciadores/GerenciadorCenas.h Gerenciadores/GerenciadorColisoes.h Gerenciadores/GerenciadorGrafico.h Gerenciadores/GerenciadorInputs.h Configs/Tempo.h
+	@ g++ $(CFLAGS) $(SFMLFLAGS) -c -o $@ $< $(PRE_HEADERS)
+	@ echo 'Compilando $@'
+
+$(OBJ_DIR)/CenaTeste.o : Cenas/CenaTeste.cpp Cenas/CenaTeste.h Cenas/Cena.h 
+	@ g++ $(CFLAGS) $(SFMLFLAGS) -c -o $@ $< $(PRE_HEADERS)
+	@ echo 'Compilando $@'
+$(OBJ_DIR)/Plataforma.o : Entidades/Plataforma.cpp Entidades/Plataforma.h Entidades/Entidade.h
 	@ g++ $(CFLAGS) $(SFMLFLAGS) -c -o $@ $< $(PRE_HEADERS)
 	@ echo 'Compilando $@'
 

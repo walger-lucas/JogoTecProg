@@ -114,8 +114,6 @@ namespace Entidades{
         {
             if(componentes[i]!=nullptr&& componentes[i]->getAtivado())
                 componentes[i]->Atualizar();
-            else
-                return;
         }
     }
 
@@ -132,7 +130,7 @@ namespace Entidades{
     }
 
     void Entidade::Iniciar() {
-        Carregar();
+
         int i;
         int size = componentes.size();
         for (i=0;i<size;i++)
@@ -142,6 +140,7 @@ namespace Entidades{
             else
                 return;
         }
+        Carregar();
     }
 
     void Entidade::Render() {

@@ -29,7 +29,9 @@ namespace Cenas
     void Cena::MudarCena(const int cena)
     {
         if(gerenciador)
+        {
             gerenciador->setCena(cena);
+        }
     }
 
     void Cena::AdicionarEntidade(Entidade* ent)

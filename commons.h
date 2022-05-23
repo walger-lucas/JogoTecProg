@@ -10,12 +10,13 @@
 #include<iterator>
 #include<unordered_map>
 #include<functional>
+#include<cmath>
 //sfml library
 #include<SFML/System.hpp>
 #include<SFML/Audio.hpp>
 #include<SFML/Graphics.hpp>
 #include<SFML/Window.hpp>
 #include<SFML/Network.hpp>
-#include<cmath>
+
 
 //help code

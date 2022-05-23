@@ -39,6 +39,7 @@ namespace Gerenciadores{
             static void setCorFundo(const Color cor);
             //renderiza e retorna quantos frames passaram
             void Render();
+            void setWindow(RenderWindow* window);
             GerenciadorGrafico(RenderWindow* win = nullptr)
             : window(win) {}
             ~GerenciadorGrafico();

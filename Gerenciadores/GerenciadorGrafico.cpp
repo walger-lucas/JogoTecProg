@@ -65,17 +65,14 @@ namespace Gerenciadores{
     {
         return cam.PosTelaUi(pos-posCamTela);
     }
-
+    void GerenciadorGrafico::setWindow(RenderWindow* window)
+    {
+        this->window = window;
+    }
 
     void GerenciadorGrafico::Render()
     {
-        //maybe isso vai pra Principal
-        /* Apenas quando tempo estiver presente
-        tempUltRender+=Tempo::getDeltaTempo();
-        if(tempUltRender<Tempo::getDeltaTempoRender())
-            return;
-        tempUltRender=0;
-        */
+        
         Vector2u dim =window->getSize();
         Vector2f dimCam = cam.getDim();
 
@@ -87,6 +84,7 @@ namespace Gerenciadores{
             ppu = dim.y/dimCam.y;
             xCompleto = false;
         }
+        
         cam.setPPU(ppu);
         //centraliza tela
         posCamTela = Vector2f((dim.x - dimCam.x*cam.getPPU())*0.5,(dim.y - dimCam.y*cam.getPPU())*0.5);

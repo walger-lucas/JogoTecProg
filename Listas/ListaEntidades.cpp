@@ -50,21 +50,24 @@ namespace Listas
 
     void ListaEntidade::Atualizar()
     {
-        int tam = (int) lista.size();
+
         it = lista.begin();
-        for(int i = 0; i < tam; i++)
+        while(it!=lista.end())
         {
             if(*it)
-            {
+            {                
                 if((*it)->getDestruir())
                 {
                     delete (*it);
                     (*it) = NULL;
-                    lista.erase(it);
-                    i++;
+                    lista.erase(it++);
+                    
                 }
                 else
+                {
                     (*it)->Atualizar();
+                    it++;
+                }
             }
         }
     }

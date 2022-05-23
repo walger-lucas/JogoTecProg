@@ -107,5 +107,7 @@ namespace Entidades{
 			virtual void Carregar()=0;
 
 	};
+	//tag significativa de chao
+	const static string TAG_GROUND= "ground";
 }
 #endif //_ENTIDADE_H

@@ -1,15 +1,14 @@
 #include"GerenciadorColisoes.h"
 #include"ObjetoFisico.h"
 #include"commons.h"
+#include"Tempo.h"
 using namespace sf;
 using namespace std;
 using namespace Colisoes;
+using namespace Configs;
 namespace Gerenciadores{
-    float GerenciadorColisoes::tempoUltAtualizacao(0.0F);
     list<ObjetoFisico*> GerenciadorColisoes::objetos=list<ObjetoFisico*>();
-    const int GerenciadorColisoes::atualizacaoMax(10);
-    const float GerenciadorColisoes::tempoFixo(1/80.0); //remover quando adicionado tempo
-    const float GerenciadorColisoes::gravidade(3);
+    const float GerenciadorColisoes::gravidade(9);
     
     void GerenciadorColisoes::AddObjeto(ObjetoFisico* objeto)
     {
@@ -55,22 +54,7 @@ namespace Gerenciadores{
         }
         return colisoes;
     }
-    void GerenciadorColisoes::Atualizar()
-    {
-        /* Ainda não feito
-        tempoUltAtualizacao += Tempo::getDeltaTime();
-        */   
-       if(tempoUltAtualizacao/atualizacaoMax > tempoFixo)//if(tempoUltAtualizacao/atualizacaoMax > Tempo::getDeltaTempoFixo())
-       {
-           tempoUltAtualizacao =0;
-       }
-       else
-       {
-           int vezes = tempoUltAtualizacao/tempoFixo;//Tempo::getDeltaTempoFixo();
-           for(int i=0;i<vezes;i++)
-                ResolverColisoes();
-       }
-    }
+
     void GerenciadorColisoes::ResolverColisoes()
     {
         //remove objetos com destruir setado para true atualiza posicao

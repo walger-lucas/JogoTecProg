@@ -2,6 +2,7 @@
 #include"Posicao.h"
 #include"GerenciadorColisoes.h"
 #include"ObjetoFisico.h"
+#include"Tempo.h"
 using namespace std;
 using namespace sf;
 using namespace Colisoes;
@@ -19,6 +20,10 @@ namespace Componentes
     const Vector2f CorpoRigido::getDim() const
     {
         return dimensao;
+    }
+    const Vector2f CorpoRigido::getCentro()
+    {
+        return obj->getColisor().getCentro();
     }
     void CorpoRigido::setDim(const Vector2f dim)
     {
@@ -73,7 +78,7 @@ namespace Componentes
     void CorpoRigido::AtualizarFixo()
     {
         if(gravidade)
-            obj->addVel(Vector2f(0,-GerenciadorColisoes::gravidade*GerenciadorColisoes::tempoFixo));//Tempo::getDeltaTempoFixo()
+            obj->addVel(Vector2f(0,-GerenciadorColisoes::gravidade*Configs::Tempo::getDeltaTempoFixo()));//Tempo::getDeltaTempoFixo()
     }
 
 }

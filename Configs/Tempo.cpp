@@ -5,7 +5,7 @@ using namespace chrono;
 namespace Configs
 {
     double Tempo::deltaTempo = 0;
-    double Tempo::deltaTempoRender = (float) 1.0/24.0;
+    double Tempo::deltaTempoRender = (float) 1.0/60.0;
     const double Tempo::deltaTempoFixo = (float) 1.0/80.0;
 
     void Tempo::atualizaDeltaTempo()

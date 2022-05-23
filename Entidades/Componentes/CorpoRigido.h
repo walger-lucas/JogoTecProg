@@ -32,6 +32,7 @@ namespace Componentes
             void setColidivel(const bool col);
             void setCinematico(const bool cine);
             void setAtivado(const bool atv);
+            const Vector2f getCentro();
 
             CorpoRigido( const bool colidivel=true, const bool cinematico=false, bool gravidade=true)
             : Componente(),gravidade(gravidade), colidivel(colidivel),

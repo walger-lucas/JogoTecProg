@@ -1,9 +1,11 @@
 #include "ObjetoFisico.h"
 #include "CorpoRigido.h"
 #include "GerenciadorColisoes.h"
+#include "Tempo.h"
 using namespace std;
 using namespace sf;
 using namespace Componentes;
+using namespace Configs;
 
 namespace Colisoes
 {
@@ -76,11 +78,11 @@ namespace Colisoes
             tempo.x= (vel.x==0)? numeric_limits<float>::max(): min((obj1.posAnterior.x+col1.getDim().x-obj2.posAnterior.x)/vel.x,(obj1.posAnterior.x-col2.getDim().x-obj2.posAnterior.x)/vel.x);
             tempo.y= (vel.y==0)? numeric_limits<float>::max(): min((obj1.posAnterior.y-col1.getDim().y-obj2.posAnterior.y)/vel.y,(obj1.posAnterior.y+col2.getDim().y-obj2.posAnterior.y)/vel.y);
             
-            if(fabs(tempo.x)>Gerenciadores::GerenciadorColisoes::tempoFixo)
+            if(fabs(tempo.x)>Tempo::getDeltaTempoFixo())
                 tempo.x=numeric_limits<float>::max();
             else 
                 tempo.x=fabs(tempo.x);
-            if(fabs(tempo.y)>Gerenciadores::GerenciadorColisoes::tempoFixo)
+            if(fabs(tempo.y)>Tempo::getDeltaTempoFixo())
                 tempo.y=numeric_limits<float>::max();
             else 
                 tempo.y=fabs(tempo.y); 
@@ -90,16 +92,16 @@ namespace Colisoes
             if(tempo.x<tempo.y)
             {
                 
-                mov1.x = -obj1.velocidade.x*(Gerenciadores::GerenciadorColisoes::tempoFixo-tempo.x);
-                mov2.x= -obj2.velocidade.x*(Gerenciadores::GerenciadorColisoes::tempoFixo-tempo.x);
+                mov1.x = -obj1.velocidade.x*(Tempo::getDeltaTempoFixo()-tempo.x);
+                mov2.x= -obj2.velocidade.x*(Tempo::getDeltaTempoFixo()-tempo.x);
                 obj1.velocidade.x=0;
                 obj2.velocidade.x=0;
             }
             else
             {
                 
-                mov1.y = -obj1.velocidade.y*(Gerenciadores::GerenciadorColisoes::tempoFixo-tempo.y);
-                mov2.y= -obj2.velocidade.y*(Gerenciadores::GerenciadorColisoes::tempoFixo-tempo.y);
+                mov1.y = -obj1.velocidade.y*(Tempo::getDeltaTempoFixo()-tempo.y);
+                mov2.y= -obj2.velocidade.y*(Tempo::getDeltaTempoFixo()-tempo.y);
                 obj1.velocidade.y=0;
                 obj2.velocidade.y=0;
             }
@@ -120,7 +122,10 @@ namespace Colisoes
     void ObjetoFisico::AtualizarPos()
     {
         posAnterior = colisor.getPos();
-        colisor.Mover(velocidade*Gerenciadores::GerenciadorColisoes::tempoFixo);
+        colisor.Mover(velocidade*((float)Tempo::getDeltaTempoFixo()));
     }
-
+    CorpoRigido* ObjetoFisico::getCorpoRigido()
+    {
+        return corpo;
+    }
 }

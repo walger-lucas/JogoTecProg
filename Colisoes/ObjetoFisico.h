@@ -36,6 +36,7 @@ namespace Colisoes{
         void Destruir();
         static void Resolver(ObjetoFisico& obj,ObjetoFisico& obj2);
         void Avisar(ObjetoFisico& obj);
+        CorpoRigido* getCorpoRigido();
 
         ObjetoFisico(Vector2f* pos=nullptr, Vector2f* dim=nullptr,CorpoRigido* corpo=nullptr,bool col=true, bool cine=false)
         :colisor(pos,dim),colidivel(col),cinematico(cine),ativo(true),destruir(false),corpo(corpo)
