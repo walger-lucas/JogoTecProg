@@ -15,6 +15,7 @@ namespace Graficos{
             void setTexto(const string& texto);
             void setTam(const float tam);
             const float getTam() const;
+            void setPPos(Vector2f* pos);
             void setFont(const Font& fonte);
             void setPixChar(const int pix);
             void setCor(const Color& cor);

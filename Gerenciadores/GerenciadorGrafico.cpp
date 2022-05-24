@@ -65,10 +65,14 @@ namespace Gerenciadores{
     {
         return cam.PosTelaUi(pos-posCamTela);
     }
-
-
-    const int GerenciadorGrafico::Render()
+    void GerenciadorGrafico::setWindow(RenderWindow* window)
     {
+        this->window = window;
+    }
+
+    void GerenciadorGrafico::Render()
+    {
+        
         Vector2u dim =window->getSize();
         Vector2f dimCam = cam.getDim();
 
@@ -80,6 +84,7 @@ namespace Gerenciadores{
             ppu = dim.y/dimCam.y;
             xCompleto = false;
         }
+        
         cam.setPPU(ppu);
         //centraliza tela
         posCamTela = Vector2f((dim.x - dimCam.x*cam.getPPU())*0.5,(dim.y - dimCam.y*cam.getPPU())*0.5);
@@ -137,7 +142,6 @@ namespace Gerenciadores{
         window->draw(rect);
         //-------------------------------------
         window->display();
-        return 1;
     }
     void GerenciadorGrafico::setCorBorda(const Color cor)
     {

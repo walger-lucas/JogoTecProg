@@ -16,91 +16,98 @@
 namespace Cenas{
 	class Cena;
 }
+namespace Listas
+{
+	class ListaEntidade;
+}
 using namespace Cenas;
 using namespace Componentes;
 using namespace std;
+
 namespace Entidades{
 
-class Entidade {
+	class Entidade {
+		friend class Listas::ListaEntidade;
+	private: 
 
-private: 
+		vector<Componente*> componentes;
+		vector<string> tags;
+		string nome;
+		bool destruir;
+		bool ativo;
+		Cena* cena;
 
-	vector<Componente*> componentes;
-	vector<string> tags;
-	string nome;
-	bool destruir;
-	bool ativo;
-	Cena* cena;
+		
+		void Atualizar();
+		void Render();
 
-	
-	void Atualizar();
-	
-	void AtualizarFixo();
-	
-	
-	
-	void Render();
 
-public: 
-	void Iniciar();
-	//testa componentes para o tipo e os converte com downcast caso encontrado o do TIPO.
-	template<class TIPO> 
-	TIPO* getComponente()
-	{
-		int i;
-		int size = componentes.size();
-		for(i=0;i<size;i++)
+		
+
+	public: 
+		void Iniciar();
+		void AtualizarFixo();
+		void setCena(Cena* cena);
+		//testa componentes para o tipo e os converte com downcast caso encontrado o do TIPO.
+		template<class TIPO> 
+		TIPO* getComponente()
 		{
+			int i;
+			int size = componentes.size();
 			type_index t (typeid(TIPO));
-			if(t== typeid(*(componentes[i])) )
+			for(i=0;i<size;i++)
 			{
-				return (dynamic_cast<TIPO*> (componentes[i]) );
+				if(t== typeid(*(componentes[i])) )
+				{
+					return (dynamic_cast<TIPO*> (componentes[i]) );
+				}
 			}
+			return nullptr;
 		}
-		return nullptr;
-	}
-	
-	void Destruir();
-	
-	const bool getDestruir() const;
-	
-	void setAtivo(bool ativo);
-	
-	const bool getAtivo() const;
-	
-	const string& getNome() const;
-	
-/**
- * testa se ha tags
- */
-	const bool temTag(const string& tag) const;
-	
-/**
-	* Construtor e Destrutor
-	* 
-*/
-	Entidade(Cena* cena = nullptr, string nome = "");
-	virtual ~Entidade();
-	//pega a cena atual
-	Cena* getCena();
+			
+			void Destruir();
+			
+			const bool getDestruir() const;
+			
+			void setAtivo(bool ativo);
+			
+			const bool getAtivo() const;
+			
+			const string& getNome() const;
+			
+		/**
+		 * testa se ha tags
+		 */
+			const bool temTag(const string& tag) const;
+			
+		/**
+			* Construtor e Destrutor
+			* 
+		*/
+			Entidade(string nome = "");
+			virtual ~Entidade();
+			//pega a cena atual
+			Cena* getCena();
 
-protected: 
-	
-void setNome(const string& nome);
-	
-/**
- * adiciona tags ao array
- */
-void addTag(const string& tag);
-	
-/**
- * adiciona componentes ao array.
- */
-void addComponente(Componente* comp);
-	
-	
-virtual void Carregar()=0;
+		protected: 
+			
+			void setNome(const string& nome);
+				
+			/**
+			 * adiciona tags ao array
+			 */
+			void addTag(const string& tag);
+				
+			/**
+			 * adiciona componentes ao array.
+			 */
+			void addComponente(Componente* comp);
+			
+				
+			virtual void Carregar()=0;
 
-};
+	};
+	//tag significativa de chao
+	const static string TAG_GROUND= "ground";
 }
 #endif //_ENTIDADE_H

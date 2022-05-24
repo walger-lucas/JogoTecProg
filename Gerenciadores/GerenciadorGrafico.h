@@ -8,7 +8,7 @@ using namespace Graficos;
 //max de layers graficos
 #define LAYERS_MAX 5
 //layers de ui
-#define UI_MAX 3
+#define UI_MAX 5
 namespace Gerenciadores{
     class GerenciadorGrafico
     {
@@ -38,7 +38,8 @@ namespace Gerenciadores{
             static void setCorBorda(const Color cor);
             static void setCorFundo(const Color cor);
             //renderiza e retorna quantos frames passaram
-            const int Render();
+            void Render();
+            void setWindow(RenderWindow* window);
             GerenciadorGrafico(RenderWindow* win = nullptr)
             : window(win) {}
             ~GerenciadorGrafico();

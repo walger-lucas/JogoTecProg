@@ -1,32 +1,48 @@
 #include"Colisor.h"
+#include"commons.h"
 
 using namespace sf;
+using namespace std;
 namespace Colisoes
 {
     const Vector2f Colisor::getPos() const
     {
+        if(dimensao==nullptr)
+            return Vector2f(0,0);
         return *posicao;
     }
     const Vector2f Colisor::getDim() const
     {
+        if(dimensao==nullptr)
+            return Vector2f(0,0);
         return *dimensao;
     }
     const Vector2f Colisor::getCentro() const
     {
-        return Vector2f(posicao->x+dimensao->x*0.5,posicao->y-dimensao->y*0.5);
+        return Vector2f(this->getPos().x+this->getDim().x*0.5,this->getPos().y-this->getDim().y*0.5);
     }
     void Colisor::setPos(const Vector2f pos){
-        *posicao=pos;
+        if(posicao!=nullptr)
+            *posicao=pos;
     }
     void Colisor::setDim(const Vector2f dim){
-        *dimensao=dim;
+        if(dimensao!=nullptr)
+            *dimensao=dim;
     }
+    void Colisor::setPDim(Vector2f* dim){
+        dimensao=dim;
+    }
+    void Colisor::setPPos(Vector2f* pos){
+        posicao=pos;
+    }
+
     void Colisor::setCentro(const Vector2f pos){
         *posicao= Vector2f(pos.x-dimensao->x*0.5,pos.y+dimensao->y*0.5);
     }
     void Colisor::Mover(const Vector2f movimento)
     {
-        *posicao+=movimento;
+        if(posicao!= nullptr)
+            *posicao+=movimento;
     }
     const bool Colisor::Colide(const Colisor& col1,const Colisor& col2)
     {
@@ -59,33 +75,59 @@ namespace Colisoes
         Vector2f intersection(0,0);
         Vector2f pos1 = col1.getPos(),pos2 = col2.getPos(),
             dim1 = col1.getDim(), dim2=col2.getDim();
-        //if intersector intersects upside of box, take the y distance to stop intersection moving up
-        //else if intersector intersects the downside, take the y distance to stop intersection moving down
-        if(pos2.y>pos1.y - dim1.y && pos2.y<pos1.y)
+        float y1,y2,y3,y4;
+        y1= pos1.y-pos2.y;
+        y2 = pos1.y-(pos2.y-dim2.y);
+        y3= pos1.y-dim1.y - pos2.y;
+        y4 =pos1.y-dim1.y - (pos2.y-dim2.y);
+        
+        if(fabs(y1)<fabs(y2)&&fabs(y1)<fabs(y3) && fabs(y1)<fabs(y4))
         {
-            intersection.y = pos2.y-(pos1.y - dim1.y);
+            intersection.y=y1;
         }
-        if(pos2.y-dim2.y <pos1.y && pos2.y-dim2.y > pos1.y - dim1.y)
+        else if(fabs(y2)<fabs(y3)&&fabs(y2)<fabs(y4))
         {
-            float result = pos2.y-dim2.y-pos1.y;
-            if(intersection.y==0 || intersection.y > result)
-                intersection.y = result;
+            intersection.y=y2;
         }
+        else if(fabs(y3)<fabs(y4))
+        {
+            intersection.y=y3;
+        }
+        else
+        {
+            intersection.y =y4;
+        }
+        //std::cout<< y1<<" "<< " "<<y2<<" "<< y3<<" "<< y4<<std::endl<<intersection.y<<std::endl;
+        
+        float x1,x2,x3,x4;
+        x1= pos1.x-pos2.x;
+        x2 = pos1.x-(pos2.x+dim2.x);
+        x3= pos1.x+dim1.x - pos2.x;
+        x4 =pos1.x+dim1.x - (pos2.x+dim2.x);
+        if(fabs(x1)<fabs(x2)&&fabs(x1)<fabs(x3) && fabs(x1)<fabs(x4))
+        {
+            intersection.x=x1;
+        }
+        else if(fabs(x2)<fabs(x3)&&fabs(x2)<fabs(x4))
+        {
+            intersection.x=x2;
+        }
+        else if(fabs(x3)<fabs(x4))
+        {
+            intersection.x=x3;
+        }
+        else
+        {
+            intersection.x =x4;
+        }
+        //std::cout<< x1<<" "<< " "<<x2<<" "<< x3<<" "<< x4<<std::endl<<intersection.x<<endl;
+        if((pos2.y<pos1.y&&pos2.y-dim2.y>pos1.y-dim1.y)
+        ||(pos1.y<pos2.y&&pos1.y-dim1.y>pos2.y-dim2.y))
+            intersection.y=0;
+        if((pos2.x>pos1.x && pos2.x+dim2.x< pos1.x+dim1.x)
+        ||(pos1.x>pos2.x && pos1.x+dim1.x< pos2.x+dim2.x))
+            intersection.x =0;
 
-        //if intersector intersects leftside of box, take the x distance to stop intersection moving left
-        //else if intersector intersects the right side, take the x distance to stop intersection moving right
-        if(pos2.x > pos1.x && pos2.x< pos1.x+dim1.x)
-        {
-            intersection.x= pos2.x - (pos1.x+dim1.x);
-        }
-        if(pos2.x+dim2.x > pos1.x &&pos2.x+dim2.x <pos1.x+dim1.x)
-        {
-            //tests to see if has already found an intersection and picks the smallest if has already found one.
-            float result = (pos2.x+dim2.x) - pos1.x;
-            if(intersection.x==0 || -intersection.x> result)
-                intersection.x=result;
-        }
-            
         return intersection;
     }
 }   

@@ -13,9 +13,19 @@ namespace Entidades{
         return destruir;
     }
 
-    //seta a ativacao do objeto
+    //seta a ativacao do objeto e coloca todos os seus componentes com essa ativacao.
     void Entidade::setAtivo(bool ativo) {
-        this->ativo = ativo;
+        this->ativo = ativo;       
+        int i;
+        int size = componentes.size();
+        for (i=0;i<size;i++)
+        {
+            if(componentes[i]!=nullptr)
+                componentes[i]->setAtivado(ativo);
+            else
+                return;
+        }
+
     }
 
     //ve a ativacao do objeto
@@ -40,13 +50,15 @@ namespace Entidades{
     }
 
     
-    Entidade::Entidade(Cena* cena,string nome):
-    nome(nome),cena(cena)
+    Entidade::Entidade(string nome):
+    nome(nome)
     {
         tags.clear();
         componentes.clear();
         tags.reserve(RES_TAGS);
         componentes.reserve(RES_COMPONENTES);
+        ativo=true;
+        destruir=false;
     }
 
     /**
@@ -100,10 +112,8 @@ namespace Entidades{
         int size = componentes.size();
         for (i=0;i<size;i++)
         {
-            if(componentes[i]!=nullptr)
+            if(componentes[i]!=nullptr&& componentes[i]->getAtivado())
                 componentes[i]->Atualizar();
-            else
-                return;
         }
     }
 
@@ -112,7 +122,7 @@ namespace Entidades{
        int size = componentes.size();
         for (i=0;i<size;i++)
         {
-            if(componentes[i]!=nullptr)
+            if(componentes[i]!=nullptr&& componentes[i]->getAtivado())
                 componentes[i]->AtualizarFixo();
             else
                 return;
@@ -120,6 +130,7 @@ namespace Entidades{
     }
 
     void Entidade::Iniciar() {
+
         int i;
         int size = componentes.size();
         for (i=0;i<size;i++)
@@ -129,6 +140,7 @@ namespace Entidades{
             else
                 return;
         }
+        Carregar();
     }
 
     void Entidade::Render() {
@@ -136,10 +148,14 @@ namespace Entidades{
         int size = componentes.size();
         for (i=0;i<size;i++)
         {
-            if(componentes[i]!=nullptr)
+            if(componentes[i]!=nullptr && componentes[i]->getAtivado())
                 componentes[i]->Render();
             else
                 return;
         }
+    }
+    void Entidade::setCena(Cena* cena)
+    {
+        this->cena = cena;
     }
 }
