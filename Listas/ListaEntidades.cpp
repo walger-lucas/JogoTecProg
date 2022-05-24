@@ -50,7 +50,6 @@ namespace Listas
 
     void ListaEntidade::Atualizar()
     {
-
         it = lista.begin();
         while(it!=lista.end())
         {

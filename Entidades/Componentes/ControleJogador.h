@@ -13,6 +13,7 @@ namespace Componentes
             Posicao* posicao;
             bool isGrounded;
             const Vector2f distanciaChao;
+            
             void TestarChao();
             void Iniciar();
             void Atualizar();

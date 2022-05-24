@@ -100,7 +100,7 @@ namespace Gerenciadores{
                 if((*it)->getDestruir())//testa se deve destruir imagem
                 {
                     delete *it;
-                    layers[i].erase(it);
+                    layers[i].erase(it--);
                 }
                 else if((*it)->getAtivo())
                 {
@@ -119,7 +119,7 @@ namespace Gerenciadores{
                 if((*it)->getDestruir())//testa se deve destruir imagem
                 {
                     delete *it;
-                    UI[i].erase(it);
+                    UI[i].erase(it--);
                 }
                 else if((*it)->getAtivo())
                 {

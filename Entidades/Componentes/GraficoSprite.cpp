@@ -34,5 +34,8 @@ namespace Componentes{
     :Grafico(layer,ui),sprite(nullptr),texture(txt)
     {}
     GraficoSprite::~GraficoSprite()
-    {}
+    {
+        if(sprite)
+            sprite->Destruir();
+    }
 }

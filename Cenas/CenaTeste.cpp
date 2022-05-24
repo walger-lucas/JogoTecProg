@@ -10,13 +10,14 @@
 #include "BotaoEntidade.h"
 #include "commons.h"
 #include "Plataforma.h"
+#include "Andador.h"
 using namespace sf;
 using namespace std;
-Posicao* posit;
+Cena* cen;
     void apt()
     {
         cout<< "botao apertado"<<endl;
-        posit->setPos(Vector2f(0,0));
+        *cen+= new Andador(Vector2f(2,-2));
     }
     void dapt()
     {
@@ -34,13 +35,13 @@ namespace Cenas
 
         
 
-
+        
 
     
         AdicionarEntidade(new BotaoEntidade(Vector2f(1,-2),0.3,"Botao Teste",Vector2f(-40,-25),"button0","arial",apt,dapt));
         Jogador* j = new Jogador(Vector2f(2,-2));
         AdicionarEntidade(j);
-        posit = j->getComponente<Posicao>();
+        cen=this;
         
     
         
