@@ -15,10 +15,10 @@ namespace Componentes
             const Vector2f distanciaChao;
             void TestarChao();
             void Iniciar();
-            
-        public:
             void Atualizar();
-            void AtualizarFixo();
+            void AtualizarFixo();   
+        public:
+
             ControleJogador();
 
             ~ControleJogador()
