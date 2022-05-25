@@ -1,5 +1,4 @@
 #include "Jogo.h"
-#include"GerenciadorArquivos.h"
 using namespace Gerenciadores;
 
 
@@ -56,12 +55,6 @@ Jogo::Jogo()
 ,tempoUltRender(0),atualizacaoMax(10)
 {
     window = new RenderWindow(VideoMode(5000,500),"HeyListen",Style::Titlebar | Style::Close |Style::Resize);
-    GerenciadorArquivos::CarregarFonte("arial","ARIAL.TTF");
-    GerenciadorArquivos::CarregarTextura("cubo","cubo.png");
-    GerenciadorArquivos::CarregarTextura("mario","mario.png");
-    GerenciadorArquivos::CarregarTextura("ground","ground.png");
-    GerenciadorArquivos::CarregarTextura("button0","button0.png");
-    GerenciadorArquivos::CarregarTextura("hi","hi.png");
     window->setFramerateLimit(10000);
     Loop();
             

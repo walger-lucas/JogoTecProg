@@ -13,24 +13,25 @@
 #include "Andador.h"
 using namespace sf;
 using namespace std;
-Cena* cen;
-    void apt()
+
+
+namespace Cenas
+{
+    void CenaTeste::apt()
     {
         cout<< "botao apertado"<<endl;
-        *cen+= new Andador(Vector2f(2,-2));
+        *this+= new Andador(Vector2f(2,-2));
     }
-    void dapt()
+    void CenaTeste::dapt()
     {
         cout<< "botao desapertado"<<endl;
     }
-namespace Cenas
-{
 
     void CenaTeste::Carregar()
     {
-        Plataforma* plat=new Plataforma(Vector2f(0,-5.1),"ground",Vector2f(0,10));
         
-        AdicionarEntidade(plat);
+        for(int i =0;i<3;i++)
+            AdicionarEntidade(new Plataforma(Vector2f(16.2*i,-5),"Plataforma.png"));
         
 
         
@@ -38,10 +39,9 @@ namespace Cenas
         
 
     
-        AdicionarEntidade(new BotaoEntidade(Vector2f(1,-2),0.3,"Botao Teste",Vector2f(-40,-25),"button0","arial",apt,dapt));
+        AdicionarEntidade(new BotaoEntidade(Vector2f(1,-2),0.3,"Botao Teste",Vector2f(-40,-25),"button0.png","ARIAL.TTF",std::bind(&CenaTeste::apt,this),std::bind(&CenaTeste::dapt,this)));
         Jogador* j = new Jogador(Vector2f(2,-2));
         AdicionarEntidade(j);
-        cen=this;
         
     
         

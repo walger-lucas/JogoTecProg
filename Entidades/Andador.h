@@ -5,7 +5,6 @@
 #include"GraficoSprite.h"
 #include"Entidade.h"
 #include"CorpoRigido.h"
-#include"GerenciadorArquivos.h"
 #include"ControleAndador.h"
 namespace Entidades
 {
@@ -19,6 +18,7 @@ namespace Entidades
             CorpoRigido* cR;
             ControleAndador* cA;
             Vida* vd;
+            Texture texturaAndador;
 
         public:
             void Carregar(){
@@ -30,11 +30,13 @@ namespace Entidades
             Andador(Vector2f posicao = Vector2f(0,0))
             : Entidade("Andador"),
             pos(new Posicao(posicao.x,posicao.y)),
-            gS(new GraficoSprite(GerenciadorArquivos::getTextura("cubo"),0,false)),
+            gS(nullptr),
             cR(new CorpoRigido(true,true,true)),
             cA(new ControleAndador()),
             vd(new Vida(1))
             {
+                texturaAndador.loadFromFile("Arquivos/Imagens/Andador.png");
+                gS =new GraficoSprite(&texturaAndador,0,false);
                 this->addComponente(static_cast<Componente*> (pos));
                 this->addComponente(static_cast<Componente*> (gS));
                 this->addComponente(static_cast<Componente*> (cR));

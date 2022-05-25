@@ -10,6 +10,8 @@ namespace Entidades
     {
         private:
             void Carregar();
+            Texture texturaBot;
+            Font fonteTexto;
         public:
             ~BotaoEntidade();
             BotaoEntidade(Vector2f pos,float tam,const string& txt, 

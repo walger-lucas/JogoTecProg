@@ -51,6 +51,7 @@ namespace Entidades{
 
     
     Entidade::Entidade(string nome):
+    Ente(),
     nome(nome)
     {
         tags.clear();

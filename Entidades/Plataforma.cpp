@@ -15,9 +15,11 @@ namespace Entidades
     : Entidade("Plataforma"),
     posicao(new Posicao(pos.x,pos.y)),
     corpoRigido(new CorpoRigido(true,false,false)),
-    graficoSprite(new GraficoSprite(GerenciadorArquivos::getTextura(textura),1,false)),
+    graficoSprite(nullptr),
     offset(offset)
     {
+        texturaPlataforma.loadFromFile("Arquivos/Imagens/"+textura);
+        graficoSprite =new GraficoSprite(&texturaPlataforma,1,false);
         posicao->setEscala(esc);
         addComponente(posicao);
         addComponente(corpoRigido);

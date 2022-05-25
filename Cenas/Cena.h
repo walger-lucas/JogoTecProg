@@ -2,6 +2,7 @@
 
 #include "commons.h"
 #include "ListaEntidades.h"
+#include "Ente.h"
 using namespace Listas;
 using namespace std;
 
@@ -14,7 +15,7 @@ using namespace Gerenciadores;
 
 namespace Cenas
 {
-    class Cena
+    class Cena: public Ente
     {
     private:
         GerenciadorCenas* gerenciador;

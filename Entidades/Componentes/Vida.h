@@ -8,10 +8,10 @@ namespace Componentes{
             int vida;
             void Iniciar(){};
         public:
-            void machucar(int dano){
+            void Machucar(int dano){
                 vida-=dano;
             }
-            const bool vivo() const
+            const bool Vivo() const
             {
                 return vida>0;
             }
@@ -19,7 +19,7 @@ namespace Componentes{
             {
                 return vida;
             }
-            Vida(int vidainit)
+            Vida(int vidainit=1)
             : Componente(),vida(vidainit)
             {}
             ~Vida(){};

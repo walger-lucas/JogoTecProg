@@ -49,7 +49,7 @@ namespace Componentes
     }
     void ControleAndador::AtualizarFixo()
     {
-        if(!vida->vivo())
+        if(!vida->Vivo())
             getEntidade()->Destruir();
         TestarChao();
         Vector2f vel = cR->getVelocidade();
@@ -78,10 +78,10 @@ namespace Componentes
         {
             
             Colisor& col = obj->getColisor();
-            if(col.getPos().y-col.getDim().y+0.1>pos->getY())
+            if(col.getPos().y-col.getDim().y>pos->getY()-0.02)
             {
                 obj->setVel(Vector2f(obj->getVel().x,4.5));
-                vida->machucar(1);
+                vida->Machucar(1);
             }else if (pos->getY()-cR->getDim().y<=col.getPos().y-col.getDim().y)
             {
                 Vector2f dir = col.getCentro()-cR->getCentro();

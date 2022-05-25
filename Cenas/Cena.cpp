@@ -19,6 +19,7 @@ namespace Cenas
     { lista.Render(); }
 
     Cena::Cena(GerenciadorCenas* ger):
+    Ente(),
     gerenciador(ger),
     lista()
     {}
