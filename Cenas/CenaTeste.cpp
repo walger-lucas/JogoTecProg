@@ -11,6 +11,7 @@
 #include "commons.h"
 #include "Plataforma.h"
 #include "Andador.h"
+#include "Explodidor.h"
 using namespace sf;
 using namespace std;
 
@@ -20,7 +21,7 @@ namespace Cenas
     void CenaTeste::apt()
     {
         cout<< "botao apertado"<<endl;
-        *this+= new Andador(Vector2f(2,-2));
+        *this+= new Explodidor(Vector2f(2,-2));
     }
     void CenaTeste::dapt()
     {

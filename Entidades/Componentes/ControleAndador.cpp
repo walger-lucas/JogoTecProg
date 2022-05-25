@@ -2,6 +2,7 @@
 #include "GerenciadorColisoes.h"
 #include "Componente.h"
 #include "IEscutaColisao.h"
+#include "Jogador.h"
 using namespace sf;
 using namespace Entidades;
 namespace Componentes
@@ -78,15 +79,29 @@ namespace Componentes
         {
             
             Colisor& col = obj->getColisor();
-            if(col.getPos().y-col.getDim().y>pos->getY()-0.02)
+            if(col.getPos().y-col.getDim().y>=pos->getY()-0.05)
             {
                 obj->setVel(Vector2f(obj->getVel().x,4.5));
                 vida->Machucar(1);
-            }else if (pos->getY()-cR->getDim().y<=col.getPos().y-col.getDim().y)
+            }else 
             {
-                Vector2f dir = col.getCentro()-cR->getCentro();
-                if((dir.x>0&&indoDireita)||(dir.x<0&&!indoDireita))
-                    indoDireita=!indoDireita;
+                if (pos->getY()-cR->getDim().y<=col.getPos().y-col.getDim().y)
+                {
+                    Vector2f dir = col.getCentro()-cR->getCentro();
+                    obj->addVel(dir*(-8.0F));
+                    if((dir.x>0&&indoDireita)||(dir.x<0&&!indoDireita))
+                        indoDireita=!indoDireita;
+                }
+                CorpoRigido* cR = obj->getCorpoRigido();
+                if(cR)
+                {
+                    Entidade* ent =cR->getEntidade();
+                    if(ent && ent->temTag(TAG_JOGADOR))
+                    {
+                        ent->getComponente<Vida>()->Machucar(1);
+                    }
+
+                }
                     
             }
         }

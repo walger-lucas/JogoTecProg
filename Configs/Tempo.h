@@ -10,12 +10,13 @@ namespace Configs
     {
     private:
         chrono::time_point<chrono::steady_clock> tempoInicio, tempoFinal;
+        static bool pause;
         static double deltaTempo, deltaTempoRender;
         static const double deltaTempoFixo;
 
     public:
         void atualizaDeltaTempo();
-
+        static const double getDeltaTempoControlado(); 
         static const double getDeltaTempo();
         static const double getDeltaTempoFixo();
         static const double getTempoRender();

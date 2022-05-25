@@ -12,6 +12,7 @@ namespace Componentes
     {
         cR = getEntidade()->getComponente<CorpoRigido>();
         posicao=getEntidade()->getComponente<Posicao>();
+        vd=getEntidade()->getComponente<Vida>();
     }
     void ControleJogador::TestarChao()
     {
@@ -33,6 +34,9 @@ namespace Componentes
     }
     void ControleJogador::Atualizar()
     {
+        if(!vd->Vivo())
+            getEntidade()->Destruir();
+        //Provisorio
         TestarChao();
         
         if(Keyboard::isKeyPressed(Keyboard::Key::Left))
@@ -64,4 +68,9 @@ namespace Componentes
     ControleJogador::ControleJogador()
     : Componente(),cR(nullptr),posicao(nullptr), isGrounded(false),distanciaChao(0,-0.51)
     {}
+
+    void ControleJogador::Colidiu(ObjetoFisico* obj)
+    {
+
+    }
 }
