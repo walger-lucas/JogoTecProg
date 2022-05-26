@@ -5,7 +5,7 @@
 #include"GraficoSprite.h"
 #include"Entidade.h"
 #include"CorpoRigido.h"
-#include"ControleAndador.h"
+#include"ControleExplodidor.h"
 namespace Entidades
 {
     class Explodidor: public Entidade{
@@ -15,7 +15,7 @@ namespace Entidades
             Posicao* pos;
             GraficoSprite* gS;
             CorpoRigido* cR;
-            ControleAndador* cA;
+            ControleExplodidor* cE;
             Vida* vd;
             Texture texturaAndador;
 
@@ -31,8 +31,8 @@ namespace Entidades
             pos(new Posicao(posicao.x,posicao.y)),
             gS(nullptr),
             cR(new CorpoRigido(true,true,true)),
-            cA(new ControleAndador()),
-            vd(new Vida(3,2))
+            cE(new ControleExplodidor()),
+            vd(new Vida(3,0.3))
             {
                 texturaAndador.loadFromFile("Arquivos/Imagens/Explodidor_A.png");
                 pos->setEscala(Vector2f(1.5,1.5));
@@ -40,7 +40,7 @@ namespace Entidades
                 this->addComponente(static_cast<Componente*> (pos));
                 this->addComponente(static_cast<Componente*> (gS));
                 this->addComponente(static_cast<Componente*> (cR));
-                this->addComponente(static_cast<Componente*> (cA));
+                this->addComponente(static_cast<Componente*> (cE));
                 this->addComponente(static_cast<Componente*> (vd));
             }
         

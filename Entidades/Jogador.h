@@ -20,37 +20,20 @@ namespace Entidades
             CorpoRigido* cR;
             ControleJogador* cJ;
             Vida* vida;
-            Texture texturaJimmy;
+            Texture textura;
+            bool jimmy;
 
         public:
-            void Carregar(){
-                Vector2f dim = gS->getSprite()->getDim();
-                Vector2f esc =gS->getSprite()->getEscala();
-                cR->setDim(Vector2f(dim.x*esc.x,dim.y*esc.y));
-
-            }
+            static Jogador* Jimmy;
+            static Jogador* Janny;
+            void Carregar();
+            Jogador(Vector2f posicao = Vector2f(0,0),bool Jimmy=true);
+            ~Jogador();
             void Dano(int dano)
             {
                 cout<<"Dano de "<<dano<<endl;
             }
-            Jogador(Vector2f posicao = Vector2f(0,0))
-            : Entidade("Jogador"),
-            pos(new Posicao(posicao.x,posicao.y)),
-            gS(nullptr),
-            cR(new CorpoRigido(true,true,true)),
-            cJ(new ControleJogador()),
-            vida(new Vida(3,5,std::bind(&Jogador::Dano,this,std::placeholders::_1)))
-            {
-                
-                texturaJimmy.loadFromFile("Arquivos/Imagens/Jimmy.png");
-                gS=new GraficoSprite(&texturaJimmy,1,false);
-                this->addComponente(static_cast<Componente*> (pos));
-                this->addComponente(static_cast<Componente*> (vida));
-                this->addComponente(static_cast<Componente*> (gS));
-                this->addComponente(static_cast<Componente*> (cR));
-                this->addComponente(static_cast<Componente*> (cJ));
-                addTag(TAG_JOGADOR);
-            }
+            
         
     };
 }

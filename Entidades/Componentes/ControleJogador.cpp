@@ -14,6 +14,13 @@ namespace Componentes
         posicao=getEntidade()->getComponente<Posicao>();
         vd=getEntidade()->getComponente<Vida>();
     }
+    void ControleJogador::setControles(Keyboard::Key up,Keyboard::Key down,Keyboard::Key left,Keyboard::Key right)
+    {
+        this->up=up;
+        this->down=down;
+        this->right = right;
+        this->left = left;
+    }
     void ControleJogador::TestarChao()
     {
         list<ObjetoFisico*> l = Gerenciadores::GerenciadorColisoes::EncontraColisao(cR->getCentro()+distanciaChao);
@@ -39,11 +46,11 @@ namespace Componentes
         //Provisorio
         TestarChao();
         
-        if(Keyboard::isKeyPressed(Keyboard::Key::Left))
+        if(Keyboard::isKeyPressed(left))
         {
             cR->setVelocidade(Vector2f(-4.0,cR->getVelocidade().y));
         } 
-        else if(Keyboard::isKeyPressed(Keyboard::Key::Right))
+        else if(Keyboard::isKeyPressed(right))
         {
             cR->setVelocidade(Vector2f(4.0,cR->getVelocidade().y));
         }
@@ -52,10 +59,10 @@ namespace Componentes
             cR->setVelocidade(Vector2f(0,cR->getVelocidade().y));
         }
 
-        if(Keyboard::isKeyPressed(Keyboard::Key::Space))
+        if(Keyboard::isKeyPressed(up))
         {
             if(isGrounded)
-                cR->setVelocidade(Vector2f(cR->getVelocidade().x,4));
+                cR->setVelocidade(Vector2f(cR->getVelocidade().x,5.5));
             else if(cR->getVelocidade().y>0)
                 cR->setVelocidade(cR->getVelocidade()+Vector2f(0,0.5*Gerenciadores::GerenciadorColisoes::gravidade*Configs::Tempo::getDeltaTempo()));
         }

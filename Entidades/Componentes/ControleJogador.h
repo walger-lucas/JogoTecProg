@@ -16,13 +16,14 @@ namespace Componentes
             bool isGrounded;
             const Vector2f distanciaChao;
             void Colidiu(ObjetoFisico* obj);
+            Keyboard::Key up,left,right,down;
             
             void TestarChao();
             void Iniciar();
             void Atualizar();
             void AtualizarFixo();   
         public:
-
+            void setControles(Keyboard::Key up,Keyboard::Key down,Keyboard::Key left,Keyboard::Key right);
             ControleJogador();
 
             ~ControleJogador()

@@ -7,47 +7,12 @@ using namespace sf;
 using namespace Entidades;
 namespace Componentes
 {
-    const Vector2f posBuscChao(0.6,-0.51);
     ControleAndador::ControleAndador()
-    :Componente(),pos(nullptr),cR(nullptr),vida(nullptr),velocidade(2)
+    :ControleInimigo(Vector2f(0.6,-0.51)),velocidade(2)
     {}
     ControleAndador::~ControleAndador()
     {}
-    void ControleAndador::Iniciar()
-    {
-        pos = getEntidade()->getComponente<Posicao>();
-        cR = getEntidade()->getComponente<CorpoRigido>();
-        vida = getEntidade()->getComponente<Vida>();
-        cR->addEscuta(this);
-        indoDireita=true;
-    }
-    void ControleAndador::TestarChao()
-    {
-        list<ObjetoFisico*> l = Gerenciadores::GerenciadorColisoes::EncontraColisao(cR->getCentro()+posBuscChao);
-        direitaChao=false;
-        for(ObjetoFisico* ob : l)
-        {
-            CorpoRigido* cp =ob->getCorpoRigido();
-            if(cp!=nullptr&& cp->getEntidade()->temTag(Entidades::TAG_GROUND))
-            {
-                direitaChao=true;
-                
-            }
-        }
-        Vector2f pos = posBuscChao;
-        pos.x*=-1;
-        l=Gerenciadores::GerenciadorColisoes::EncontraColisao(cR->getCentro()+pos);
-        esquerdaChao=false;
-        for(ObjetoFisico* ob : l)
-        {
-            CorpoRigido* cp =ob->getCorpoRigido();
-            if(cp!=nullptr&& cp->getEntidade()->temTag(Entidades::TAG_GROUND))
-            {
-                esquerdaChao=true;
-            }
-        }
-        
-    }
+
     void ControleAndador::AtualizarFixo()
     {
         if(!vida->Vivo())
@@ -70,25 +35,23 @@ namespace Componentes
         {
             cR->setVelocidade(Vector2f((indoDireita)?velocidade:-velocidade,vel.y));
         }
-        
-    
     }
     void ControleAndador::Colidiu(ObjetoFisico* obj)
     {
         if(obj &&obj->getColidivel())
         {
             
-            Colisor& col = obj->getColisor();
-            if(col.getPos().y-col.getDim().y>=pos->getY()-0.05)
+            
+            if(objEmCima(obj))
             {
                 obj->setVel(Vector2f(obj->getVel().x,4.5));
                 vida->Machucar(1);
             }else 
             {
-                if (pos->getY()-cR->getDim().y<=col.getPos().y-col.getDim().y)
+                if (!objEmBaixo(obj))
                 {
-                    Vector2f dir = col.getCentro()-cR->getCentro();
-                    obj->addVel(dir*(-8.0F));
+                    Vector2f dir = obj->getColisor().getCentro()-cR->getCentro();
+                    obj->addVel(Vector2f(dir.x*(-8.0F),0));
                     if((dir.x>0&&indoDireita)||(dir.x<0&&!indoDireita))
                         indoDireita=!indoDireita;
                 }
