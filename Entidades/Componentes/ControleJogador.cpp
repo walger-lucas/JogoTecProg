@@ -66,6 +66,10 @@ namespace Componentes
             else if(cR->getVelocidade().y>0)
                 cR->setVelocidade(cR->getVelocidade()+Vector2f(0,0.5*Gerenciadores::GerenciadorColisoes::gravidade*Configs::Tempo::getDeltaTempo()));
         }
+        else if(Keyboard::isKeyPressed(down))
+        {
+         cR->setVelocidade(cR->getVelocidade()+Vector2f(0,-Gerenciadores::GerenciadorColisoes::gravidade*Configs::Tempo::getDeltaTempo()));   
+        }
     }
     void ControleJogador::AtualizarFixo()
     {

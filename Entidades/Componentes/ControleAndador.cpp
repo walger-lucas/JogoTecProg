@@ -3,6 +3,7 @@
 #include "Componente.h"
 #include "IEscutaColisao.h"
 #include "Jogador.h"
+#include "Projetil.h"
 using namespace sf;
 using namespace Entidades;
 namespace Componentes
@@ -48,6 +49,7 @@ namespace Componentes
                 vida->Machucar(1);
             }else 
             {
+                
                 if (!objEmBaixo(obj))
                 {
                     Vector2f dir = obj->getColisor().getCentro()-cR->getCentro();

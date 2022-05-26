@@ -8,7 +8,7 @@ using namespace Entidades;
 namespace Componentes
 {
     ControleExplodidor::ControleExplodidor(float rec)
-    :ControleInimigo(Vector2f(0.8,-0.8)),recarga(4),velocidade(1.4),distAtv(3.5)
+    :ControleInimigo(Vector2f(0.8,-0.8)),recarga(4),velocidade(1.4),distAtv(4)
     {
         cont_recarga=rec;
         comEspinhos.loadFromFile("Arquivos/Imagens/Explodidor_B.png");

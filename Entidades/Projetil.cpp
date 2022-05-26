@@ -1,6 +1,7 @@
 #include "Projetil.h"
 #include "Jogador.h"
 namespace Entidades{
+    const string Projetil::TAG_PROJETIL = "projetil";
     Projetil::Projetil(Vector2f pos,Vector2f velInit, int dano,float tam)
     :Entidade(),
     pos(new Posicao(pos.x,pos.y)),
@@ -16,6 +17,7 @@ namespace Entidades{
         addComponente(gS);
         addComponente(cR);
         this->pos->setEscala(Vector2f(tam,tam));
+        addTag(TAG_PROJETIL);
 
     }
     Projetil::~Projetil()
