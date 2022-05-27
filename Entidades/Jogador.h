@@ -9,12 +9,13 @@
 #include"Vida.h"
 namespace Entidades
 {
-    const static string TAG_JOGADOR = "jogador";
+    
     
     class Jogador: public Entidade{
 
         
         private:
+            
             Posicao* pos;
             GraficoSprite* gS;
             CorpoRigido* cR;
@@ -24,6 +25,7 @@ namespace Entidades
             bool jimmy;
 
         public:
+            const static string TAG_JOGADOR;
             static Jogador* Jimmy;
             static Jogador* Janny;
             void Carregar();

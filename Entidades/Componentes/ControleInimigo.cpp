@@ -54,12 +54,12 @@ namespace Componentes
     bool ControleInimigo::objEmCima(ObjetoFisico* obj)
     {
             Colisor& col = obj->getColisor();
-            return col.getPos().y-col.getDim().y>=pos->getY()-0.05;
+            return col.getPos().y-col.getDim().y>=pos->getY()-0.1;
     }
     bool ControleInimigo::objEmBaixo(ObjetoFisico* obj)
     {
         Colisor& col = obj->getColisor();
-        return pos->getY()-cR->getDim().y>=col.getPos().y-0.05;
+        return pos->getY()-cR->getDim().y>=col.getPos().y-0.1;
     }
 
 }

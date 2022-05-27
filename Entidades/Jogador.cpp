@@ -3,6 +3,7 @@ namespace Entidades
 {
     Jogador* Jogador::Jimmy = nullptr;
     Jogador* Jogador::Janny = nullptr;
+    const string Jogador::TAG_JOGADOR="jogador";
 
     void Jogador::Carregar(){
         Vector2f dim = gS->getSprite()->getDim();
@@ -17,7 +18,7 @@ namespace Entidades
     gS(nullptr),
     cR(new CorpoRigido(true,true,true)),
     cJ(new ControleJogador()),
-    vida(new Vida(3,5,std::bind(&Jogador::Dano,this,std::placeholders::_1))),
+    vida(new Vida(4,2,std::bind(&Jogador::Dano,this,std::placeholders::_1))),
     jimmy(jimmy)
     {
         if(jimmy)

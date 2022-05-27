@@ -90,18 +90,20 @@ namespace Componentes
     void ControleExplodidor::Colidiu(ObjetoFisico* obj){
         if(obj &&obj->getColidivel()&&obj->getCinematico())
         {
-    
-            if(objEmCima(obj))
+            CorpoRigido* coR = obj->getCorpoRigido();
+            if(objEmCima(obj) )
             {
-                obj->setVel(Vector2f(obj->getVel().x,4.5));
-                if(cont_recarga<recarga)
+                if(coR&& !coR->getEntidade()->temTag(Projetil::TAG_PROJETIL))
                 {
-                    vida->Machucar(1);
-                    return;
+                    obj->setVel(Vector2f(obj->getVel().x,4.5));
+                    if(cont_recarga<recarga &&coR->getEntidade()->temTag(Jogador::TAG_JOGADOR))
+                    {
+                        vida->Machucar(1);
+                        return;
+                    }
                 }
                     
-            }
-            else
+            }else
             if (!objEmBaixo(obj))
             {
                 Vector2f dir = obj->getColisor().getCentro()-cR->getCentro();
@@ -110,11 +112,10 @@ namespace Componentes
                     indoDireita=!indoDireita;
             }
             
-            CorpoRigido* cR = obj->getCorpoRigido();
-            if(cR)
+            if(coR&&recarga<cont_recarga)
             {
-                Entidade* ent =cR->getEntidade();
-                if(ent && ent->temTag(TAG_JOGADOR))
+                Entidade* ent =coR->getEntidade();
+                if(ent && ent->temTag(Jogador::TAG_JOGADOR))
                 {
                     ent->getComponente<Vida>()->Machucar(1);
                 }

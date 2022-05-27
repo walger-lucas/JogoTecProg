@@ -42,11 +42,12 @@ namespace Componentes
         if(obj &&obj->getColidivel())
         {
             
-            
+            CorpoRigido* coR = obj->getCorpoRigido();
             if(objEmCima(obj))
             {
                 obj->setVel(Vector2f(obj->getVel().x,4.5));
-                vida->Machucar(1);
+                if(coR->getEntidade()->temTag(Jogador::TAG_JOGADOR))
+                    vida->Machucar(1);
             }else 
             {
                 
@@ -57,11 +58,11 @@ namespace Componentes
                     if((dir.x>0&&indoDireita)||(dir.x<0&&!indoDireita))
                         indoDireita=!indoDireita;
                 }
-                CorpoRigido* cR = obj->getCorpoRigido();
+                //CorpoRigido* cR = obj->getCorpoRigido();
                 if(cR)
                 {
-                    Entidade* ent =cR->getEntidade();
-                    if(ent && ent->temTag(TAG_JOGADOR))
+                    Entidade* ent =coR->getEntidade();
+                    if(ent && ent->temTag(Jogador::TAG_JOGADOR))
                     {
                         ent->getComponente<Vida>()->Machucar(1);
                     }

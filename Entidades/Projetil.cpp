@@ -34,7 +34,7 @@ namespace Entidades{
         if((obj&&obj->getColidivel()))
         {
             CorpoRigido* cp = obj->getCorpoRigido();
-            if(cp &&cp->getEntidade()->temTag(TAG_JOGADOR))
+            if(cp &&cp->getEntidade()->temTag(Jogador::TAG_JOGADOR))
                 cp->getEntidade()->getComponente<Vida>()->Machucar(dano);
             Destruir();
         }
