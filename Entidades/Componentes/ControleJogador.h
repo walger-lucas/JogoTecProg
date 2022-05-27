@@ -1,5 +1,6 @@
 #pragma once
 #include"Componente.h"
+#include "Movimento.h"
 #include "Vida.h"
 #include "CorpoRigido.h"
 #include"Posicao.h"
@@ -14,6 +15,7 @@ namespace Componentes
             Posicao* posicao;
             Vida* vd;
             bool isGrounded;
+            Movimento movimento;
             const Vector2f distanciaChao;
             void Colidiu(ObjetoFisico* obj);
             Keyboard::Key up,left,right,down;
@@ -26,7 +28,7 @@ namespace Componentes
             void setControles(Keyboard::Key up,Keyboard::Key down,Keyboard::Key left,Keyboard::Key right);
             ControleJogador();
 
-            ~ControleJogador()
+            virtual ~ControleJogador()
             {}
     };
 }

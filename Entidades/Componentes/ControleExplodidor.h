@@ -8,7 +8,6 @@ namespace Componentes
         private:
         const float recarga;
         float cont_recarga;
-        float velocidade;
         float distAtv;
         Texture comEspinhos;
         Texture semEspinhos;

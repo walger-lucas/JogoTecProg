@@ -27,7 +27,6 @@ namespace Componentes
             if(cp!=nullptr&& cp->getEntidade()->temTag(Entidades::TAG_GROUND))
             {
                 direitaChao=true;
-                
             }
         }
         Vector2f pos = posBuscaChao;
@@ -44,8 +43,8 @@ namespace Componentes
         }
         
     }
-    ControleInimigo::ControleInimigo(Vector2f posChao)
-    :posBuscaChao(posChao)
+    ControleInimigo::ControleInimigo(Vector2f posChao,const float vel, const float pulo,const float rec)
+    :Componente(),posBuscaChao(posChao),movimento(vel,pulo,true,rec)
     {
         indoDireita=std::rand()%2;
     }

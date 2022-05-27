@@ -48,11 +48,11 @@ namespace Componentes
         
         if(Keyboard::isKeyPressed(left))
         {
-            cR->setVelocidade(Vector2f(-4.0,cR->getVelocidade().y));
+            cR->setVelocidade(Vector2f(-movimento.getVelocidade(),cR->getVelocidade().y));
         } 
         else if(Keyboard::isKeyPressed(right))
         {
-            cR->setVelocidade(Vector2f(4.0,cR->getVelocidade().y));
+            cR->setVelocidade(Vector2f(movimento.getVelocidade(),cR->getVelocidade().y));
         }
         else
         {
@@ -62,7 +62,7 @@ namespace Componentes
         if(Keyboard::isKeyPressed(up))
         {
             if(isGrounded)
-                cR->setVelocidade(Vector2f(cR->getVelocidade().x,5.5));
+                cR->setVelocidade(Vector2f(cR->getVelocidade().x,movimento.getPulo()));
             else if(cR->getVelocidade().y>0)
                 cR->setVelocidade(cR->getVelocidade()+Vector2f(0,0.5*Gerenciadores::GerenciadorColisoes::gravidade*Configs::Tempo::getDeltaTempo()));
         }
@@ -77,7 +77,7 @@ namespace Componentes
         Gerenciadores::GerenciadorGrafico::cam.setPos(Vector2f(x-Gerenciadores::GerenciadorGrafico::cam.getDim().x/2,Gerenciadores::GerenciadorGrafico::cam.getPos().y));
     }
     ControleJogador::ControleJogador()
-    : Componente(),cR(nullptr),posicao(nullptr), isGrounded(false),distanciaChao(0,-0.51)
+    :Componente(),cR(nullptr),posicao(nullptr), isGrounded(false),movimento(4,5.5,true,0.4),distanciaChao(0,-0.51)
     {}
 
     void ControleJogador::Colidiu(ObjetoFisico* obj)

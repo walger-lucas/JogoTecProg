@@ -9,7 +9,7 @@ using namespace Entidades;
 namespace Componentes
 {
     ControleAndador::ControleAndador()
-    :ControleInimigo(Vector2f(0.6,-0.51)),velocidade(2)
+    :ControleInimigo(Vector2f(0.6,-0.51),2,4,0.4)
     {}
     ControleAndador::~ControleAndador()
     {}
@@ -24,17 +24,17 @@ namespace Componentes
             cR->setVelocidade(Vector2f(0,vel.y));
         else if(indoDireita && !direitaChao)
         {
-            cR->setVelocidade(Vector2f(-velocidade,vel.y));
+            cR->setVelocidade(Vector2f(-movimento.getVelocidade(),vel.y));
             indoDireita = false;
         }
         else if(!indoDireita && !esquerdaChao)
         {
-            cR->setVelocidade(Vector2f(velocidade,vel.y));
+            cR->setVelocidade(Vector2f(movimento.getVelocidade(),vel.y));
             indoDireita=true;
         }
         else
         {
-            cR->setVelocidade(Vector2f((indoDireita)?velocidade:-velocidade,vel.y));
+            cR->setVelocidade(Vector2f((indoDireita)?movimento.getVelocidade():-movimento.getVelocidade(),vel.y));
         }
     }
     void ControleAndador::Colidiu(ObjetoFisico* obj)
@@ -58,7 +58,6 @@ namespace Componentes
                     if((dir.x>0&&indoDireita)||(dir.x<0&&!indoDireita))
                         indoDireita=!indoDireita;
                 }
-                //CorpoRigido* cR = obj->getCorpoRigido();
                 if(cR)
                 {
                     Entidade* ent =coR->getEntidade();

@@ -8,7 +8,7 @@ using namespace Entidades;
 namespace Componentes
 {
     ControleExplodidor::ControleExplodidor(float rec)
-    :ControleInimigo(Vector2f(0.8,-0.8)),recarga(4),velocidade(1.4),distAtv(4)
+    :ControleInimigo(Vector2f(0.8,-0.8),0.8,5),recarga(4),distAtv(4)
     {
         cont_recarga=rec;
         comEspinhos.loadFromFile("Arquivos/Imagens/Explodidor_B.png");
@@ -55,36 +55,41 @@ namespace Componentes
     }
     void ControleExplodidor::AtualizarFixo()
     {
+        
         if(!vida->Vivo())
             getEntidade()->Destruir();
-
         TestarChao();
+        
         ExplodirEspinhos();
         Vector2f vel = cR->getVelocidade();
+        
         if(cont_recarga<recarga)
         {
             cR->setVelocidade(Vector2f(0,vel.y));
             indoDireita = rand()%2;
             return;
         }
-            
+        
         
 
         if(!esquerdaChao && !direitaChao)
+        {
             cR->setVelocidade(Vector2f(0,vel.y));
+        }
         else if(indoDireita && !direitaChao)
         {
-            cR->setVelocidade(Vector2f(-velocidade,vel.y));
+            
+            cR->setVelocidade(Vector2f(-movimento.getVelocidade(),vel.y));
             indoDireita = false;
         }
         else if(!indoDireita && !esquerdaChao)
         {
-            cR->setVelocidade(Vector2f(velocidade,vel.y));
+            cR->setVelocidade(Vector2f(movimento.getVelocidade(),vel.y));
             indoDireita=true;
         }
         else
         {
-            cR->setVelocidade(Vector2f((indoDireita)?velocidade:-velocidade,vel.y));
+            cR->setVelocidade(Vector2f((indoDireita)?movimento.getVelocidade():-movimento.getVelocidade(),vel.y));
         }
     }
     void ControleExplodidor::Colidiu(ObjetoFisico* obj){
