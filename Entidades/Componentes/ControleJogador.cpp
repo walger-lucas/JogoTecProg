@@ -4,6 +4,7 @@
 #include "GerenciadorGrafico.h"
 #include "commons.h"
 #include "Tempo.h"
+#include "Jogador.h"
 
 using namespace sf;
 namespace Componentes
@@ -27,17 +28,13 @@ namespace Componentes
         for(ObjetoFisico* ob : l)
         {
             CorpoRigido* cp =ob->getCorpoRigido();
-            if(cp!=nullptr&& cp->getEntidade()->temTag(Entidades::TAG_GROUND))
+            if(cp!=nullptr&& (cp->getEntidade()->temTag(Entidades::TAG_GROUND)||cp->getEntidade()->temTag(Entidades::Jogador::TAG_JOGADOR)))
             {
                 isGrounded=true;
                 return;
             }
         }
         isGrounded=false;
-    }
-    float lerp(float a,float b,float f)
-    {
-        return a + (b-a)*f;
     }
     void ControleJogador::Atualizar()
     {
@@ -73,8 +70,7 @@ namespace Componentes
     }
     void ControleJogador::AtualizarFixo()
     {
-        float x =lerp(Gerenciadores::GerenciadorGrafico::cam.getCentro().x,cR->getCentro().x,2*Configs::Tempo::getDeltaTempoFixo());
-        Gerenciadores::GerenciadorGrafico::cam.setPos(Vector2f(x-Gerenciadores::GerenciadorGrafico::cam.getDim().x/2,Gerenciadores::GerenciadorGrafico::cam.getPos().y));
+
     }
     ControleJogador::ControleJogador()
     :Componente(),cR(nullptr),posicao(nullptr), isGrounded(false),movimento(4,5.5,true,0.4),distanciaChao(0,-0.51)

@@ -1,5 +1,5 @@
 HEADERS = ./Entidades/Componentes ./Entidades ./ ./Colisoes ./Gerenciadores ./Graficos . ./Listas ./Cenas ./Configs
-OBJ = Jogo.o Entidade.o Componente.o Posicao.o Colisor.o Camera.o GerenciadorGrafico.o ImgSprite.o ImgTexto.o Grafico.o GraficoSprite.o ObjetoFisico.o GerenciadorColisoes.o CorpoRigido.o GerenciadorInputs.o EventoBotao.o Botao.o BotaoEntidade.o ListaEntidades.o Cena.o GerenciadorCenas.o Tempo.o CenaTeste.o Plataforma.o ControleJogador.o ControleAndador.o Ente.o ControleInimigo.o Projetil.o Jogador.o ControleExplodidor.o Movimento.o
+OBJ = Jogo.o Entidade.o Componente.o Posicao.o Colisor.o Camera.o GerenciadorGrafico.o ImgSprite.o ImgTexto.o Grafico.o GraficoSprite.o ObjetoFisico.o GerenciadorColisoes.o CorpoRigido.o GerenciadorInputs.o EventoBotao.o Botao.o BotaoEntidade.o ListaEntidades.o Cena.o GerenciadorCenas.o Tempo.o CenaTeste.o Plataforma.o ControleJogador.o ControleAndador.o Ente.o ControleInimigo.o Projetil.o Jogador.o ControleExplodidor.o Movimento.o SeguidorCamera.o
 OBJ_DIR = ./obj
 PROJ_NAME = JOGO
 PRE_HEADERS = $(addprefix -I ,$(HEADERS))
@@ -76,6 +76,9 @@ $(OBJ_DIR)/ControleExplodidor.o : Entidades/Componentes/ControleExplodidor.cpp E
 $(OBJ_DIR)/Movimento.o : Entidades/Componentes/Movimento.cpp Entidades/Componentes/Movimento.h Configs/Tempo.h $(OBJ_DIR)/Componente.o 
 	@ g++ $(CFLAGS) -c -o $@ $< $(PRE_HEADERS)m
 	@ echo 'Compilando $@'
+$(OBJ_DIR)/SeguidorCamera.o : Entidades/Componentes/SeguidorCamera.cpp Entidades/Componentes/SeguidorCamera.h  $(OBJ_DIR)/GerenciadorGrafico.o  $(OBJ_DIR)/Jogador.o  
+	@ g++ $(CFLAGS) -c -o $@ $< $(PRE_HEADERS)
+	@ echo 'Compilando $@'
 #Filhos de Componente End
 #Filhos de Entidade Start
 
@@ -139,6 +142,8 @@ $(OBJ_DIR)/Plataforma.o : Entidades/Plataforma.cpp Entidades/Plataforma.h $(OBJ_
 $(OBJ_DIR)/Jogador.o : Entidades/Jogador.cpp Entidades/Jogador.h $(OBJ_DIR)/Entidade.o
 	@ g++ $(CFLAGS) $(SFMLFLAGS) -c -o $@ $< $(PRE_HEADERS)
 	@ echo 'Compilando $@'
+
+
 
 clean:
 	@ rm $(OBJ_DIR)/commons.o $(addprefix $(OBJ_DIR)/,$(OBJ)) 

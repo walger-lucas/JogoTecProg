@@ -26,8 +26,7 @@ namespace Componentes
     void ControleExplodidor::ExplodirEspinhos()
     {
         if(cont_recarga>=2.5*recarga&&
-        ((Jogador::Jimmy&&fabs(pos->getX()- Jogador::Jimmy->getComponente<Posicao>()->getX())<distAtv)
-        ||(Jogador::Janny&&fabs(pos->getX()- Jogador::Janny->getComponente<Posicao>()->getX())<distAtv)))
+        (fabs(Jogador::localizacaoJogadorProximo(cR->getCentro()).x-cR->getCentro().x)<distAtv))
         {
             cont_recarga=0;
             Cena* cen = getEntidade()->getCena();

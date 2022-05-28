@@ -9,6 +9,10 @@ namespace Cenas
             void apt();
             void dapt();
             void Carregar();
+        public:
+            CenaTeste(GerenciadorCenas* ger):
+            Cena(ger)
+            {}
     };
 
 }

@@ -12,6 +12,7 @@ namespace Listas
         list<Entidade*> lista;
         list<Entidade*>::iterator it;
         list<Entidade*>::const_iterator cIt;
+        bool ativo;
 
     public:
         ListaEntidade();

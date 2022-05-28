@@ -7,7 +7,9 @@ using namespace Gerenciadores;
 namespace Cenas
 {
     void Cena::Descarregar()
-    { lista.Descarregar(); }
+    { 
+        lista.Descarregar();
+    }
 
     void Cena::Atualizar()
     { lista.Atualizar(); }

@@ -7,15 +7,20 @@ namespace Gerenciadores
 {
     void GerenciadorCenas::setCena(const int cena)
     {
-        if(cena!=cenaAtual && cena>=0 && cena<=MAXCENAS)
-        {   if(cenaAtual>=0 && cenaAtual<MAXCENAS)
+        if(cena>=0 && cena<=MAXCENAS)
+        {   
+            
+            if(cenaAtual>=0 && cenaAtual<MAXCENAS)
+            {
                 cenas[cenaAtual]->Descarregar();
+            }
+                
             cenaAtual = cena;
             cenas[cenaAtual]->Carregar();
         }
         else
         {
-            cout<< "Esta cena nao existe ou ja eh a atual!\n";
+            cout<< "Esta cena nao existe!\n";
         }
     }
 
@@ -31,7 +36,7 @@ namespace Gerenciadores
     GerenciadorCenas::GerenciadorCenas():
     cenaAtual(-1)
     {
-        cenas[0]= new CenaTeste();
+        cenas[0]= new CenaTeste(this);
         /*cenas[1]= new Cena();
         cenas[2]= new Cena();
         */

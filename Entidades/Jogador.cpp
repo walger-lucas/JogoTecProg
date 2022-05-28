@@ -11,7 +11,54 @@ namespace Entidades
         cR->setDim(Vector2f(dim.x*esc.x,dim.y*esc.y));
 
     }
-
+    Vector2f Jogador::localizacaoJogadorProximo(const Vector2f posAtual)
+    {
+        Vector2f dist1;
+        Vector2f dist2;
+        if(Jimmy&&Janny)
+        {
+            dist1 = posAtual- Jimmy->cR->getCentro();
+            dist2 = posAtual - Janny->cR->getCentro();
+            if(dist1.x*dist1.x+dist1.y*dist1.y>dist2.x*dist2.x+dist2.y*dist2.y)
+            {
+                return Janny->cR->getCentro();
+            }
+            else
+            {
+                return Jimmy->cR->getCentro();
+            }
+        }
+        else if(Jimmy)
+            return Jimmy->cR->getCentro();
+        else if(Janny)
+            return Janny->cR->getCentro();
+        else
+            return Vector2f(10000,10000);
+            
+    }
+    Vector2f Jogador::localizacaoMediaJogadores()
+    {
+        Vector2f pos1(0,0), pos2(0,0);
+        if(Jimmy&&Janny)
+        {
+            return (Jimmy->cR->getCentro()+Janny->cR->getCentro())*0.5F;
+        }
+        else if(Jimmy)
+        {
+            return Jimmy->cR->getCentro();
+        }
+        else if(Janny)
+        {
+            return Janny->cR->getCentro();
+        }
+        return Vector2f(0,0);
+    }
+    bool Jogador::JogadoresVivos()
+    {
+        if(Janny||Jimmy)
+            return true;
+        return false;
+    }
     Jogador::Jogador(Vector2f posicao,bool jimmy)
     : Entidade("Jogador"),
     pos(new Posicao(posicao.x,posicao.y)),

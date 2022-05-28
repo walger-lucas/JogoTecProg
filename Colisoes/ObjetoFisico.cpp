@@ -68,8 +68,7 @@ namespace Colisoes
         Colisor &col2 = obj2.getColisor();
         if (Colisor::Colide(col1, col2))
         {
-            obj1.Avisar(obj2);
-            obj2.Avisar(obj1);
+
             if(!obj1.colidivel||!obj2.colidivel)
                 return;
             Vector2f vel =obj2.velocidade-obj1.velocidade;
@@ -107,6 +106,8 @@ namespace Colisoes
             }
             col1.Mover(mov1);
             col2.Mover(mov2);
+            obj1.Avisar(obj2);
+            obj2.Avisar(obj1);
         }
         
     }

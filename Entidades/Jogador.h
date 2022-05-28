@@ -23,11 +23,14 @@ namespace Entidades
             Vida* vida;
             Texture textura;
             bool jimmy;
-
-        public:
-            const static string TAG_JOGADOR;
             static Jogador* Jimmy;
             static Jogador* Janny;
+        public:
+            const static string TAG_JOGADOR;
+            static Vector2f localizacaoJogadorProximo(const Vector2f posAtual);
+            static Vector2f localizacaoMediaJogadores();
+            static bool JogadoresVivos();
+
             void Carregar();
             Jogador(Vector2f posicao = Vector2f(0,0),bool Jimmy=true);
             ~Jogador();

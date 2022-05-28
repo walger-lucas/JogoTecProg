@@ -32,6 +32,7 @@ namespace Cenas
         Cena(GerenciadorCenas* ger = NULL);
         virtual ~Cena();
 
+        //Apenas utilizavel em Atualizar.
         void MudarCena(const int cena);
         void AdicionarEntidade(Entidade* ent);
         Entidade* getEntidade(string& nome);
