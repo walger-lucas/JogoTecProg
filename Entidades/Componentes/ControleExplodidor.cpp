@@ -56,7 +56,11 @@ namespace Componentes
     {
         
         if(!vida->Vivo())
+        {
             getEntidade()->Destruir();
+            Jogador::darPontos(15);
+        }
+            
         TestarChao();
         
         ExplodirEspinhos();

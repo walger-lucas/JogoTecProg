@@ -9,14 +9,12 @@ namespace Gerenciadores
     {
         if(cena>=0 && cena<=MAXCENAS)
         {   
-            
             if(cenaAtual>=0 && cenaAtual<MAXCENAS)
             {
                 cenas[cenaAtual]->Descarregar();
             }
-                
             cenaAtual = cena;
-            cenas[cenaAtual]->Carregar();
+            cenas[cenaAtual]->Carregar();  
         }
         else
         {

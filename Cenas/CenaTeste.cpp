@@ -36,11 +36,11 @@ namespace Cenas
         for(int i =0;i<4;i++)
             AdicionarEntidade(new Plataforma(Vector2f(16.2*i,-5),"Plataforma.png"));
         for(int i =0;i<2;i++)
-        AdicionarEntidade(new Plataforma(Vector2f(3+25*i,-2.4),"Plataforma.png",Vector2f(0,0),Vector2f(0.5,0.5)));
+        AdicionarEntidade(new Plataforma(Vector2f(3+25*i,-2),"Plataforma.png",Vector2f(0,0),Vector2f(0.5,0.5)));
         AdicionarEntidade(new Plataforma(Vector2f(-1,50),"cubo.png",Vector2f(0,0),Vector2f(1,200)));
         AdicionarEntidade(new Plataforma(Vector2f(48,50),"cubo.png",Vector2f(0,0),Vector2f(1,200)));
 
-        int creatures = 4+rand()%10;
+        int creatures = 7+rand()%6;
         for(int i=0;i<creatures;i++)
         {
             *this+= new Andador(Vector2f(5+(((float)rand())/RAND_MAX)*40,5));
@@ -54,7 +54,9 @@ namespace Cenas
         Jogador* j = new Jogador(Vector2f(2,-2),false);
         AdicionarEntidade(j);
         *this += new Jogador(Vector2f(1,-2),true);
-        *this+= new ControladorUI(10,-6,48,0,2);
+        Jogador::setDoisJogadores(true);
+        Jogador::zerarPontos();
+        *this+= new ControladorUI(1.5,-6,48,0,2);
         
     
         

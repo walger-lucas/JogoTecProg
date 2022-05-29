@@ -3,6 +3,8 @@ namespace Entidades
 {
     Jogador* Jogador::Jimmy = nullptr;
     Jogador* Jogador::Janny = nullptr;
+    int Jogador::pontuacao(0);
+    bool Jogador::doisJogadores(false);
     const string Jogador::TAG_JOGADOR="jogador";
 
     void Jogador::Carregar(){
@@ -36,6 +38,22 @@ namespace Entidades
             return Vector2f(10000,10000);
             
     }
+    void Jogador::darPontos(int pontos)
+    {
+        pontuacao+=pontos;
+    }
+    void Jogador::zerarPontos()
+    {
+        pontuacao=0;
+    }
+    int Jogador::getPontos()
+    {
+        return pontuacao;
+    }
+    bool Jogador::SaoDoisJogadores()
+    {
+        return doisJogadores;
+    }
     Vector2f Jogador::localizacaoMediaJogadores()
     {
         Vector2f pos1(0,0), pos2(0,0);
@@ -53,11 +71,42 @@ namespace Entidades
         }
         return Vector2f(0,0);
     }
+    void Jogador::setDoisJogadores(bool doisJog)
+    {
+        doisJogadores=doisJog;
+    }
     bool Jogador::JogadoresVivos()
     {
         if(Janny||Jimmy)
             return true;
         return false;
+    }
+    int Jogador::vidasJogador(int i)
+    {
+        if(i==0)
+        {
+            if(Jimmy)
+            {
+                return Jimmy->vida->getVida();
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        else
+        {
+            if(Janny)
+            {
+                return Janny->vida->getVida();
+            }
+            else
+            {
+                return 0;
+            }  
+        }
+        
+
     }
     Jogador::Jogador(Vector2f posicao,bool jimmy)
     : Entidade("Jogador"),

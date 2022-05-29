@@ -40,9 +40,6 @@ namespace Componentes
     {
         if(!vd->Vivo())
             getEntidade()->Destruir();
-        //Provisorio
-        TestarChao();
-        
         if(Keyboard::isKeyPressed(left))
         {
             cR->setVelocidade(Vector2f(-movimento.getVelocidade(),cR->getVelocidade().y));
@@ -70,7 +67,7 @@ namespace Componentes
     }
     void ControleJogador::AtualizarFixo()
     {
-
+        TestarChao();
     }
     ControleJogador::ControleJogador()
     :Componente(),cR(nullptr),posicao(nullptr), isGrounded(false),movimento(4,5.5,true,0.4),distanciaChao(0,-0.51)

@@ -24,7 +24,6 @@ namespace Listas
 
     void ListaEntidade::Adicionar(Entidade* ent)
     {
-        ativo = true;
         if(ent)
         {
             lista.push_back(ent);
@@ -80,12 +79,14 @@ namespace Listas
                     {
                         break;
                     }
+                    
                         
                     it++;
                 }
 
             }
         }
+        ativo=true;
     }
 
     Entidade* ListaEntidade::getEntidade(string& nome)

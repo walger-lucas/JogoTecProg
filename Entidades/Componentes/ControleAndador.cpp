@@ -17,7 +17,11 @@ namespace Componentes
     void ControleAndador::AtualizarFixo()
     {
         if(!vida->Vivo())
+        {
             getEntidade()->Destruir();
+            Jogador::darPontos(5);
+        }
+            
         TestarChao();
         Vector2f vel = cR->getVelocidade();
         if(!esquerdaChao && !direitaChao)

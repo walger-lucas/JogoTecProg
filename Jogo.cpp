@@ -15,13 +15,14 @@ void Jogo::Loop()
     while(window->isOpen())
     {
         tempo.atualizaDeltaTempo();
+
         gerInput.PollEvents();
-        
-       
+
         gerCenas.Atualizar();
+       
+        
         tempoUltAtualizacaoFisica+=Tempo::getDeltaTempo();
         //faz a simulacao fisica a cada deltaTempoFixoSegundos
-        
         if(tempoUltAtualizacaoFisica/(float)atualizacaoMax > Tempo::getDeltaTempoFixo())//if(tempoUltAtualizacao/atualizacaoMax > Tempo::getDeltaTempoFixo())
         {
             tempoUltAtualizacaoFisica =0;
@@ -31,21 +32,21 @@ void Jogo::Loop()
             int vezes = tempoUltAtualizacaoFisica/Tempo::getDeltaTempoFixo();//Tempo::getDeltaTempoFixo();
             for(int i=0;i<vezes;i++)
             {
-                gerCenas.AtualizarFixo();
                 fisica.ResolverColisoes();
+                gerCenas.AtualizarFixo();
                 tempoUltAtualizacaoFisica -=Tempo::getDeltaTempoFixo();
             }
                 
         }
-        
-        
         //Faz a renderizacao a cada Tempo Render segundos
         tempoUltRender+=Tempo::getDeltaTempo();
         if(tempoUltRender>Tempo::getTempoRender())
         {
             render.Render();
+            gerCenas.Render();
             tempoUltRender=0;
         }
+        
     }
     
 }
