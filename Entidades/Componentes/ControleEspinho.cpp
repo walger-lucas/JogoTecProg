@@ -24,9 +24,9 @@ namespace Componentes
             if(cR)
             {
                 Entidade* ent =coR->getEntidade();
-                if(ent && ent->temTag("jogador")) //Jogador::TAG_JOGADOR
+                if(ent && ent->temTag(Jogador::TAG_JOGADOR))
                 {
-                    ent->getComponente<Vida>()->machucar(1);
+                    ent->getComponente<Vida>()->Machucar(1);
                 }
 
             }

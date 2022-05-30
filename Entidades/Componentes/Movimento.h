@@ -11,14 +11,15 @@ namespace Componentes
             const float getPulo() const;
             void setModPulo(float mod);
             void setModVelocidade(float mod);
+            //recupera aos poucos os modificadores a 1;
+            void RecuperarMods();
         protected:
             const float velocidade,pulo;
             float modVelocidade,modPulo;
             //aumento percentual por segundo dos modificadores para chegar em 1.
             const float deltaRecargaMods;
             bool recuperar;
-            //recupera aos poucos os modificadores a 1;
-            void RecuperarMods();
+            
             
         
 

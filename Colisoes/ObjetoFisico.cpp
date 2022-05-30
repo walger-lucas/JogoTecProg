@@ -70,7 +70,11 @@ namespace Colisoes
         {
 
             if(!obj1.colidivel||!obj2.colidivel)
+            {
+                obj1.Avisar(obj2);
+                obj2.Avisar(obj1);
                 return;
+            }
             Vector2f vel =obj2.velocidade-obj1.velocidade;
             
             Vector2f tempo;

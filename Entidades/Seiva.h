@@ -31,7 +31,7 @@ namespace Entidades
             Entidade("Seiva"),
             pos(new Posicao(posicao.x,posicao.y)),
             gS(nullptr),
-            cR(new CorpoRigido(false,false,false)),
+            cR(new CorpoRigido(true,false,false)),
             cS(new ControleSeiva()),
             vd(new Vida(1))
             {

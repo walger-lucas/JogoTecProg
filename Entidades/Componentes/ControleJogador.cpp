@@ -38,6 +38,7 @@ namespace Componentes
     }
     void ControleJogador::Atualizar()
     {
+        movimento.RecuperarMods();
         if(!vd->Vivo())
             getEntidade()->Destruir();
         if(Keyboard::isKeyPressed(left))
@@ -68,6 +69,14 @@ namespace Componentes
     void ControleJogador::AtualizarFixo()
     {
         TestarChao();
+    }
+    void ControleJogador::setModVelocidade(const float mod)
+    {
+        movimento.setModVelocidade(mod);
+    }
+    void ControleJogador::setModPulo(const float mod)
+    {
+        movimento.setModPulo(mod);
     }
     ControleJogador::ControleJogador()
     :Componente(),cR(nullptr),posicao(nullptr), isGrounded(false),movimento(4,5.5,true,0.4),distanciaChao(0,-0.51)
