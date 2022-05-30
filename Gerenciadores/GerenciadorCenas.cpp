@@ -1,5 +1,6 @@
 #include "GerenciadorCenas.h"
 #include "CenaTeste.h"
+#include "Menu.h"
 using namespace std;
 using namespace Cenas;
 
@@ -34,10 +35,10 @@ namespace Gerenciadores
     GerenciadorCenas::GerenciadorCenas():
     cenaAtual(-1)
     {
-        cenas[0]= new CenaTeste(this);
-        /*cenas[1]= new Cena();
-        cenas[2]= new Cena();
-        */
+        cenas[1]= new CenaTeste(this);
+        cenas[0]= new Menu(this);
+        //cenas[2]= new Cena();
+        
     }
 
     GerenciadorCenas::~GerenciadorCenas()

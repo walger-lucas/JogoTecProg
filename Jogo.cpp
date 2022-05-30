@@ -4,10 +4,9 @@ using namespace Gerenciadores;
 
 void Jogo::Loop()
 {
-    GerenciadorInputs gerInput=GerenciadorInputs();
     GerenciadorGrafico render=GerenciadorGrafico(window);
     GerenciadorCenas gerCenas=GerenciadorCenas();
-    
+    GerenciadorInputs gerInput=GerenciadorInputs();
     GerenciadorColisoes fisica=GerenciadorColisoes();
     
     gerInput.setWindowAtual(window);

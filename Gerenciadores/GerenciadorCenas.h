@@ -4,7 +4,7 @@
 using namespace std;
 using namespace Cenas;
 
-#define MAXCENAS 1
+#define MAXCENAS 2
 
 namespace Gerenciadores
 {
