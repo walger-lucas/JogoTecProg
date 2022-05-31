@@ -20,7 +20,7 @@ namespace Componentes
     {
         if(obj &&obj->getColidivel())
         { // Mudar a forma de verificar se está pressionando para baixo
-            if(objEmCima(obj) && !(Keyboard::isKeyPressed(Keyboard::Key::Down)))
+            if(objEmCima(obj))
             {
                 obj->setVel(Vector2f(obj->getVel().x,6.5));
             } 

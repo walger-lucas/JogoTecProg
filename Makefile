@@ -145,9 +145,9 @@ $(OBJ_DIR)/Plataforma.o : Entidades/Plataforma.cpp Entidades/Plataforma.h $(OBJ_
 $(OBJ_DIR)/Jogador.o : Entidades/Jogador.cpp Entidades/Jogador.h $(OBJ_DIR)/Entidade.o
 	@ g++ $(CFLAGS) $(SFMLFLAGS) -c -o $@ $< $(PRE_HEADERS)
 	@ echo 'Compilando $@'
-$(OBJ_DIR)/Jogador.o : Entidades/Jogador.cpp Entidades/Jogador.h $(OBJ_DIR)/Entidade.o
-	@ g++ $(CFLAGS) $(SFMLFLAGS) -c -o $@ $< $(PRE_HEADERS)
-	@ echo 'Compilando $@'
+#$(OBJ_DIR)/Jogador.o : Entidades/Jogador.cpp Entidades/Jogador.h $(OBJ_DIR)/Entidade.o
+##	@ g++ $(CFLAGS) $(SFMLFLAGS) -c -o $@ $< $(PRE_HEADERS)
+#	@ echo 'Compilando $@'
 
 $(OBJ_DIR)/Obstaculo.o : Entidades/Componentes/Obstaculo.cpp Entidades/Componentes/Obstaculo.h
 	@ g++ $(CFLAGS) $(SFMLFLAGS) -c -o $@ $< $(PRE_HEADERS)

@@ -36,7 +36,7 @@ namespace Entidades
             vd(new Vida(1))
             {
                 texturaAndador.loadFromFile("Arquivos/Imagens/Andador.png");
-                gS =new GraficoSprite(&texturaAndador,0,false);
+                gS =new GraficoSprite(&texturaAndador,1,false);
                 this->addComponente(static_cast<Componente*> (pos));
                 this->addComponente(static_cast<Componente*> (gS));
                 this->addComponente(static_cast<Componente*> (cR));

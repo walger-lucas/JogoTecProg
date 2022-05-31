@@ -35,8 +35,9 @@ namespace Entidades
             cE(new ControleEspinho()),
             vd(new Vida(1))
             {
+                pos->setEscala(Vector2f(0.5,0.5));
                 texturaespinho.loadFromFile("Arquivos/Imagens/Espinho.png");
-                gS = new GraficoSprite(&texturaespinho,0,false);
+                gS = new GraficoSprite(&texturaespinho,1,false);
                 this->addComponente(static_cast<Componente*> (pos));
                 this->addComponente(static_cast<Componente*> (gS));
                 this->addComponente(static_cast<Componente*> (cR));

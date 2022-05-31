@@ -26,8 +26,8 @@ namespace Componentes
                 Entidade* ent =coR->getEntidade();
                 if(ent && ent->temTag(Jogador::TAG_JOGADOR))
                 {
-                    ent->getComponente<ControleJogador>()->setModVelocidade(0.5);
-                    ent->getComponente<ControleJogador>()->setModPulo(0.5);
+                    ent->getComponente<ControleJogador>()->setModVelocidade(0.3);
+                    ent->getComponente<ControleJogador>()->setModPulo(0.2);
                 }
             }
             obj->setVel(Vector2f(obj->getVel().x * 0.1, obj->getVel().y));

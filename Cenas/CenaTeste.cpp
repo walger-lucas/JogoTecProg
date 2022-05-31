@@ -54,10 +54,10 @@ namespace Cenas
             //*this+= new Explodidor(Vector2f(4+(((float)rand())/RAND_MAX)*40,2));
         }
 
-        *this += new Espinho(Vector2f(4,-1));
-        *this += new Trampolim(Vector2f(6,-1));
+        *this += new Espinho(Vector2f(4,-1.5));
+        *this += new Trampolim(Vector2f(6,-1.5));
         
-        *this += new Seiva(Vector2f(8,-1));
+        *this += new Seiva(Vector2f(8,-1.5));
 
         //AdicionarEntidade(new BotaoEntidade(Vector2f(1,-2),0.3,"Botao Teste",Vector2f(-40,-25),"button0.png","ARIAL.TTF",std::bind(&CenaTeste::apt,this),std::bind(&CenaTeste::dapt,this)));
         Jogador* j = new Jogador(Vector2f(2,-2),false);

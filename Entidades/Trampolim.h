@@ -36,7 +36,8 @@ namespace Entidades
             vd(new Vida(1))
             {
                 texturatrampolim.loadFromFile("Arquivos/Imagens/trampolim.png");
-                gS = new GraficoSprite(&texturatrampolim,0,false);
+                pos->setEscala(Vector2f(0.5,0.5));
+                gS = new GraficoSprite(&texturatrampolim,1,false);
                 this->addComponente(static_cast<Componente*> (pos));
                 this->addComponente(static_cast<Componente*> (gS));
                 this->addComponente(static_cast<Componente*> (cR));
