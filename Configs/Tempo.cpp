@@ -44,4 +44,12 @@ namespace Configs
     }
 
     Tempo::~Tempo() {  }
+    void Tempo::Pausar(bool ps)
+    {
+        pause = ps;
+    }
+    const bool Tempo::Pausado()
+    {
+        return pause;
+    }
 }

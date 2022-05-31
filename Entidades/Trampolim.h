@@ -31,7 +31,7 @@ namespace Entidades
             Entidade("Trampolim"),
             pos(new Posicao(posicao.x,posicao.y)),
             gS(nullptr),
-            cR(new CorpoRigido(true,false,false)),
+            cR(new CorpoRigido(true,true,true)),
             cT(new ControleTrampolim()),
             vd(new Vida(1))
             {

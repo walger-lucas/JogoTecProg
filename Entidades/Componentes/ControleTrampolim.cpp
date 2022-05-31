@@ -26,4 +26,9 @@ namespace Componentes
             } 
         }
     }
+    void ControleTrampolim::AtualizarFixo()
+    {
+        cR->setVelocidade(Vector2f(0,cR->getVelocidade().y));
+    }
+
 }

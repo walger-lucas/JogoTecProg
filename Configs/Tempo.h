@@ -20,6 +20,8 @@ namespace Configs
         static const double getDeltaTempo();
         static const double getDeltaTempoFixo();
         static const double getTempoRender();
+        static void Pausar(bool pause);
+        static const bool Pausado();
 
         static const int getFps();
         static void setFps(const int fps);

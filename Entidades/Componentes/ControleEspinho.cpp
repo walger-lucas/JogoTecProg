@@ -32,4 +32,8 @@ namespace Componentes
             }
         }
     }
+    void ControleEspinho::AtualizarFixo()
+    {
+        cR->setVelocidade(Vector2f(0,cR->getVelocidade().y));
+    }
 }

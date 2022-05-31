@@ -1,6 +1,6 @@
 HEADERS = ./Entidades/Componentes ./Entidades ./ ./Colisoes ./Gerenciadores ./Graficos . ./Listas ./Cenas ./Configs
 
-OBJ = Jogo.o Entidade.o Componente.o Posicao.o Colisor.o Camera.o GerenciadorGrafico.o ImgSprite.o ImgTexto.o Grafico.o GraficoSprite.o ObjetoFisico.o GerenciadorColisoes.o CorpoRigido.o GerenciadorInputs.o EventoBotao.o Botao.o BotaoEntidade.o ListaEntidades.o Cena.o GerenciadorCenas.o Tempo.o CenaTeste.o Plataforma.o ControleJogador.o ControleAndador.o Ente.o ControleInimigo.o Projetil.o Jogador.o ControleExplodidor.o Movimento.o SeguidorCamera.o VidaUI.o Obstaculo.o ControleEspinho.o ControleSeiva.o ControleTrampolim.o Menu.o ControleMenuPrincipal.o
+OBJ = Jogo.o Entidade.o Componente.o Posicao.o Colisor.o Camera.o GerenciadorGrafico.o ImgSprite.o ImgTexto.o Grafico.o GraficoSprite.o ObjetoFisico.o GerenciadorColisoes.o CorpoRigido.o GerenciadorInputs.o EventoBotao.o Botao.o BotaoEntidade.o ListaEntidades.o Cena.o GerenciadorCenas.o Tempo.o CenaTeste.o Plataforma.o ControleJogador.o ControleAndador.o Ente.o ControleInimigo.o Projetil.o Jogador.o ControleExplodidor.o Movimento.o SeguidorCamera.o VidaUI.o Obstaculo.o ControleEspinho.o ControleSeiva.o ControleTrampolim.o MenuPrincipal.o MenuNovoJogo.o
 
 OBJ_DIR = ./obj
 PROJ_NAME = JOGO
@@ -84,7 +84,10 @@ $(OBJ_DIR)/SeguidorCamera.o : Entidades/Componentes/SeguidorCamera.cpp Entidades
 $(OBJ_DIR)/VidaUI.o : Entidades/Componentes/VidaUI.cpp Entidades/Componentes/VidaUI.h  $(OBJ_DIR)/GerenciadorGrafico.o  $(OBJ_DIR)/Jogador.o  $(OBJ_DIR)/ImgSprite.o  
 	@ g++ $(CFLAGS) -c -o $@ $< $(PRE_HEADERS)
 	@ echo 'Compilando $@'
-$(OBJ_DIR)/ControleMenuPrincipal.o : Entidades/Componentes/ControleMenuPrincipal.cpp Entidades/Componentes/ControleMenuPrincipal.h  $(OBJ_DIR)/GerenciadorInputs.o  $(OBJ_DIR)/Jogador.o  
+$(OBJ_DIR)/MenuPrincipal.o : MenuPrincipal.cpp MenuPrincipal.h  $(OBJ_DIR)/GerenciadorInputs.o  $(OBJ_DIR)/Jogador.o  
+	@ g++ $(CFLAGS) -c -o $@ $< $(PRE_HEADERS)
+	@ echo 'Compilando $@'
+$(OBJ_DIR)/MenuNovoJogo.o : Entidades/Componentes/MenuNovoJogo.cpp Entidades/Componentes/MenuNovoJogo.h  $(OBJ_DIR)/GerenciadorInputs.o  $(OBJ_DIR)/Jogador.o  
 	@ g++ $(CFLAGS) -c -o $@ $< $(PRE_HEADERS)
 	@ echo 'Compilando $@'
 #Filhos de Componente End
@@ -142,9 +145,6 @@ $(OBJ_DIR)/Ente.o : Ente.cpp  Ente.h
 	@ echo 'Compilando $@'
 
 $(OBJ_DIR)/CenaTeste.o : Cenas/CenaTeste.cpp Cenas/CenaTeste.h $(OBJ_DIR)/Cena.o
-	@ g++ $(CFLAGS) $(SFMLFLAGS) -c -o $@ $< $(PRE_HEADERS)
-	@ echo 'Compilando $@'
-$(OBJ_DIR)/Menu.o : Cenas/Menu.cpp Cenas/Menu.h $(OBJ_DIR)/Cena.o
 	@ g++ $(CFLAGS) $(SFMLFLAGS) -c -o $@ $< $(PRE_HEADERS)
 	@ echo 'Compilando $@'
 $(OBJ_DIR)/Plataforma.o : Entidades/Plataforma.cpp Entidades/Plataforma.h $(OBJ_DIR)/Entidade.o

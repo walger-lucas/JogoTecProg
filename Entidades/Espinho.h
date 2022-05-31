@@ -31,7 +31,7 @@ namespace Entidades
             Entidade("Espinho"),
             pos(new Posicao(posicao.x,posicao.y)),
             gS(nullptr),
-            cR(new CorpoRigido(true,false,false)),
+            cR(new CorpoRigido(true,true,true)),
             cE(new ControleEspinho()),
             vd(new Vida(1))
             {

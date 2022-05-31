@@ -22,6 +22,7 @@ namespace Componentes
             virtual void Atualizar(){};
             virtual void Colidiu(ObjetoFisico* obj)=0;
         public:
+            static const string TAG_OBSTACULO;
             Obstaculo();
             virtual ~Obstaculo();
     };

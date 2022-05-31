@@ -35,6 +35,7 @@ namespace Cenas
 
     void CenaTeste::Carregar()
     {
+        
         srand(time(NULL));
         for(int i =0;i<4;i++)
             AdicionarEntidade(new Plataforma(Vector2f(16.3*i,-5),"Plataforma.png"));
@@ -69,14 +70,15 @@ namespace Cenas
         {
             *this += new Seiva(Vector2f(5+(((float)rand())/RAND_MAX)*40,-4.6));
         }
-
+        
         //AdicionarEntidade(new BotaoEntidade(Vector2f(1,-2),0.3,"Botao Teste",Vector2f(-40,-25),"button0.png","ARIAL.TTF",std::bind(&CenaTeste::apt,this),std::bind(&CenaTeste::dapt,this)));
         Jogador* j = new Jogador(Vector2f(2,-2),true);
         AdicionarEntidade(j);
-        
-        *this += new Jogador(Vector2f(1,-2),false);
-        Jogador::setDoisJogadores(true);
         Jogador::zerarPontos();
+        if(Jogador::SaoDoisJogadores())
+            *this += new Jogador(Vector2f(1,-2),false);
+        
+        
         *this+= new ControladorUI(1.5,-6,48,0,2);
         
     

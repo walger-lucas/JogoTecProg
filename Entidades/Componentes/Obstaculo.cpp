@@ -8,6 +8,7 @@ using namespace sf;
 using namespace Entidades;
 namespace Componentes
 {
+    const string Obstaculo::TAG_OBSTACULO="obstaculo";
     void Obstaculo::Iniciar()
     {
         pos = getEntidade()->getComponente<Posicao>();

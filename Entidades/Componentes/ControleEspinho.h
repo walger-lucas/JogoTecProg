@@ -14,6 +14,7 @@ namespace Componentes
     {
         private:
             void Colidiu(ObjetoFisico* obj);
+            void AtualizarFixo();
         public:
             ControleEspinho();
             virtual ~ControleEspinho();

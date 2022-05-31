@@ -4,7 +4,7 @@
 using namespace std;
 using namespace Cenas;
 
-#define MAXCENAS 2
+#define MAXCENAS 1
 
 namespace Gerenciadores
 {
@@ -13,12 +13,14 @@ namespace Gerenciadores
     private:
         Cena* cenas[MAXCENAS];
         int cenaAtual;
+        static int proxCena;
 
     public:
         void setCena(const int cena);
         void Atualizar();
         void AtualizarFixo();
         void Render();
+        static void ProximaCena(int id);
 
         GerenciadorCenas();
         ~GerenciadorCenas();
