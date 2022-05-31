@@ -10,8 +10,6 @@ class Jogo
         private:
         RenderWindow* window;
         Tempo tempo;
-
-        
         float tempoUltAtualizacaoFisica;
         float tempoUltRender;
         const int atualizacaoMax;

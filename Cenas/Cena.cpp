@@ -41,8 +41,9 @@ namespace Cenas
     { 
         if(ent!=nullptr)
         {
-            lista.Adicionar(ent); 
             ent->setCena(this);
+            lista.Adicionar(ent); 
+            
         }
         
     }

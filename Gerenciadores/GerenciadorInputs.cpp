@@ -80,4 +80,8 @@ namespace Gerenciadores
     {
         botoes.remove(botao);
     }
+    void GerenciadorInputs::FinalizarJogo()
+    {
+        window->close();
+    }
 }

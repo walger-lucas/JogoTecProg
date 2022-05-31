@@ -13,13 +13,7 @@ namespace Listas
 
     ListaEntidade::~ListaEntidade()
     {
-        for(it = lista.begin(); it != lista.end(); it++)
-        {
-            if(*it)
-                delete *it;
-            *it = NULL;
-        }
-        lista.clear();
+        Descarregar();
     }
 
     void ListaEntidade::Adicionar(Entidade* ent)

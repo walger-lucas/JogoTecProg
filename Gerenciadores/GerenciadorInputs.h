@@ -18,6 +18,7 @@ namespace Gerenciadores
             static const bool isMouseNaTela();
             static void addBotao(EventoBotao* botao);
             static void removeBotao(EventoBotao* bot);
+            static void FinalizarJogo();
             void PollEvents();
             void setWindowAtual(RenderWindow* rW);
             GerenciadorInputs(){}
