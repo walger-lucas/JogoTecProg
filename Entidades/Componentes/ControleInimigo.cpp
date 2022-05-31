@@ -43,6 +43,15 @@ namespace Componentes
         }
         
     }
+    void ControleInimigo::setModVelocidade(const float mod)
+    {
+        movimento.setModVelocidade(mod);
+    }
+    void ControleInimigo::setModPulo(const float mod)
+    {
+        movimento.setModPulo(mod);
+    }
+
     ControleInimigo::ControleInimigo(Vector2f posChao,const float vel, const float pulo,const float rec)
     :Componente(),posBuscaChao(posChao),movimento(vel,pulo,true,rec)
     {

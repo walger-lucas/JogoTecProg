@@ -1,24 +1,24 @@
 #pragma once
-#include"Posicao.h"
-#include"Vida.h"
-#include"commons.h"
-#include"GraficoSprite.h"
-#include"Entidade.h"
-#include"CorpoRigido.h"
-#include"ControleAndador.h"
+#include "Posicao.h"
+#include "Vida.h"
+#include "commons.h"
+#include "GraficoSprite.h"
+#include "Entidade.h"
+#include "CorpoRigido.h"
+#include "ControleEspinho.h"
+
 namespace Entidades
 {
-    const static string TAG_ANDADOR = "andador";
-    class Andador: public Entidade{
-
-        
+    const static string TAG_ESPINHO = "espinho";
+    class Espinho: public Entidade
+    {
         private:
             Posicao* pos;
             GraficoSprite* gS;
             CorpoRigido* cR;
-            ControleAndador* cA;
+            ControleEspinho* cE;
             Vida* vd;
-            Texture texturaAndador;
+            Texture texturaespinho;
 
         public:
             void Carregar(){
@@ -27,20 +27,21 @@ namespace Entidades
                 cR->setDim(Vector2f(dim.x*esc.x,dim.y*esc.y));
 
             }
-            Andador(Vector2f posicao = Vector2f(0,0))
-            : Entidade("Andador"),
+            Espinho(Vector2f posicao = Vector2f(0,0)):
+            Entidade("Espinho"),
             pos(new Posicao(posicao.x,posicao.y)),
             gS(nullptr),
-            cR(new CorpoRigido(true,true,true)),
-            cA(new ControleAndador()),
+            cR(new CorpoRigido(true,false,false)),
+            cE(new ControleEspinho()),
             vd(new Vida(1))
             {
-                texturaAndador.loadFromFile("Arquivos/Imagens/Andador.png");
-                gS =new GraficoSprite(&texturaAndador,1,false);
+                pos->setEscala(Vector2f(0.5,0.5));
+                texturaespinho.loadFromFile("Arquivos/Imagens/Espinho.png");
+                gS = new GraficoSprite(&texturaespinho,1,false);
                 this->addComponente(static_cast<Componente*> (pos));
                 this->addComponente(static_cast<Componente*> (gS));
                 this->addComponente(static_cast<Componente*> (cR));
-                this->addComponente(static_cast<Componente*> (cA));
+                this->addComponente(static_cast<Componente*> (cE));
                 this->addComponente(static_cast<Componente*> (vd));
             }
         

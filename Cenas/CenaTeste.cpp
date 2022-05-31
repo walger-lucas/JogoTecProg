@@ -14,6 +14,9 @@
 #include "Explodidor.h"
 #include "Projetil.h"
 #include "ControladorUI.h"
+#include "Espinho.h"
+#include "Trampolim.h"
+#include "Seiva.h"
 using namespace sf;
 using namespace std;
 
@@ -43,13 +46,19 @@ namespace Cenas
         int creatures = 7+rand()%6;
         for(int i=0;i<creatures;i++)
         {
-            *this+= new Andador(Vector2f(5+(((float)rand())/RAND_MAX)*40,5));
+            //*this+= new Andador(Vector2f(5+(((float)rand())/RAND_MAX)*40,5));
         }
         int explodidores = 4+rand()%3;
         for(int i=0;i<explodidores;i++)
         {
-            *this+= new Explodidor(Vector2f(4+(((float)rand())/RAND_MAX)*40,2));
+            //*this+= new Explodidor(Vector2f(4+(((float)rand())/RAND_MAX)*40,2));
         }
+
+        *this += new Espinho(Vector2f(4,-1.5));
+        *this += new Trampolim(Vector2f(6,-1.5));
+        
+        *this += new Seiva(Vector2f(8,-1.5));
+
         //AdicionarEntidade(new BotaoEntidade(Vector2f(1,-2),0.3,"Botao Teste",Vector2f(-40,-25),"button0.png","ARIAL.TTF",std::bind(&CenaTeste::apt,this),std::bind(&CenaTeste::dapt,this)));
         Jogador* j = new Jogador(Vector2f(2,-2),true);
         AdicionarEntidade(j);

@@ -14,8 +14,8 @@ namespace Componentes
             CorpoRigido* cR;
             Posicao* posicao;
             Vida* vd;
-            bool isGrounded;
             Movimento movimento;
+            bool isGrounded;
             const Vector2f distanciaChao;
             void Colidiu(ObjetoFisico* obj);
             Keyboard::Key up,left,right,down;
@@ -26,6 +26,8 @@ namespace Componentes
             void AtualizarFixo();   
         public:
             void setControles(Keyboard::Key up,Keyboard::Key down,Keyboard::Key left,Keyboard::Key right);
+            void setModVelocidade(const float mod);
+            void setModPulo(const float mod);
             ControleJogador();
 
             virtual ~ControleJogador()
