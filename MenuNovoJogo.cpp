@@ -73,6 +73,8 @@ void MenuNovoJogo::Cena2()
 void MenuNovoJogo::Comecar()
 {
     GerenciadorCenas::ProximaCena(cenaComecar);
+    Tempo::Pausar(false);
+    Jogador::zerarPontos();
     Jogo::MenuAtual(nullptr);
 }
 void MenuNovoJogo::Atualizar()

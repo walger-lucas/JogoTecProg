@@ -14,7 +14,7 @@ namespace Entidades
     Plataforma::Plataforma(Vector2f pos, const string& textura,Vector2f offset,Vector2f esc)
     : Entidade("Plataforma"),
     posicao(new Posicao(pos.x,pos.y)),
-    corpoRigido(new CorpoRigido(true,false,false)),
+    corpoRigido(new CorpoRigido(true,false,true)),
     graficoSprite(nullptr),
     offset(offset)
     {

@@ -3,6 +3,8 @@
 #include "Jogador.h"
 #include "Tempo.h"
 #include "Cena.h"
+#include "Jogo.h"
+#include "MenuPause.h"
 using namespace Entidades;
 using namespace Gerenciadores;
 using namespace Configs;
@@ -15,15 +17,15 @@ namespace Componentes
     void SeguidorCamera::AtualizarFixo()
     {
         SeguirJogadores();
-
+        if(Keyboard::isKeyPressed(Keyboard::Key::Escape))
+        {
+            Jogo::MenuAtual(new MenuPause());
+        } 
         
     }
     void SeguidorCamera::Atualizar()
     {
-        if(Keyboard::isKeyPressed(Keyboard::Key::Escape))
-        {
-            getEntidade()->getCena()->MudarCena(0);
-        }   
+  
     }
     Vector2f lerp(Vector2f a,Vector2f b , float f)
     {

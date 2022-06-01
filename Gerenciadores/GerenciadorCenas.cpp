@@ -10,14 +10,14 @@ namespace Gerenciadores
     void GerenciadorCenas::setCena(const int cena)
     {
 
-
+        
         if(cenaAtual>=0 && cenaAtual<MAXCENAS)
         {
             cenas[cenaAtual]->Descarregar();
         }
+        cenaAtual = cena;
         if(cena>=0 && cena<MAXCENAS)
         {  
-            cenaAtual = cena;
             cenas[cenaAtual]->Carregar();  
         }
     }

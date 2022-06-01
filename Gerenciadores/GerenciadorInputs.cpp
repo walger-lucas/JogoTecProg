@@ -7,6 +7,7 @@ namespace Gerenciadores
 {
     RenderWindow* GerenciadorInputs::window(nullptr);
     list<EventoBotao*> GerenciadorInputs::botoes=list<EventoBotao*>();
+    string GerenciadorInputs::inputText="";
     void GerenciadorInputs::PollEvents()
     {
         while(window->pollEvent(evento))
@@ -46,10 +47,32 @@ namespace Gerenciadores
                     }
                     break;
                 }
+                case Event::TextEntered:
+                {
+                    if(evento.text.unicode !='\b')
+                        inputText+= static_cast<char>(evento.text.unicode);
+                    else if(inputText.size()>0)
+                        inputText.erase(inputText.size() - 1, 1);
+                    break;
+                }  
                 default:
                     break;
             }
         }
+    }
+    void GerenciadorInputs::cleanInputText()
+    {
+        inputText = "";
+    }
+    string GerenciadorInputs::getInputText(int tam)
+    {
+        
+        char text[tam];
+        tam = std::min(tam,(int)inputText.size());
+        inputText.copy(text,tam,0);
+        string txt = text;
+        inputText.erase(0,tam);
+        return txt;
     }
     void GerenciadorInputs::setWindowAtual(RenderWindow* rW)
     {
