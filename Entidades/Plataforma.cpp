@@ -3,6 +3,8 @@ using namespace Gerenciadores;
 using namespace Componentes;
 namespace Entidades
 {
+    	//tag significativa de chao
+	const string Plataforma::TAG_GROUND= "ground";
     void Plataforma::Carregar()
     {
 

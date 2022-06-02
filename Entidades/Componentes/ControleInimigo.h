@@ -25,7 +25,7 @@ namespace Componentes
             bool objEmBaixo(ObjetoFisico* obj);
             virtual void Iniciar();
             virtual void AtualizarFixo(){};
-            virtual void Atualizar(){};
+            virtual void Atualizar();
             virtual void Colidiu(ObjetoFisico* obj)=0;
         public:
             const bool getIndoDireita() const;

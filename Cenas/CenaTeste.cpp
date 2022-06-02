@@ -45,24 +45,8 @@ namespace Cenas
         AdicionarEntidade(new Plataforma(Vector2f(-1,50),"cubo.png",Vector2f(0,0),Vector2f(1,200)));
         AdicionarEntidade(new Plataforma(Vector2f(48,50),"cubo.png",Vector2f(0,0),Vector2f(1,200)));
 
-
-
-        int esp = 3+ rand()%3;
-        for(int i=0 ; i<esp;i++)
-        {
-            *this += new Espinho(Vector2f(5+(((float)rand())/RAND_MAX)*40,-4.5));
-        }
-        int tramp = 1 + rand()%3;
-        for(int i=0 ; i<tramp;i++)
-        {
-            *this += new Trampolim(Vector2f(5+(((float)rand())/RAND_MAX)*40,-4.5));
-        }
         
-        int gosma = 1 + rand()%2;
-        for(int i=0 ; i<gosma;i++)
-        {
-            *this += new Seiva(Vector2f(5+(((float)rand())/RAND_MAX)*40,-4.6));
-        }
+
         
         //AdicionarEntidade(new BotaoEntidade(Vector2f(1,-2),0.3,"Botao Teste",Vector2f(-40,-25),"button0.png","ARIAL.TTF",std::bind(&CenaTeste::apt,this),std::bind(&CenaTeste::dapt,this)));
         if(Configs::Salvador::salvador->getIdSaveAtual()==-1)
@@ -82,7 +66,21 @@ namespace Cenas
             AdicionarEntidade(j);
             if(Jogador::SaoDoisJogadores())
                 *this += new Jogador(Vector2f(1,-2),false);
-        
+            int esp = 3+ rand()%3;
+            for(int i=0 ; i<esp;i++)
+            {
+                *this += new Espinho(Vector2f(5+(((float)rand())/RAND_MAX)*40,-4.5));
+            }
+            int tramp = 1 + rand()%3;
+            for(int i=0 ; i<tramp;i++)
+            {
+                *this += new Trampolim(Vector2f(5+(((float)rand())/RAND_MAX)*40,-4.5));
+            }
+             int gosma = 1 + rand()%2;
+            for(int i=0 ; i<gosma;i++)
+            {
+                *this += new Seiva(Vector2f(5+(((float)rand())/RAND_MAX)*40,-4.8));
+            }
         }
         else
         {

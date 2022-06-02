@@ -5,6 +5,7 @@
 #include "commons.h"
 #include "Tempo.h"
 #include "Jogador.h"
+#include "Plataforma.h"
 
 using namespace sf;
 namespace Componentes
@@ -28,7 +29,7 @@ namespace Componentes
         for(ObjetoFisico* ob : l)
         {
             CorpoRigido* cp =ob->getCorpoRigido();
-            if(cp!=nullptr&& (cp->getEntidade()->temTag(Entidades::TAG_GROUND)||cp->getEntidade()->temTag(Entidades::Jogador::TAG_JOGADOR)))
+            if(cp!=nullptr&& (cp->getEntidade()->temTag(Plataforma::TAG_GROUND)||cp->getEntidade()->temTag(Entidades::Jogador::TAG_JOGADOR)))
             {
                 isGrounded=true;
                 return;

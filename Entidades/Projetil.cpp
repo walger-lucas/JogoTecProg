@@ -77,7 +77,7 @@ namespace Entidades{
             Destruir();
         }
     }
-        void Projetil::escreverDados(ofstream& stream)
+    void Projetil::escreverDados(ofstream& stream)
     {
         int tam = projeteis.size();
         stream.write((char*)&tam,sizeof(int));

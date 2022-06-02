@@ -2,6 +2,7 @@
 #include "GerenciadorColisoes.h"
 #include "Componente.h"
 #include "IEscutaColisao.h"
+#include "Plataforma.h"
 #include "Jogador.h"
 #include <random>
 using namespace sf;
@@ -32,7 +33,7 @@ namespace Componentes
         for(ObjetoFisico* ob : l)
         {
             CorpoRigido* cp =ob->getCorpoRigido();
-            if(cp!=nullptr&& cp->getEntidade()->temTag(Entidades::TAG_GROUND))
+            if(cp!=nullptr&& cp->getEntidade()->temTag(Plataforma::TAG_GROUND))
             {
                 direitaChao=true;
             }
@@ -44,7 +45,7 @@ namespace Componentes
         for(ObjetoFisico* ob : l)
         {
             CorpoRigido* cp =ob->getCorpoRigido();
-            if(cp!=nullptr&& cp->getEntidade()->temTag(Entidades::TAG_GROUND))
+            if(cp!=nullptr&& cp->getEntidade()->temTag(Plataforma::TAG_GROUND))
             {
                 esquerdaChao=true;
             }
@@ -76,6 +77,10 @@ namespace Componentes
     {
         Colisor& col = obj->getColisor();
         return pos->getY()-cR->getDim().y>=col.getPos().y-0.1;
+    }
+    void ControleInimigo::Atualizar()
+    {
+        movimento.RecuperarMods();
     }
 
 }

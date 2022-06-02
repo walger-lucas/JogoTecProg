@@ -4,7 +4,10 @@
 #include "Andador.h"
 #include "Explodidor.h"
 #include "Projetil.h"
+#include "Espinho.h"
 #include "GerenciadorCenas.h"
+#include "Trampolim.h"
+#include "Seiva.h"
 using namespace std;
 namespace Configs
 {
@@ -87,6 +90,9 @@ namespace Configs
                 Andador::escreverDados(atual);
                 Explodidor::escreverDados(atual);
                 Projetil::escreverDados(atual);
+                Espinho::escreverDados(atual);
+                Trampolim::escreverDados(atual);
+                Seiva::escreverDados(atual);
                 //salvar outras partes
                 atual.close();
             }
@@ -127,6 +133,9 @@ namespace Configs
             Andador::lerDados(atual,cena);
             Explodidor::lerDados(atual,cena);
             Projetil::lerDados(atual,cena);
+            Espinho::lerDados(atual,cena);
+            Trampolim::lerDados(atual,cena);
+            Seiva::lerDados(atual,cena);
             atual.close();
         }
         catch(const std::ifstream::failure& e)

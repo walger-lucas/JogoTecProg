@@ -49,6 +49,7 @@ namespace Componentes
     {}
     void ControleExplodidor::Atualizar()
     {
+        ControleInimigo::Atualizar();
         if(cont_recarga<10*recarga)
             cont_recarga+=Configs::Tempo::getDeltaTempoControlado();
     }
