@@ -35,6 +35,18 @@ namespace Componentes{
             {
                 return vida;
             }
+            void setTempoAtualCooldown(float tempo)
+            {
+                cont_tempoImune= tempo;
+            }
+            float getTempoAtualCooldown()
+            {
+                return cont_tempoImune;
+            }
+            void setVida(int vida)
+            {
+                this->vida = vida;
+            }
             void setMachucadoFunc(function<void(int)> machucar)
             {
                 machucado = machucar;

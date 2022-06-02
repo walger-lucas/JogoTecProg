@@ -1,12 +1,12 @@
 HEADERS = ./Entidades/Componentes ./Entidades ./ ./Colisoes ./Gerenciadores ./Graficos . ./Listas ./Cenas ./Configs
 
-OBJ = Jogo.o Entidade.o Componente.o Posicao.o Colisor.o Camera.o GerenciadorGrafico.o ImgSprite.o ImgTexto.o Grafico.o GraficoSprite.o ObjetoFisico.o GerenciadorColisoes.o CorpoRigido.o GerenciadorInputs.o EventoBotao.o Botao.o BotaoEntidade.o ListaEntidades.o Cena.o GerenciadorCenas.o Tempo.o CenaTeste.o Plataforma.o ControleJogador.o ControleAndador.o Ente.o ControleInimigo.o Projetil.o Jogador.o ControleExplodidor.o Movimento.o SeguidorCamera.o VidaUI.o Obstaculo.o ControleEspinho.o ControleSeiva.o ControleTrampolim.o MenuPrincipal.o MenuNovoJogo.o MenuPause.o
+OBJ = Jogo.o Entidade.o Componente.o Posicao.o Colisor.o Camera.o GerenciadorGrafico.o ImgSprite.o ImgTexto.o Grafico.o GraficoSprite.o ObjetoFisico.o GerenciadorColisoes.o CorpoRigido.o GerenciadorInputs.o EventoBotao.o Botao.o BotaoEntidade.o ListaEntidades.o Cena.o GerenciadorCenas.o Tempo.o CenaTeste.o Plataforma.o ControleJogador.o ControleAndador.o Ente.o ControleInimigo.o Projetil.o Jogador.o ControleExplodidor.o Movimento.o SeguidorCamera.o VidaUI.o Obstaculo.o ControleEspinho.o ControleSeiva.o ControleTrampolim.o MenuPrincipal.o MenuNovoJogo.o MenuPause.o Salvador.o MenuSalvar.o MenuCarregar.o
 
 OBJ_DIR = ./obj
 PROJ_NAME = JOGO
 PRE_HEADERS = $(addprefix -I ,$(HEADERS))
-FLAGS = -lm -Wall
-CFLAGS = -Wall
+FLAGS = -lm -Wall -std=c++2a -O2
+CFLAGS = -Wall -std=c++2a -O2
 FINALFILES = main.cpp
 SFMLFLAGS = -lsfml-graphics -lsfml-window -lsfml-system -lsfml-network -lsfml-audio
 all: $(PROJ_NAME)
@@ -92,6 +92,11 @@ $(OBJ_DIR)/MenuNovoJogo.o : MenuNovoJogo.cpp MenuNovoJogo.h  $(OBJ_DIR)/Gerencia
 	@ echo 'Compilando $@'
 $(OBJ_DIR)/MenuPause.o : MenuPause.cpp MenuPause.h  $(OBJ_DIR)/GerenciadorInputs.o  $(OBJ_DIR)/Jogador.o  
 	@ g++ $(CFLAGS) -c -o $@ $< $(PRE_HEADERS)
+$(OBJ_DIR)/MenuSalvar.o : MenuSalvar.cpp MenuSalvar.h  $(OBJ_DIR)/GerenciadorInputs.o  $(OBJ_DIR)/Salvador.o  
+	@ g++ $(CFLAGS) -c -o $@ $< $(PRE_HEADERS)
+	@ echo 'Compilando $@'
+$(OBJ_DIR)/MenuCarregar.o : MenuCarregar.cpp MenuCarregar.h  $(OBJ_DIR)/GerenciadorInputs.o  $(OBJ_DIR)/Salvador.o  
+	@ g++ $(CFLAGS) -c -o $@ $< $(PRE_HEADERS)
 	@ echo 'Compilando $@'
 #Filhos de Componente End
 #Filhos de Entidade Start
@@ -113,6 +118,9 @@ $(OBJ_DIR)/GerenciadorCenas.o : Gerenciadores/GerenciadorCenas.cpp  Gerenciadore
 	@ echo 'Compilando $@'
 #Tempo
 $(OBJ_DIR)/Tempo.o : Configs/Tempo.cpp Configs/Tempo.h
+	@ g++ $(CFLAGS) -c -o $@ $< $(PRE_HEADERS)
+	@ echo 'Compilando $@'
+$(OBJ_DIR)/Salvador.o : Configs/Salvador.cpp Configs/Salvador.h 
 	@ g++ $(CFLAGS) -c -o $@ $< $(PRE_HEADERS)
 	@ echo 'Compilando $@'
 

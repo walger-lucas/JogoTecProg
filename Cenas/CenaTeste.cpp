@@ -16,6 +16,7 @@
 #include "ControladorUI.h"
 #include "Espinho.h"
 #include "Trampolim.h"
+#include "Salvador.h"
 #include "Seiva.h"
 using namespace sf;
 using namespace std;
@@ -72,13 +73,18 @@ namespace Cenas
         }
         
         //AdicionarEntidade(new BotaoEntidade(Vector2f(1,-2),0.3,"Botao Teste",Vector2f(-40,-25),"button0.png","ARIAL.TTF",std::bind(&CenaTeste::apt,this),std::bind(&CenaTeste::dapt,this)));
-        Jogador* j = new Jogador(Vector2f(2,-2),true);
-        AdicionarEntidade(j);
-        Jogador::zerarPontos();
-        if(Jogador::SaoDoisJogadores())
-            *this += new Jogador(Vector2f(1,-2),false);
+        if(Configs::Salvador::salvador->getIdSaveAtual()==-1)
+        {
+            Jogador* j = new Jogador(Vector2f(2,-2),true);
+            AdicionarEntidade(j);
+            if(Jogador::SaoDoisJogadores())
+                *this += new Jogador(Vector2f(1,-2),false);
         
-        
+        }
+        else
+        {
+            Configs::Salvador::salvador->carregarCena(this);
+        }
         *this+= new ControladorUI(1.5,-6,48,0,2);
         
     

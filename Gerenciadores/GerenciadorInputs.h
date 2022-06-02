@@ -18,7 +18,8 @@ namespace Gerenciadores
             static const Vector2f getMouseUIPos();
             static const bool isMouseNaTela();
             static void cleanInputText();
-            static string getInputText(int tam);
+            static const string getInputText(int tam);
+            static const string& getInputText();
             static void addBotao(EventoBotao* botao);
             static void removeBotao(EventoBotao* bot);
             static void FinalizarJogo();

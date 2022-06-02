@@ -7,7 +7,6 @@ Menu* Jogo::proxMenu = nullptr;
 void Jogo::Loop()
 {
     MenuAtual(new MenuPrincipal());
-    //gerCenas.setCena(0);
     while(window->isOpen())
     {
         tempo.atualizaDeltaTempo();

@@ -12,7 +12,7 @@ namespace Gerenciadores
     {
     private:
         Cena* cenas[MAXCENAS];
-        int cenaAtual;
+        static int cenaAtual;
         static int proxCena;
 
     public:
@@ -20,6 +20,7 @@ namespace Gerenciadores
         void Atualizar();
         void AtualizarFixo();
         void Render();
+        static const int getCenaAtual();
         static void ProximaCena(int id);
 
         GerenciadorCenas();

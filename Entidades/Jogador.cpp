@@ -1,4 +1,5 @@
 #include "Jogador.h"
+#include "Cena.h"
 namespace Entidades
 {
     Jogador* Jogador::Jimmy = nullptr;
@@ -144,5 +145,100 @@ namespace Entidades
         else
             Janny=nullptr;
 
+    }
+    void Jogador::escreverDados(ofstream& stream)
+    {
+        //Aviso se eh jimmy ou janny (0 Jimmy e Janny,1 Jimmy, 2 Janny,-1 nenhum)
+        //depois vidas, cooldown de vida, posx posy, velx, vely
+        int i;
+        if(Jimmy&&Janny)
+        {
+            i=0;
+            stream.write((char*)&i,sizeof(int));
+        }else if(Jimmy)
+        {
+            i=1;
+            stream.write((char*)&i,sizeof(int));
+        }else if(Janny)
+        {
+            i=2;
+            stream.write((char*)&i,sizeof(int));
+        }
+        else
+        {
+            i=-1;
+            stream.write((char*)&i,sizeof(int));
+        }
+        int vidas;
+        float cooldown;
+        Vector2f pos;
+        Vector2f vel;
+        if(Jimmy)
+        {
+            vidas= Jimmy->vida->getVida();
+            cooldown = Jimmy->vida->getTempoAtualCooldown();
+            pos= Jimmy->pos->getPos();
+            vel =Jimmy->cR->getVelocidade();
+            stream.write((char*)&vidas,sizeof(int));
+            stream.write((char*)&cooldown,sizeof(float));
+            stream.write((char*)&pos.x,sizeof(float));
+            stream.write((char*)&pos.y,sizeof(float));
+            stream.write((char*)&vel.x,sizeof(float));
+            stream.write((char*)&vel.y,sizeof(float));
+        }
+        if(Janny)
+        {
+            vidas= Janny->vida->getVida();
+            cooldown = Janny->vida->getTempoAtualCooldown();
+            pos= Janny->pos->getPos();
+            vel =Janny->cR->getVelocidade();
+            stream.write((char*)&vidas,sizeof(int));
+            stream.write((char*)&cooldown,sizeof(float));
+            stream.write((char*)&pos.x,sizeof(float));
+            stream.write((char*)&pos.y,sizeof(float));
+            stream.write((char*)&vel.x,sizeof(float));
+            stream.write((char*)&vel.y,sizeof(float));
+        }
+    }
+    void Jogador::lerDados(ifstream& stream,Cena* cena)
+    {
+        int i;
+        stream.read((char*)&i,sizeof(int));
+        
+        int vidas;
+        float cooldown;
+        Vector2f pos;
+        Vector2f vel;
+        if(i==0||i==1)
+        {
+            stream.read((char*)&vidas,sizeof(int));
+            
+            stream.read((char*)&cooldown,sizeof(float));
+            
+            stream.read((char*)&pos.x,sizeof(float));
+            
+            stream.read((char*)&pos.y,sizeof(float));
+            stream.read((char*)&vel.x,sizeof(float));
+            stream.read((char*)&vel.y,sizeof(float));
+            Jogador* j=new Jogador(pos,true);
+            *cena+=j;
+            j->vida->setVida(vidas);
+            j->vida->setTempoAtualCooldown(cooldown);
+            j->cR->setVelocidade(vel);
+        }
+        if(i==0||i==2)
+        {
+            stream.read((char*)&vidas,sizeof(int));
+            stream.read((char*)&cooldown,sizeof(float));
+            stream.read((char*)&pos.x,sizeof(float));
+            stream.read((char*)&pos.y,sizeof(float));
+            stream.read((char*)&vel.x,sizeof(float));
+            stream.read((char*)&vel.y,sizeof(float));
+            Jogador* j=new Jogador(pos,false);
+            *cena+=j;
+            j->vida->setVida(vidas);
+            j->vida->setTempoAtualCooldown(cooldown);
+            j->cR->setVelocidade(vel);
+        }
     }
 }

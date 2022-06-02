@@ -7,6 +7,7 @@ using namespace Cenas;
 namespace Gerenciadores
 {
     int GerenciadorCenas::proxCena = -1;
+    int GerenciadorCenas::cenaAtual = -1;
     void GerenciadorCenas::setCena(const int cena)
     {
 
@@ -47,12 +48,16 @@ namespace Gerenciadores
             cenas[cenaAtual]->Render();
     }
 
-    GerenciadorCenas::GerenciadorCenas():
-    cenaAtual(-1)
+    GerenciadorCenas::GerenciadorCenas()
     {
         cenas[0]= new CenaTeste(this);
         //cenas[0]= new Menu(this);
         //cenas[2]= new Cena();
+        
+    }
+    const int GerenciadorCenas::getCenaAtual()
+    {
+        return cenaAtual;
         
     }
 

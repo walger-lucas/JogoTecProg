@@ -3,6 +3,7 @@
 #include "commons.h"
 #include "Tempo.h"
 #include "Menu.h"
+#include "Salvador.h"
 using namespace Gerenciadores;
 using namespace Configs;
 class Jogo
@@ -20,6 +21,7 @@ class Jogo
         const int atualizacaoMax;
         static Menu* menuAtual;
         static Menu* proxMenu;
+        Salvador salvador;
     public:
         static void MenuAtual(Menu* menu);
         ~Jogo();

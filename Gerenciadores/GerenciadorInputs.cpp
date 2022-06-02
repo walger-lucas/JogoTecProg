@@ -64,7 +64,7 @@ namespace Gerenciadores
     {
         inputText = "";
     }
-    string GerenciadorInputs::getInputText(int tam)
+    const string GerenciadorInputs::getInputText(int tam)
     {
         
         char text[tam];
@@ -73,6 +73,10 @@ namespace Gerenciadores
         string txt = text;
         inputText.erase(0,tam);
         return txt;
+    }
+    const string& GerenciadorInputs::getInputText()
+    {
+        return inputText;
     }
     void GerenciadorInputs::setWindowAtual(RenderWindow* rW)
     {

@@ -12,10 +12,12 @@ namespace Entidades
             void Carregar();
             Texture texturaBot;
             Font fonteTexto;
+            Botao* bot;
         public:
             ~BotaoEntidade();
             BotaoEntidade(Vector2f pos,float tam,const string& txt, 
             Vector2f offset,const string& textura,const string& fonte,function<void()> apt,function<void()> dapt);
+            void setTexto(const string& txt);
             
             
     };
