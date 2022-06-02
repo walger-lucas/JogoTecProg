@@ -6,6 +6,7 @@
 #include"Entidade.h"
 #include"CorpoRigido.h"
 #include"ControleAndador.h"
+#include "Cena.h"
 namespace Entidades
 {
     const static string TAG_ANDADOR = "andador";
@@ -19,30 +20,16 @@ namespace Entidades
             ControleAndador* cA;
             Vida* vd;
             Texture texturaAndador;
+            static list<Andador*> andadores;
+            void escreverDadosPessoal(ofstream& stream);
+            static void lerDadosPessoal(ifstream& stream,Cena* cena);
 
         public:
-            void Carregar(){
-                Vector2f dim = gS->getSprite()->getDim();
-                Vector2f esc =gS->getSprite()->getEscala();
-                cR->setDim(Vector2f(dim.x*esc.x,dim.y*esc.y));
-
-            }
-            Andador(Vector2f posicao = Vector2f(0,0))
-            : Entidade("Andador"),
-            pos(new Posicao(posicao.x,posicao.y)),
-            gS(nullptr),
-            cR(new CorpoRigido(true,true,true)),
-            cA(new ControleAndador()),
-            vd(new Vida(1))
-            {
-                texturaAndador.loadFromFile("Arquivos/Imagens/Andador.png");
-                gS =new GraficoSprite(&texturaAndador,1,false);
-                this->addComponente(static_cast<Componente*> (pos));
-                this->addComponente(static_cast<Componente*> (gS));
-                this->addComponente(static_cast<Componente*> (cR));
-                this->addComponente(static_cast<Componente*> (cA));
-                this->addComponente(static_cast<Componente*> (vd));
-            }
+            void Carregar();
+            Andador(Vector2f posicao = Vector2f(0,0));
+            ~Andador();
+            static void lerDados(ifstream& stream, Cena* cena);
+            static void escreverDados(ofstream& stream);
         
     };
 }

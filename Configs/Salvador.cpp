@@ -1,6 +1,9 @@
 #include "Salvador.h"
 #include "commons.h"
 #include "Jogador.h"
+#include "Andador.h"
+#include "Explodidor.h"
+#include "Projetil.h"
 #include "GerenciadorCenas.h"
 using namespace std;
 namespace Configs
@@ -81,6 +84,9 @@ namespace Configs
             {
                 atual.open("Arquivos/Saves/"+savesNome[id].getNome()+".bin",ios::binary|ios::out|ios::trunc);
                 Jogador::escreverDados(atual);
+                Andador::escreverDados(atual);
+                Explodidor::escreverDados(atual);
+                Projetil::escreverDados(atual);
                 //salvar outras partes
                 atual.close();
             }
@@ -118,6 +124,9 @@ namespace Configs
         {
             atual.open("Arquivos/Saves/"+savesNome[saveAtual].getNome()+".bin",ios::binary|ios::in);
             Jogador::lerDados(atual,cena);
+            Andador::lerDados(atual,cena);
+            Explodidor::lerDados(atual,cena);
+            Projetil::lerDados(atual,cena);
             atual.close();
         }
         catch(const std::ifstream::failure& e)

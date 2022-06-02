@@ -28,6 +28,8 @@ namespace Componentes
             virtual void Atualizar(){};
             virtual void Colidiu(ObjetoFisico* obj)=0;
         public:
+            const bool getIndoDireita() const;
+            void setIndoDireita(const bool indo);
             void setModVelocidade(const float mod);
             void setModPulo(const float mod);
             ControleInimigo(Vector2f posChao=Vector2f(0,-0.51),const float vel=2, const float pulo=3,const float rec=0.5);

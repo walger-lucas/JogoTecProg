@@ -19,6 +19,8 @@ namespace Componentes
         void Iniciar();
 
         public:
+            const float getRecarga() const;
+            void setRecarga(const float rec);
             ControleExplodidor(float recarga = 1000);
             ~ControleExplodidor();
     };

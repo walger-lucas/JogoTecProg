@@ -45,16 +45,8 @@ namespace Cenas
         AdicionarEntidade(new Plataforma(Vector2f(-1,50),"cubo.png",Vector2f(0,0),Vector2f(1,200)));
         AdicionarEntidade(new Plataforma(Vector2f(48,50),"cubo.png",Vector2f(0,0),Vector2f(1,200)));
 
-        int creatures = 7+rand()%6;
-        for(int i=0;i<creatures;i++)
-        {
-            *this+= new Andador(Vector2f(5+(((float)rand())/RAND_MAX)*40,5));
-        }
-        int explodidores = 4+rand()%3;
-        for(int i=0;i<explodidores;i++)
-        {
-            *this+= new Explodidor(Vector2f(4+(((float)rand())/RAND_MAX)*40,2));
-        }
+
+
         int esp = 3+ rand()%3;
         for(int i=0 ; i<esp;i++)
         {
@@ -75,6 +67,17 @@ namespace Cenas
         //AdicionarEntidade(new BotaoEntidade(Vector2f(1,-2),0.3,"Botao Teste",Vector2f(-40,-25),"button0.png","ARIAL.TTF",std::bind(&CenaTeste::apt,this),std::bind(&CenaTeste::dapt,this)));
         if(Configs::Salvador::salvador->getIdSaveAtual()==-1)
         {
+            int creatures = 7+rand()%6;
+            for(int i=0;i<creatures;i++)
+            {
+                *this+= new Andador(Vector2f(5+(((float)rand())/RAND_MAX)*40,5));
+            }
+            int explodidores = 4+rand()%3;
+            for(int i=0;i<explodidores;i++)
+            {
+                *this+= new Explodidor(Vector2f(4+(((float)rand())/RAND_MAX)*40,2));
+            }
+
             Jogador* j = new Jogador(Vector2f(2,-2),true);
             AdicionarEntidade(j);
             if(Jogador::SaoDoisJogadores())

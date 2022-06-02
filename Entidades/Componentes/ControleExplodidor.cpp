@@ -132,4 +132,14 @@ namespace Componentes
                     
         }
     }
+    const float ControleExplodidor::getRecarga() const
+    {
+        return cont_recarga;
+    }
+    void ControleExplodidor::setRecarga(const float rec)
+    {
+        cont_recarga=rec;
+        if(cont_recarga<recarga)
+            gS->getSprite()->setTextura(semEspinhos);
+    }
 }

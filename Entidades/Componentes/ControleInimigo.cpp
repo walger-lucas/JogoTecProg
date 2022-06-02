@@ -17,6 +17,14 @@ namespace Componentes
         vida = getEntidade()->getComponente<Vida>();
         cR->addEscuta(this);
     }
+    const bool ControleInimigo::getIndoDireita() const
+    {
+        return indoDireita;
+    }
+    void ControleInimigo::setIndoDireita(const bool indo)
+    {
+        indoDireita = indo;
+    }
     void ControleInimigo::TestarChao()
     {
         list<ObjetoFisico*> l = Gerenciadores::GerenciadorColisoes::EncontraColisao(cR->getCentro()+posBuscaChao);
