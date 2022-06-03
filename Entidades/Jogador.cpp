@@ -4,6 +4,8 @@ namespace Entidades
 {
     Jogador* Jogador::Jimmy = nullptr;
     Jogador* Jogador::Janny = nullptr;
+    int Jogador::vidaJimmy=4;
+    int Jogador::vidaJanny=4;
     int Jogador::pontuacao(0);
     bool Jogador::doisJogadores(false);
     const string Jogador::TAG_JOGADOR="jogador";
@@ -109,13 +111,13 @@ namespace Entidades
         
 
     }
-    Jogador::Jogador(Vector2f posicao,bool jimmy)
+    Jogador::Jogador(Vector2f posicao,bool jimmy,int vidas)
     : Entidade("Jogador"),
     pos(new Posicao(posicao.x,posicao.y)),
     gS(nullptr),
     cR(new CorpoRigido(true,true,true)),
     cJ(new ControleJogador()),
-    vida(new Vida(4,2,std::bind(&Jogador::Dano,this,std::placeholders::_1))),
+    vida(new Vida(vidas,2,std::bind(&Jogador::Dano,this,std::placeholders::_1))),
     jimmy(jimmy)
     {
         if(jimmy)
@@ -145,6 +147,47 @@ namespace Entidades
         else
             Janny=nullptr;
 
+    }
+    void Jogador::salvarVidas()
+    {
+        if(Jimmy)
+            vidaJimmy = Jimmy->vida->getVida();
+        else
+            vidaJimmy=0;
+        if(Janny)
+            vidaJanny= Janny->vida->getVida();
+        else
+            vidaJanny=0;
+        
+    }
+    void Jogador::resetarVidas()
+    {
+        vidaJimmy=4;
+        vidaJanny=4;
+        
+    }
+    int Jogador::getVidas(int i)
+    {
+        if(i==0)
+            return vidaJimmy;
+        else
+            return vidaJanny;
+    }
+    bool Jogador::JogadoresProximos()
+    {
+        if(Jimmy&& Janny)
+        {
+            Vector2f dist = Jimmy->pos->getPos()-Janny->pos->getPos();
+            float distancia = sqrt(dist.x*dist.x+dist.y*dist.y);
+            if(distancia<1.5)
+                return true;
+            else
+                return false;
+        }
+        else
+        {
+            return true;
+        }
     }
     void Jogador::escreverDados(ofstream& stream)
     {

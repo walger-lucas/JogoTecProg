@@ -1,5 +1,6 @@
 #include "GerenciadorCenas.h"
 #include "CenaTeste.h"
+#include "PlanicieAcoelhada.h"
 #include "Menu.h"
 using namespace std;
 using namespace Cenas;
@@ -50,8 +51,8 @@ namespace Gerenciadores
 
     GerenciadorCenas::GerenciadorCenas()
     {
-        cenas[0]= new CenaTeste(this);
-        //cenas[0]= new Menu(this);
+        cenas[0]= new PlanicieAcoelhada(this);
+        cenas[1]= new CenaTeste(this);
         //cenas[2]= new Cena();
         
     }

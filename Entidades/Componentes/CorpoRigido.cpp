@@ -78,7 +78,13 @@ namespace Componentes
     void CorpoRigido::AtualizarFixo()
     {
         if(gravidade)
-            obj->addVel(Vector2f(0,-GerenciadorColisoes::gravidade*Configs::Tempo::getDeltaTempoFixo()));//Tempo::getDeltaTempoFixo()
+        {
+            obj->addVel(Vector2f(0,-GerenciadorColisoes::gravidade*Configs::Tempo::getDeltaTempoFixo()));
+            //diminuicao gradativa da velocidade
+            float atrito =-GerenciadorColisoes::gravidade*Configs::Tempo::getDeltaTempoFixo()/30.0;
+            obj->addVel(atrito*getVelocidade());
+        }
+        //Tempo::getDeltaTempoFixo()
     }
 
 }

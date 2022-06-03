@@ -22,7 +22,7 @@ namespace Componentes
         { // Mudar a forma de verificar se está pressionando para baixo
             if(objEmCima(obj))
             {
-                obj->setVel(Vector2f(obj->getVel().x,6.5));
+                obj->setVel(Vector2f(obj->getVel().x,10));
             } 
         }
     }

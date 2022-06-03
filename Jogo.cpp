@@ -63,6 +63,7 @@ Jogo::Jogo()
 :window(nullptr),tempo(),tempoUltAtualizacaoFisica(0)
 ,tempoUltRender(0),atualizacaoMax(10)
 {
+    srand(time(NULL));
     window = new RenderWindow(VideoMode(800,800),"HeyListen",Style::Titlebar | Style::Close |Style::Resize);
     window->setFramerateLimit(10000);
     render.setWindow(window);
