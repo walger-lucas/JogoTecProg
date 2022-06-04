@@ -1,6 +1,5 @@
 #include"Botao.h"
 #include "Entidade.h"
-#include "GerenciadorArquivos.h"
 using namespace std;
 using namespace sf;
 using namespace Graficos;

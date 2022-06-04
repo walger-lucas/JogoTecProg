@@ -1,7 +1,6 @@
 #pragma once
 #include "Entidade.h"
 #include "GraficoSprite.h"
-#include "GerenciadorArquivos.h"
 #include "CorpoRigido.h"
 using namespace Gerenciadores;
 
@@ -14,10 +13,13 @@ namespace Entidades
             Posicao* posicao;
             CorpoRigido* corpoRigido;
             GraficoSprite* graficoSprite;
+            Texture texturaPlataforma;
             Vector2f offset;
             void Carregar();
         public:
-            Plataforma(Vector2f pos=Vector2f(0,0), const string& textura="cubo",Vector2f offset = Vector2f(0,0),Vector2f esc=Vector2f(1,1));
+        	//tag significativa de chao
+	        const static string TAG_GROUND;
+            Plataforma(Vector2f pos=Vector2f(0,0), const string& textura="Plataforma.png",Vector2f offset = Vector2f(0,0),Vector2f esc=Vector2f(1,1));
             ~Plataforma();
             void setOffsetTextura(Vector2f offset);
     };

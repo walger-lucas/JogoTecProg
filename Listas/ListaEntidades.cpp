@@ -1,4 +1,5 @@
 #include "ListaEntidades.h"
+#include "Entidade.h"
 using namespace std;
 using namespace Entidades;
 
@@ -12,13 +13,7 @@ namespace Listas
 
     ListaEntidade::~ListaEntidade()
     {
-        for(it = lista.begin(); it != lista.end(); it++)
-        {
-            if(*it)
-                delete *it;
-            *it = NULL;
-        }
-        lista.clear();
+        Descarregar();
     }
 
     void ListaEntidade::Adicionar(Entidade* ent)
@@ -32,27 +27,35 @@ namespace Listas
 
     void ListaEntidade::Descarregar()
     {
+        ativo = false;
         for(it = lista.begin(); it != lista.end(); it++)
         {
             if(*it)
                 delete *it;
-            *it = NULL;
+            *it = nullptr;
         }
         lista.clear();
     }
 
     void ListaEntidade::AtualizarFixo()
     {
-        for(cIt = lista.begin(); cIt != lista.end(); cIt++)
+        for(cIt = lista.begin();ativo&& cIt != lista.end(); cIt++)
+        {
             if(*cIt && !(*cIt)->getDestruir())
                 (*cIt)->AtualizarFixo();
+
+            if(!ativo)
+            {
+                break;
+            }
+                
+        }
     }
 
     void ListaEntidade::Atualizar()
     {
-
         it = lista.begin();
-        while(it!=lista.end())
+        while(it!=lista.end()&&ativo)
         {
             if(*it)
             {                
@@ -66,13 +69,21 @@ namespace Listas
                 else
                 {
                     (*it)->Atualizar();
+                    if(!ativo)
+                    {
+                        break;
+                    }
+                    
+                        
                     it++;
                 }
+
             }
         }
+        ativo=true;
     }
 
-    Entidade* ListaEntidade::getEntidade(string& nome)
+    Entidade* ListaEntidade::getEntidade(const string& nome)
     {
         for(cIt = lista.begin(); cIt != lista.end(); cIt++)
             if(*cIt && !(*cIt)->getDestruir() && nome == (*cIt)->getNome())
@@ -82,8 +93,13 @@ namespace Listas
 
     void ListaEntidade::Render()
     {
-        for(cIt = lista.begin(); cIt != lista.end(); cIt++)
+        for(cIt = lista.begin(); ativo && cIt != lista.end(); cIt++)
+        {
             if(*cIt && !(*cIt)->getDestruir())
                 (*cIt)->Render();
+            if(!ativo)
+                break;
+        }
+
     }
 }

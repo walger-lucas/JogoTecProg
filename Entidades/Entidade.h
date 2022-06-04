@@ -7,6 +7,7 @@
 #define _ENTIDADE_H
 #include"commons.h"
 #include"Componente.h"
+#include"Ente.h"
 
 
 #define RES_TAGS 8
@@ -26,7 +27,7 @@ using namespace std;
 
 namespace Entidades{
 
-	class Entidade {
+	class Entidade:public Ente {
 		friend class Listas::ListaEntidade;
 	private: 
 
@@ -107,7 +108,6 @@ namespace Entidades{
 			virtual void Carregar()=0;
 
 	};
-	//tag significativa de chao
-	const static string TAG_GROUND= "ground";
+
 }
 #endif //_ENTIDADE_H

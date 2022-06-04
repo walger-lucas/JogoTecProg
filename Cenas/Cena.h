@@ -2,6 +2,7 @@
 
 #include "commons.h"
 #include "ListaEntidades.h"
+#include "Ente.h"
 using namespace Listas;
 using namespace std;
 
@@ -14,7 +15,7 @@ using namespace Gerenciadores;
 
 namespace Cenas
 {
-    class Cena
+    class Cena: public Ente
     {
     private:
         GerenciadorCenas* gerenciador;
@@ -31,12 +32,13 @@ namespace Cenas
         Cena(GerenciadorCenas* ger = NULL);
         virtual ~Cena();
 
+        //Apenas utilizavel em Atualizar.
         void MudarCena(const int cena);
         void AdicionarEntidade(Entidade* ent);
-        Entidade* getEntidade(string& nome);
+        Entidade* getEntidade(const string& nome);
 
         void operator+=(Entidade* ent);
-        Entidade* operator[](string& nome);
+        Entidade* operator[](const string& nome);
 
     protected:
         virtual void Carregar() = 0;

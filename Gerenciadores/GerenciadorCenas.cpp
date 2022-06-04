@@ -1,40 +1,66 @@
 #include "GerenciadorCenas.h"
 #include "CenaTeste.h"
+#include "PlanicieAcoelhada.h"
+#include "NuvemAcoelhada.h"
+#include "Menu.h"
 using namespace std;
 using namespace Cenas;
 
 namespace Gerenciadores
 {
+    int GerenciadorCenas::proxCena = -1;
+    int GerenciadorCenas::cenaAtual = -1;
     void GerenciadorCenas::setCena(const int cena)
     {
-        if(cena!=cenaAtual && cena>=0 && cena<=MAXCENAS)
-        {   if(cenaAtual>=0 && cenaAtual<MAXCENAS)
-                cenas[cenaAtual]->Descarregar();
-            cenaAtual = cena;
-            cenas[cenaAtual]->Carregar();
-        }
-        else
+
+        
+        if(cenaAtual>=0 && cenaAtual<MAXCENAS)
         {
-            cout<< "Esta cena nao existe ou ja eh a atual!\n";
+            cenas[cenaAtual]->Descarregar();
+        }
+        cenaAtual = cena;
+        if(cena>=0 && cena<MAXCENAS)
+        {  
+            cenas[cenaAtual]->Carregar();  
         }
     }
 
     void GerenciadorCenas::Atualizar()
-    { cenas[cenaAtual]->Atualizar(); }
-
+    { 
+        if(cenaAtual>=0 && cenaAtual<MAXCENAS) 
+            cenas[cenaAtual]->Atualizar();
+        if(proxCena!=cenaAtual)
+        {
+            setCena(proxCena);
+        }
+    }
+    void GerenciadorCenas::ProximaCena(int id)
+    {
+        proxCena=id;
+    }
     void GerenciadorCenas::AtualizarFixo()
-    { cenas[cenaAtual]->AtualizarFixo(); }
+    { 
+        if(cenaAtual>=0 && cenaAtual<MAXCENAS) 
+            cenas[cenaAtual]->AtualizarFixo();
+    }
 
     void GerenciadorCenas::Render()
-    { cenas[cenaAtual]->Render(); }
+    { 
+        if(cenaAtual>=0 && cenaAtual<MAXCENAS) 
+            cenas[cenaAtual]->Render();
+    }
 
-    GerenciadorCenas::GerenciadorCenas():
-    cenaAtual(-1)
+    GerenciadorCenas::GerenciadorCenas()
     {
-        cenas[0]= new CenaTeste();
-        /*cenas[1]= new Cena();
-        cenas[2]= new Cena();
-        */
+        cenas[0]= new PlanicieAcoelhada(this);
+        cenas[1]= new NuvemAcoelhada(this);
+        //cenas[2]= new Cena();
+        
+    }
+    const int GerenciadorCenas::getCenaAtual()
+    {
+        return cenaAtual;
+        
     }
 
     GerenciadorCenas::~GerenciadorCenas()

@@ -58,17 +58,19 @@ namespace Gerenciadores{
     void GerenciadorColisoes::ResolverColisoes()
     {
         //remove objetos com destruir setado para true atualiza posicao
-        for(auto it = objetos.begin();it!= objetos.end();it++)
+        auto it =objetos.begin();
+        while(it!=objetos.end())
         {
-            tenteDestruir(it);
-            if(it!=objetos.end())
+            if(!tenteDestruir(it))
             {
+
                 if(!(*it)->getCinematico())
                 {
                     (*it)->setVel(Vector2f(0,0));
                     
                 }
                 (*it)->AtualizarPos();
+                it++;
             }
         }
         //compara todos sem comparar duas vezes, entao atualiza o objeto
@@ -81,5 +83,6 @@ namespace Gerenciadores{
             }
         }
     }
+    
     
 }

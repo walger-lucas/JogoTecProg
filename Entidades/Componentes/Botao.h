@@ -6,7 +6,6 @@
 #include "GraficoSprite.h"
 #include "Componente.h"
 #include "Posicao.h"
-#include"GerenciadorArquivos.h"
 
 using namespace std;
 using namespace sf;
@@ -34,8 +33,8 @@ namespace Componentes
             void setFuncDesapertar(function<void()> desapertar);
             void setOffsetTexto(Vector2f offset);
             void setTamanhoTexto(const float tam);
-            Botao(Texture* texura=GerenciadorArquivos::getTextura("button0"),const string texto=""
-            , Font* fonte=GerenciadorArquivos::getFonte("arial"), 
+            Botao(Texture* texura=nullptr,const string texto=""
+            , Font* fonte=nullptr, 
             Vector2f offset=Vector2f(0,0), float tam=0.3);
             ~Botao();
             

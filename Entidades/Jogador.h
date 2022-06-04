@@ -5,35 +5,50 @@
 #include"GraficoSprite.h"
 #include"Entidade.h"
 #include"CorpoRigido.h"
-#include"GerenciadorArquivos.h"
 #include"ControleJogador.h"
-using namespace Entidades;
-class Jogador: public Entidade{
-
-    private:
-        Posicao* pos;
-        GraficoSprite* gS;
-        CorpoRigido* cR;
-        ControleJogador* cJ;
-
-    public:
-        void Carregar(){
-            Vector2f dim = gS->getSprite()->getDim();
-            Vector2f esc =gS->getSprite()->getEscala();
-            cR->setDim(Vector2f(dim.x*esc.x,dim.y*esc.y));
-
-        }
-        Jogador(Vector2f posicao = Vector2f(0,0))
-        : Entidade("Jogador"),
-        pos(new Posicao(posicao.x,posicao.y)),
-        gS(new GraficoSprite(GerenciadorArquivos::getTextura("mario"),0,false)),
-        cR(new CorpoRigido(true,true,true)),
-        cJ(new ControleJogador())
-        {
-            this->addComponente(static_cast<Componente*> (pos));
-            this->addComponente(static_cast<Componente*> (gS));
-            this->addComponente(static_cast<Componente*> (cR));
-            this->addComponente(static_cast<Componente*> (cJ));
-        }
+#include"Vida.h"
+namespace Entidades
+{
     
-};
+    
+    class Jogador: public Entidade{
+
+        
+        private:
+            
+            Posicao* pos;
+            GraficoSprite* gS;
+            CorpoRigido* cR;
+            ControleJogador* cJ;
+            Vida* vida;
+            Texture textura;
+            bool jimmy;
+            static bool doisJogadores;
+            static int pontuacao;
+            static Jogador* Jimmy;
+            static Jogador* Janny;
+            static int vidaJimmy,vidaJanny;
+        public:
+            const static string TAG_JOGADOR;
+            static Vector2f localizacaoJogadorProximo(const Vector2f posAtual);
+            static void salvarVidas();
+            static void resetarVidas();
+            static int getVidas(int i);
+            static Vector2f localizacaoMediaJogadores();
+            static void darPontos(int pontos);
+            static void zerarPontos();
+            static int getPontos();
+            static bool SaoDoisJogadores();
+            static bool JogadoresProximos();
+            static void setDoisJogadores(bool doisJog);
+            static int vidasJogador(int i);
+            static bool JogadoresVivos();
+            static void escreverDados(ofstream& stream);
+            static void lerDados(ifstream& stream,Cena* cena);
+            void Carregar();
+            Jogador(Vector2f posicao = Vector2f(0,0),bool Jimmy=true,int vidas=4);
+            ~Jogador();
+            
+        
+    };
+}

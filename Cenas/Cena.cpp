@@ -7,7 +7,9 @@ using namespace Gerenciadores;
 namespace Cenas
 {
     void Cena::Descarregar()
-    { lista.Descarregar(); }
+    { 
+        lista.Descarregar();
+    }
 
     void Cena::Atualizar()
     { lista.Atualizar(); }
@@ -19,6 +21,7 @@ namespace Cenas
     { lista.Render(); }
 
     Cena::Cena(GerenciadorCenas* ger):
+    Ente(),
     gerenciador(ger),
     lista()
     {}
@@ -38,18 +41,19 @@ namespace Cenas
     { 
         if(ent!=nullptr)
         {
-            lista.Adicionar(ent); 
             ent->setCena(this);
+            lista.Adicionar(ent); 
+            
         }
         
     }
 
-    Entidade* Cena::getEntidade(string& nome)
+    Entidade* Cena::getEntidade(const string& nome)
     { return lista.getEntidade(nome); }
 
     void Cena::operator+=(Entidade* ent)
     { AdicionarEntidade(ent); }
 
-    Entidade* Cena::operator[](string& nome)
+    Entidade* Cena::operator[](const string& nome)
     { return getEntidade(nome); }
 }

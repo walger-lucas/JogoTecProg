@@ -3,6 +3,8 @@ using namespace Gerenciadores;
 using namespace Componentes;
 namespace Entidades
 {
+    	//tag significativa de chao
+	const string Plataforma::TAG_GROUND= "ground";
     void Plataforma::Carregar()
     {
 
@@ -14,10 +16,12 @@ namespace Entidades
     Plataforma::Plataforma(Vector2f pos, const string& textura,Vector2f offset,Vector2f esc)
     : Entidade("Plataforma"),
     posicao(new Posicao(pos.x,pos.y)),
-    corpoRigido(new CorpoRigido(true,false,false)),
-    graficoSprite(new GraficoSprite(GerenciadorArquivos::getTextura(textura),1,false)),
+    corpoRigido(new CorpoRigido(true,false,true)),
+    graficoSprite(nullptr),
     offset(offset)
     {
+        texturaPlataforma.loadFromFile("Arquivos/Imagens/"+textura);
+        graficoSprite =new GraficoSprite(&texturaPlataforma,1,false);
         posicao->setEscala(esc);
         addComponente(posicao);
         addComponente(corpoRigido);

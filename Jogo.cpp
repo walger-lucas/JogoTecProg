@@ -1,52 +1,60 @@
 #include "Jogo.h"
-#include"GerenciadorArquivos.h"
+#include "MenuPrincipal.h"
 using namespace Gerenciadores;
-
+Menu* Jogo::menuAtual = nullptr;
+Menu* Jogo::proxMenu = nullptr;
 
 void Jogo::Loop()
 {
-    GerenciadorInputs gerInput=GerenciadorInputs();
-    GerenciadorGrafico render=GerenciadorGrafico(window);
-    GerenciadorCenas gerCenas=GerenciadorCenas();
-    
-    GerenciadorColisoes fisica=GerenciadorColisoes();
-    
-    gerInput.setWindowAtual(window);
-    gerCenas.setCena(0);
+    MenuAtual(new MenuPrincipal());
     while(window->isOpen())
     {
         tempo.atualizaDeltaTempo();
+
         gerInput.PollEvents();
         
-       
         gerCenas.Atualizar();
-        tempoUltAtualizacaoFisica+=Tempo::getDeltaTempo();
-        //faz a simulacao fisica a cada deltaTempoFixoSegundos
-        
-        if(tempoUltAtualizacaoFisica/(float)atualizacaoMax > Tempo::getDeltaTempoFixo())//if(tempoUltAtualizacao/atualizacaoMax > Tempo::getDeltaTempoFixo())
+        if(menuAtual)
+            menuAtual->Atualizar();
+       
+        if(!Tempo::Pausado())
         {
-            tempoUltAtualizacaoFisica =0;
-        }
-        else
-        {
-            int vezes = tempoUltAtualizacaoFisica/Tempo::getDeltaTempoFixo();//Tempo::getDeltaTempoFixo();
-            for(int i=0;i<vezes;i++)
+            tempoUltAtualizacaoFisica+=Tempo::getDeltaTempo();
+            //faz a simulacao fisica a cada deltaTempoFixoSegundos
+            
+            if(tempoUltAtualizacaoFisica/(float)atualizacaoMax > Tempo::getDeltaTempoFixo())//if(tempoUltAtualizacao/atualizacaoMax > Tempo::getDeltaTempoFixo())
             {
-                gerCenas.AtualizarFixo();
-                fisica.ResolverColisoes();
-                tempoUltAtualizacaoFisica -=Tempo::getDeltaTempoFixo();
+                tempoUltAtualizacaoFisica =0;
             }
-                
+            else
+            {
+                int vezes = tempoUltAtualizacaoFisica/Tempo::getDeltaTempoFixo();//Tempo::getDeltaTempoFixo();
+                for(int i=0;i<vezes;i++)
+                {
+                    fisica.ResolverColisoes();
+                    gerCenas.AtualizarFixo();
+                    tempoUltAtualizacaoFisica -=Tempo::getDeltaTempoFixo();
+                }
+                    
+            }
         }
-        
-        
         //Faz a renderizacao a cada Tempo Render segundos
         tempoUltRender+=Tempo::getDeltaTempo();
         if(tempoUltRender>Tempo::getTempoRender())
         {
             render.Render();
+            gerCenas.Render();
             tempoUltRender=0;
         }
+        if(proxMenu!=menuAtual)
+        {
+            if(menuAtual)
+                delete menuAtual;
+            menuAtual = proxMenu;
+            if(menuAtual)
+                menuAtual->Iniciar();
+        }
+        
     }
     
 }
@@ -55,18 +63,21 @@ Jogo::Jogo()
 :window(nullptr),tempo(),tempoUltAtualizacaoFisica(0)
 ,tempoUltRender(0),atualizacaoMax(10)
 {
-    window = new RenderWindow(VideoMode(5000,500),"HeyListen",Style::Titlebar | Style::Close |Style::Resize);
-    GerenciadorArquivos::CarregarFonte("arial","ARIAL.TTF");
-    GerenciadorArquivos::CarregarTextura("cubo","cubo.png");
-    GerenciadorArquivos::CarregarTextura("mario","mario.png");
-    GerenciadorArquivos::CarregarTextura("ground","ground.png");
-    GerenciadorArquivos::CarregarTextura("button0","button0.png");
-    GerenciadorArquivos::CarregarTextura("hi","hi.png");
+    srand(time(NULL));
+    window = new RenderWindow(VideoMode(800,800),"HeyListen",Style::Titlebar | Style::Close |Style::Resize);
     window->setFramerateLimit(10000);
+    render.setWindow(window);
+    gerInput.setWindowAtual(window);
     Loop();
             
 }
 Jogo::~Jogo()
 {
+    if(menuAtual)
+        delete menuAtual;
     delete window;
+}
+void Jogo::MenuAtual(Menu* menu)
+{
+    proxMenu = menu;
 }

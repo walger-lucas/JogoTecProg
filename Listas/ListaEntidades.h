@@ -12,6 +12,7 @@ namespace Listas
         list<Entidade*> lista;
         list<Entidade*>::iterator it;
         list<Entidade*>::const_iterator cIt;
+        bool ativo;
 
     public:
         ListaEntidade();
@@ -21,7 +22,7 @@ namespace Listas
         void Descarregar();
         void AtualizarFixo();
         void Atualizar();
-        Entidade* getEntidade(string& nome);
+        Entidade* getEntidade(const string& nome);
         void Render();
     };
 }
