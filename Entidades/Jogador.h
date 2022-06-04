@@ -48,10 +48,6 @@ namespace Entidades
             void Carregar();
             Jogador(Vector2f posicao = Vector2f(0,0),bool Jimmy=true,int vidas=4);
             ~Jogador();
-            void Dano(int dano)
-            {
-                cout<<"Dano de "<<dano<<endl;
-            }
             
         
     };

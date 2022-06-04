@@ -1,5 +1,6 @@
 #include "ChefaoPulador.h"
 #include "Cena.h"
+#include "NuvemAcoelhada.h"
 namespace Entidades
 {
     int ChefaoPulador::id=0;
@@ -25,6 +26,10 @@ namespace Entidades
     ChefaoPulador::~ChefaoPulador()
     {
         puladores.remove(this);
+        if(puladores.empty())
+        {
+            NuvemAcoelhada::AbrirPortal();
+        }
     }
     void ChefaoPulador::Carregar()
     {
@@ -175,6 +180,10 @@ namespace Entidades
             for(int i =0;i<tam;i++)
             {
                 lerRelacoesPessoal(stream,cena);
+            }
+            if(tam==0)
+            {
+                NuvemAcoelhada::AbrirPortal();
             }
         }
         catch(const std::ifstream::failure &e)

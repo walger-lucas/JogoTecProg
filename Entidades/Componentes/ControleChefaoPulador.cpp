@@ -35,6 +35,7 @@ namespace Componentes
     }
     void ControleChefaoPulador::Atualizar()
     {
+        ControleInimigo::Atualizar();
         if(tempoPularCount<10*tempoPular)
         {
             tempoPularCount+=Tempo::getDeltaTempoControlado();
@@ -53,8 +54,8 @@ namespace Componentes
             Vector2f vel = cR->getVelocidade();
             if(!esquerdaChao && !direitaChao)
             {
-                if(pos->getY()<-50)
-                    pos->setPos(Vector2f(15,15));
+                if(pos->getY()<-20)
+                    pos->setPos(Vector2f(20,2));
             }
             else if(indoDireita && !direitaChao)
             {

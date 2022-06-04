@@ -83,7 +83,6 @@ namespace Cenas
             if(Jogador::SaoDoisJogadores())
                 *this += new Jogador(Vector2f(1,-2),false,Jogador::getVidas(1));
             int coelo = 6 + rand()%10;
-            cout<<coelo<<endl;
             for(int i=0 ; i<coelo;i++)
             {
                *this+= new ChefaoPulador(Vector2f(5+(((float)rand())/RAND_MAX)*40,0));

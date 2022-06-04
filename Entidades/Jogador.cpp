@@ -117,7 +117,7 @@ namespace Entidades
     gS(nullptr),
     cR(new CorpoRigido(true,true,true)),
     cJ(new ControleJogador()),
-    vida(new Vida(vidas,2,std::bind(&Jogador::Dano,this,std::placeholders::_1))),
+    vida(new Vida(vidas,1.5)),
     jimmy(jimmy)
     {
         if(jimmy)
