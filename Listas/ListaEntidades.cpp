@@ -83,7 +83,7 @@ namespace Listas
         ativo=true;
     }
 
-    Entidade* ListaEntidade::getEntidade(string& nome)
+    Entidade* ListaEntidade::getEntidade(const string& nome)
     {
         for(cIt = lista.begin(); cIt != lista.end(); cIt++)
             if(*cIt && !(*cIt)->getDestruir() && nome == (*cIt)->getNome())

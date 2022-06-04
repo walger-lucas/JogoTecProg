@@ -18,6 +18,10 @@ namespace Entidades
                 cR->setDim(Vector2f(2.5,2.5));
             }
         public:
+            void AbrirPortar(bool port)
+            {
+                cP->setAberto(port);
+            }
             Portal(const Vector2f& pos = Vector2f(0,0),function<void(void)> funcao=nullptr,bool aberto = false)
             :pos(new Posicao(pos.x,pos.y)),gS(nullptr),cR(new CorpoRigido(false,false,false)),cP(new ControlePortal(aberto,funcao))
             {

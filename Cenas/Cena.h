@@ -35,10 +35,10 @@ namespace Cenas
         //Apenas utilizavel em Atualizar.
         void MudarCena(const int cena);
         void AdicionarEntidade(Entidade* ent);
-        Entidade* getEntidade(string& nome);
+        Entidade* getEntidade(const string& nome);
 
         void operator+=(Entidade* ent);
-        Entidade* operator[](string& nome);
+        Entidade* operator[](const string& nome);
 
     protected:
         virtual void Carregar() = 0;

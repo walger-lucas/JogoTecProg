@@ -1,0 +1,63 @@
+#include "NuvemAcoelhada.h"
+#include "Plataforma.h"
+#include "ControladorUI.h"
+#include "Salvador.h"
+#include "Andador.h"
+#include "Explodidor.h"
+#include "Trampolim.h"
+#include "Espinho.h"
+#include "BackGround.h"
+#include "GerenciadorCenas.h"
+#include "Portal.h"
+using namespace Entidades;
+namespace Cenas
+{
+    Portal* NuvemAcoelhada::portal = nullptr;
+    void NuvemAcoelhada::PortalFunc()
+    {
+    }
+    void NuvemAcoelhada::AbrirPortal()
+    {
+        if(portal)
+            portal->AbrirPortar(true);
+    }
+    void NuvemAcoelhada::Carregar()
+    {
+        portal = new Portal(Vector2f(19,3),std::bind(&NuvemAcoelhada::PortalFunc,this),false);
+        *this+=portal;
+        //instancializa chao
+        for(int i =0;i<2;i++)
+            AdicionarEntidade(new Plataforma(Vector2f(16.3*i,-5),"PlataformaNuvem.png"));
+        //instancializa plataforma primeiro nivel
+        for(int i =0;i<2;i++)
+            AdicionarEntidade(new Plataforma(Vector2f(4+16*i,-2),"PlataformaNuvem.png",Vector2f(0,0),Vector2f(0.5,0.5)));
+        //instancializa plataforma segundo nivel
+        for(int i =0;i<2;i++)
+            AdicionarEntidade(new Plataforma(Vector2f(9+14*i,1),"PlataformaNuvem.png",Vector2f(0,0),Vector2f(0.5,0.5)));
+        //instancializa plataforma terceiro nivel
+        for(int i =0;i<2;i++)
+            AdicionarEntidade(new Plataforma(Vector2f(1+14*i,4),"PlataformaNuvem.png",Vector2f(0,0),Vector2f(0.5,0.5)));
+        
+
+        
+        //instancia barreiras limitadoras de cenario
+        AdicionarEntidade(new Plataforma(Vector2f(-1,100),"cubo.png",Vector2f(0,0),Vector2f(1,200)));
+        AdicionarEntidade(new Plataforma(Vector2f(32,100),"cubo.png",Vector2f(0,0),Vector2f(1,200)));
+        *this+= new ControladorUI(13,-6,32,0,3);
+        if(Configs::Salvador::salvador->getIdSaveAtual()==-1)
+        {
+            //Carregamento Jogadores
+            Jogador* j = new Jogador(Vector2f(2,-2),true,Jogador::getVidas(0));
+            AdicionarEntidade(j);
+            if(Jogador::SaoDoisJogadores())
+                *this += new Jogador(Vector2f(1,-2),false,Jogador::getVidas(1));
+
+
+        }
+        else
+        {
+            Configs::Salvador::salvador->carregarCena(this);
+        }
+        
+    }
+}

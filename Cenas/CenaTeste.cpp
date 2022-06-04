@@ -19,6 +19,7 @@
 #include "Salvador.h"
 #include "Portal.h"
 #include "Seiva.h"
+#include "ChefaoPulador.h"
 using namespace sf;
 using namespace std;
 
@@ -50,7 +51,7 @@ namespace Cenas
         //AdicionarEntidade(new BotaoEntidade(Vector2f(1,-2),0.3,"Botao Teste",Vector2f(-40,-25),"button0.png","ARIAL.TTF",std::bind(&CenaTeste::apt,this),std::bind(&CenaTeste::dapt,this)));
         if(Configs::Salvador::salvador->getIdSaveAtual()==-1)
         {
-            int creatures = 3+rand()%6;
+            /*int creatures = 3+rand()%6;
             for(int i=0;i<creatures;i++)
             {
                 *this+= new Andador(Vector2f(5+(((float)rand())/RAND_MAX)*40,5));
@@ -61,10 +62,7 @@ namespace Cenas
                 *this+= new Explodidor(Vector2f(4+(((float)rand())/RAND_MAX)*40,2));
             }
 
-            Jogador* j = new Jogador(Vector2f(2,-2),true,Jogador::getVidas(0));
-            AdicionarEntidade(j);
-            if(Jogador::SaoDoisJogadores())
-                *this += new Jogador(Vector2f(1,-2),false,Jogador::getVidas(1));
+
             int esp = 3+ rand()%3;
             for(int i=0 ; i<esp;i++)
             {
@@ -79,7 +77,18 @@ namespace Cenas
             for(int i=0 ; i<gosma;i++)
             {
                 *this += new Seiva(Vector2f(5+(((float)rand())/RAND_MAX)*40,-4.8));
+            }*/
+            Jogador* j = new Jogador(Vector2f(2,-2),true,Jogador::getVidas(0));
+            AdicionarEntidade(j);
+            if(Jogador::SaoDoisJogadores())
+                *this += new Jogador(Vector2f(1,-2),false,Jogador::getVidas(1));
+            int coelo = 6 + rand()%10;
+            cout<<coelo<<endl;
+            for(int i=0 ; i<coelo;i++)
+            {
+               *this+= new ChefaoPulador(Vector2f(5+(((float)rand())/RAND_MAX)*40,0));
             }
+            
         }
         else
         {

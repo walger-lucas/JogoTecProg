@@ -8,6 +8,7 @@
 #include "GerenciadorCenas.h"
 #include "Trampolim.h"
 #include "Seiva.h"
+#include "ChefaoPulador.h"
 using namespace std;
 namespace Configs
 {
@@ -93,6 +94,7 @@ namespace Configs
                 Espinho::escreverDados(atual);
                 Trampolim::escreverDados(atual);
                 Seiva::escreverDados(atual);
+                ChefaoPulador::escreverDados(atual);
                 //salvar outras partes
                 atual.close();
             }
@@ -136,6 +138,7 @@ namespace Configs
             Espinho::lerDados(atual,cena);
             Trampolim::lerDados(atual,cena);
             Seiva::lerDados(atual,cena);
+            ChefaoPulador::lerDados(atual,cena);
             atual.close();
         }
         catch(const std::ifstream::failure& e)

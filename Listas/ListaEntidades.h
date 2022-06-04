@@ -22,7 +22,7 @@ namespace Listas
         void Descarregar();
         void AtualizarFixo();
         void Atualizar();
-        Entidade* getEntidade(string& nome);
+        Entidade* getEntidade(const string& nome);
         void Render();
     };
 }

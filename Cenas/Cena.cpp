@@ -48,12 +48,12 @@ namespace Cenas
         
     }
 
-    Entidade* Cena::getEntidade(string& nome)
+    Entidade* Cena::getEntidade(const string& nome)
     { return lista.getEntidade(nome); }
 
     void Cena::operator+=(Entidade* ent)
     { AdicionarEntidade(ent); }
 
-    Entidade* Cena::operator[](string& nome)
+    Entidade* Cena::operator[](const string& nome)
     { return getEntidade(nome); }
 }
