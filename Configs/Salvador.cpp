@@ -132,13 +132,21 @@ namespace Configs
         {
             atual.open("Arquivos/Saves/"+savesNome[saveAtual].getNome()+".bin",ios::binary|ios::in);
             Jogador::lerDados(atual,cena);
+            cout<<"Leu Jogadores\n";
             Andador::lerDados(atual,cena);
+            cout<<"Leu Andador\n";
             Explodidor::lerDados(atual,cena);
+            cout<<"Leu Explodidor\n";
             Projetil::lerDados(atual,cena);
+            cout<<"Leu Projetil\n";
             Espinho::lerDados(atual,cena);
+            cout<<"Leu Espinho\n";
             Trampolim::lerDados(atual,cena);
+            cout<<"Leu Trampolim\n";
             Seiva::lerDados(atual,cena);
+            cout<<"Leu Seiva\n";
             ChefaoPulador::lerDados(atual,cena);
+            cout<<"Leu Chefoes\n";
             atual.close();
         }
         catch(const std::ifstream::failure& e)

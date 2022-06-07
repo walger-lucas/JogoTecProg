@@ -8,6 +8,9 @@ class MenuPrincipal: public Menu
 {
     private:
         BotaoEntidade* nvJogo, *carJogo,*sair,*leaderBoard;
+        Vector2f pos;
+        ImgTexto *titulo;
+        Font guest3D;
         bool nvJ;
         void NovoJogo();
         void CarregarOutroJogo();
@@ -16,7 +19,7 @@ class MenuPrincipal: public Menu
         void Iniciar();
     public:
         MenuPrincipal()
-        :nvJogo(nullptr),carJogo(nullptr),sair(nullptr),leaderBoard(nullptr),nvJ(false)
+        :nvJogo(nullptr),carJogo(nullptr),sair(nullptr),leaderBoard(nullptr),titulo(nullptr),nvJ(false)
         {}
         ~MenuPrincipal();
     

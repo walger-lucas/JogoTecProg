@@ -1,5 +1,6 @@
 #include "Jogo.h"
 #include "MenuPrincipal.h"
+#include "Lideranca.h"
 using namespace Gerenciadores;
 Menu* Jogo::menuAtual = nullptr;
 Menu* Jogo::proxMenu = nullptr;
@@ -7,6 +8,7 @@ Menu* Jogo::proxMenu = nullptr;
 void Jogo::Loop()
 {
     MenuAtual(new MenuPrincipal());
+    Lideranca::CarregarLideres();
     while(window->isOpen())
     {
         tempo.atualizaDeltaTempo();
@@ -64,7 +66,7 @@ Jogo::Jogo()
 ,tempoUltRender(0),atualizacaoMax(10)
 {
     srand(time(NULL));
-    window = new RenderWindow(VideoMode(800,800),"HeyListen",Style::Titlebar | Style::Close |Style::Resize);
+    window = new RenderWindow(VideoMode(800,800),"Cenouras em Combate",Style::Titlebar | Style::Close |Style::Resize);
     window->setFramerateLimit(10000);
     render.setWindow(window);
     gerInput.setWindowAtual(window);

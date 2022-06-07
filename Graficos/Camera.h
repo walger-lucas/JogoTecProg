@@ -36,7 +36,7 @@ namespace Graficos{
             const Vector2f PosUiTela(const Vector2f pos) const;
             const Vector2f PosTelaUi(const Vector2f pos) const;
 
-            Camera(const Vector2f pos = Vector2f(0,0),const Vector2f dim=Vector2f(10,6))
+            Camera(const Vector2f pos = Vector2f(0,0),const Vector2f dim=Vector2f(10,7))
             : posicao(pos), dimensao(dim)
             {}
             ~Camera()

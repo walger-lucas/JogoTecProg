@@ -77,6 +77,10 @@ namespace Componentes
             cR->setGravidade(false);
             pos->setPos(baixo->pos->getPos()+Vector2f(0,0.5));
         }
+        if(cima)
+        {
+            movimento.setModVelocidade(0.5);
+        }
         Pular();
     }
     void ControleChefaoPulador::Pular()
@@ -130,7 +134,7 @@ namespace Componentes
                 
                 cR->setVelocidade(movimento.getPulo()*normainv*direc);
             } //35% de pular em outro coelho
-            else if(probabilidade>=20&&probabilidade<45 && !vec.empty())
+            else if(probabilidade>=20&&probabilidade<70 && !vec.empty())
             {
                 Vector2f direc = vec[rand()%vec.size()]-cR->getCentro();
                 float normainv = 1/sqrt(direc.x*direc.x+direc.y*direc.y);
@@ -181,7 +185,7 @@ namespace Componentes
 
             if(coR&&coR->getEntidade()->temTag(ChefaoPulador::TAG_CHEFAO))
             {
-                if(!baixo&&!cima&&tempoPularCount>0.3)
+                if(!baixo&&!cima&&tempoPularCount>0.1)
                 {
                     ControleChefaoPulador* cpp = coR->getEntidade()->getComponente<ControleChefaoPulador>();
                     while(cpp->getCima()!=nullptr)
@@ -194,7 +198,7 @@ namespace Componentes
                 return;
             }else if(objEmCima(obj))
             {
-                //obj->setVel(Vector2f(obj->getVel().x,0.1));
+                obj->setVel(Vector2f(obj->getVel().x,2));
                 if(coR->getEntidade()->temTag(Jogador::TAG_JOGADOR))
                     vida->Machucar(1);
             }else 
