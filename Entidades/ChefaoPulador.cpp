@@ -97,16 +97,25 @@ namespace Entidades
         stream.read((char*)&size,sizeof(int));
         char* nomeC = new char[size];
         stream.read(nomeC,sizeof(char)*size);
-        ControleChefaoPulador* ccp = (*cena)[nomeC]->getComponente<ControleChefaoPulador>();
+        
+        Entidade* ent =(*cena)[nomeC];
+        ControleChefaoPulador* ccp=nullptr;
+        if(ent)
+            ccp = ent->getComponente<ControleChefaoPulador>();
         delete [] nomeC;
         stream.read((char*)&size,sizeof(int));
         if(size==-1)
-            ccp->setCima(nullptr);
+        {
+            if(ccp)
+                ccp->setCima(nullptr);
+        }
         else
         {
             nomeC = new char[size];
             stream.read(nomeC,sizeof(char)*size); 
-            ccp->setCima((*cena)[nomeC]->getComponente<ControleChefaoPulador>());
+            Entidade* cim= (*cena)[nomeC];
+            if(cim&&ccp)
+                ccp->setCima(cim->getComponente<ControleChefaoPulador>());
             delete [] nomeC;
         }
         stream.read((char*)&size,sizeof(int));
@@ -115,8 +124,10 @@ namespace Entidades
         else
         {
             nomeC = new char[size];
-            stream.read(nomeC,sizeof(char)*size); 
-            ccp->setBaixo((*cena)[nomeC]->getComponente<ControleChefaoPulador>());
+            stream.read(nomeC,sizeof(char)*size);
+            Entidade* bai= (*cena)[nomeC]; 
+            if(bai &&ccp)
+                ccp->setBaixo(bai->getComponente<ControleChefaoPulador>());
             delete [] nomeC;
         }
 
