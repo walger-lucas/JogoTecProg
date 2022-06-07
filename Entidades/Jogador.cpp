@@ -90,7 +90,7 @@ namespace Entidades
         {
             if(Jimmy)
             {
-                return Jimmy->vida->getVida();
+                return Jimmy->vd->getVida();
             }
             else
             {
@@ -101,7 +101,7 @@ namespace Entidades
         {
             if(Janny)
             {
-                return Janny->vida->getVida();
+                return Janny->vd->getVida();
             }
             else
             {
@@ -112,14 +112,14 @@ namespace Entidades
 
     }
     Jogador::Jogador(Vector2f posicao,bool jimmy,int vidas)
-    : Entidade("Jogador"),
-    pos(new Posicao(posicao.x,posicao.y)),
-    gS(nullptr),
-    cR(new CorpoRigido(true,true,true)),
+    : Personagem("Jogador"),
     cJ(new ControleJogador()),
-    vida(new Vida(vidas,1.5)),
     jimmy(jimmy)
     {
+        pos = new Posicao(posicao.x,posicao.y);
+        gS = nullptr;
+        cR = new CorpoRigido(true,true,true);
+        vd = new Vida(vidas,1.5);
         if(jimmy)
         {
             textura.loadFromFile("Arquivos/Imagens/Jimmy.png");
@@ -134,7 +134,7 @@ namespace Entidades
         }
         gS=new GraficoSprite(&textura,1,false);
         this->addComponente(static_cast<Componente*> (pos));
-        this->addComponente(static_cast<Componente*> (vida));
+        this->addComponente(static_cast<Componente*> (vd));
         this->addComponente(static_cast<Componente*> (gS));
         this->addComponente(static_cast<Componente*> (cR));
         this->addComponente(static_cast<Componente*> (cJ));
@@ -151,11 +151,11 @@ namespace Entidades
     void Jogador::salvarVidas()
     {
         if(Jimmy)
-            vidaJimmy = Jimmy->vida->getVida();
+            vidaJimmy = Jimmy->vd->getVida();
         else
             vidaJimmy=0;
         if(Janny)
-            vidaJanny= Janny->vida->getVida();
+            vidaJanny= Janny->vd->getVida();
         else
             vidaJanny=0;
         
@@ -192,7 +192,7 @@ namespace Entidades
     void Jogador::escreverDados(ofstream& stream)
     {
         //Aviso se eh jimmy ou janny (0 Jimmy e Janny,1 Jimmy, 2 Janny,-1 nenhum)
-        //depois vidas, cooldown de vida, posx posy, velx, vely
+        //depois vidas, cooldown de vd, posx posy, velx, vely
         int i;
         if(Jimmy&&Janny)
         {
@@ -218,8 +218,8 @@ namespace Entidades
         Vector2f vel;
         if(Jimmy)
         {
-            vidas= Jimmy->vida->getVida();
-            cooldown = Jimmy->vida->getTempoAtualCooldown();
+            vidas= Jimmy->vd->getVida();
+            cooldown = Jimmy->vd->getTempoAtualCooldown();
             pos= Jimmy->pos->getPos();
             vel =Jimmy->cR->getVelocidade();
             stream.write((char*)&vidas,sizeof(int));
@@ -231,8 +231,8 @@ namespace Entidades
         }
         if(Janny)
         {
-            vidas= Janny->vida->getVida();
-            cooldown = Janny->vida->getTempoAtualCooldown();
+            vidas= Janny->vd->getVida();
+            cooldown = Janny->vd->getTempoAtualCooldown();
             pos= Janny->pos->getPos();
             vel =Janny->cR->getVelocidade();
             stream.write((char*)&vidas,sizeof(int));
@@ -265,8 +265,8 @@ namespace Entidades
             stream.read((char*)&vel.y,sizeof(float));
             Jogador* j=new Jogador(pos,true);
             *cena+=j;
-            j->vida->setVida(vidas);
-            j->vida->setTempoAtualCooldown(cooldown);
+            j->vd->setVida(vidas);
+            j->vd->setTempoAtualCooldown(cooldown);
             j->cR->setVelocidade(vel);
         }
         if(i==0||i==2)
@@ -279,8 +279,8 @@ namespace Entidades
             stream.read((char*)&vel.y,sizeof(float));
             Jogador* j=new Jogador(pos,false);
             *cena+=j;
-            j->vida->setVida(vidas);
-            j->vida->setTempoAtualCooldown(cooldown);
+            j->vd->setVida(vidas);
+            j->vd->setTempoAtualCooldown(cooldown);
             j->cR->setVelocidade(vel);
         }
     }

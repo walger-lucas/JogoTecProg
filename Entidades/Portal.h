@@ -1,18 +1,12 @@
 #pragma once
-#include "Entidade.h"
-#include "CorpoRigido.h"
-#include "GraficoSprite.h"
+#include "Obstaculo.h"
 #include "ControlePortal.h"
 namespace Entidades
 {
-    class Portal: public Entidade
+    class Portal: public Obstaculo
     {
         private:
-            Posicao* pos;
-            GraficoSprite* gS;
-            CorpoRigido* cR;
             ControlePortal* cP;
-            Texture texturaInicial;
             void Carregar()
             {
                 cR->setDim(Vector2f(2.5,2.5));
@@ -22,12 +16,16 @@ namespace Entidades
             {
                 cP->setAberto(port);
             }
-            Portal(const Vector2f& pos = Vector2f(0,0),function<void(void)> funcao=nullptr,bool aberto = false)
-            :pos(new Posicao(pos.x,pos.y)),gS(nullptr),cR(new CorpoRigido(false,false,false)),cP(new ControlePortal(aberto,funcao))
+            Portal(const Vector2f& posicao = Vector2f(0,0),function<void(void)> funcao=nullptr,bool aberto = false)
+            :Obstaculo("Portal"),
+            cP(new ControlePortal(aberto,funcao))
             {
-                texturaInicial.loadFromFile("Arquivos/Imagens/PortalFechado.png");
+                pos = new Posicao(posicao.x,posicao.y);
+                gS = nullptr;
+                cR = new CorpoRigido(false,false,false);
+                textura.loadFromFile("Arquivos/Imagens/PortalFechado.png");
                 this->pos->setEscala(Vector2f(2.5,2.5));
-                gS= new GraficoSprite(&texturaInicial,1,false);
+                gS= new GraficoSprite(&textura,1,false);
                 addComponente(this->pos);
                 addComponente(gS);
                 addComponente(cR);

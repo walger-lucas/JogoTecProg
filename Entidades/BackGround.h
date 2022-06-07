@@ -7,17 +7,17 @@ namespace Entidades
         private:
             Posicao* pos;
             GraficoSprite* gS;
-            Texture texturaBackGround;
+            Texture textura;
             void Carregar()
             {}
         public:
-            Background(Vector2f inicio = Vector2f(0,0),float tamanhoX=50,const string& textura="background1.png")
+            Background(Vector2f inicio = Vector2f(0,0),float tamanhoX=50,const string& text="background1.png")
             :pos(nullptr),gS(nullptr)
             {
-                texturaBackGround.loadFromFile("Arquivos/Imagens/"+textura);
+                textura.loadFromFile("Arquivos/Imagens/"+text);
                 pos = new Posicao(inicio.x,inicio.y);
                 pos->setEscala(Vector2f(tamanhoX,tamanhoX));
-                gS=new GraficoSprite(&texturaBackGround,0,false);
+                gS = new GraficoSprite(&textura,0,false);
                 addComponente(pos);
                 addComponente(gS);
 

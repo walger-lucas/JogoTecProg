@@ -9,7 +9,7 @@ using namespace Entidades;
 namespace Componentes
 {
     ControleEspinho::ControleEspinho():
-    Obstaculo()
+    ControleObstaculo()
     {}
 
     ControleEspinho::~ControleEspinho()

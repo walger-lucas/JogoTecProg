@@ -1,23 +1,13 @@
 #pragma once
-#include"Posicao.h"
-#include"Vida.h"
-#include"commons.h"
-#include"GraficoSprite.h"
-#include"Entidade.h"
-#include"CorpoRigido.h"
+#include"Personagem.h"
 #include"ControleExplodidor.h"
 namespace Entidades
 {
-    class Explodidor: public Entidade{
+    class Explodidor: public Personagem{
 
         
         private:
-            Posicao* pos;
-            GraficoSprite* gS;
-            CorpoRigido* cR;
             ControleExplodidor* cE;
-            Vida* vd;
-            Texture texturaExplodidor;
             static list<Explodidor*> explodidores;
             void escreverDadosPessoal(ofstream& stream);
             static void lerDadosPessoal(ifstream& stream,Cena* cena);

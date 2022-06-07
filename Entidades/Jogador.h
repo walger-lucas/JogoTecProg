@@ -1,27 +1,15 @@
 #pragma once
-#include"Posicao.h"
-#include"Vida.h"
-#include"commons.h"
-#include"GraficoSprite.h"
-#include"Entidade.h"
-#include"CorpoRigido.h"
+#include"Personagem.h"
 #include"ControleJogador.h"
-#include"Vida.h"
 namespace Entidades
 {
     
     
-    class Jogador: public Entidade{
+    class Jogador: public Personagem{
 
         
         private:
-            
-            Posicao* pos;
-            GraficoSprite* gS;
-            CorpoRigido* cR;
             ControleJogador* cJ;
-            Vida* vida;
-            Texture textura;
             bool jimmy;
             static bool doisJogadores;
             static int pontuacao;

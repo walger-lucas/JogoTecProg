@@ -34,21 +34,19 @@ namespace Entidades
         cR->setDim(Vector2f(dim.x*esc.x,dim.y*esc.y));
     }
     Espinho::Espinho(Vector2f posicao)
-    :Entidade("Espinho"),
-    pos(new Posicao(posicao.x,posicao.y)),
-    gS(nullptr),
-    cR(new CorpoRigido(true,true,true)),
-    cE(new ControleEspinho()),
-    vd(new Vida(1))
+    :Obstaculo("Espinho"),
+    cE(new ControleEspinho())
     {
+        pos = new Posicao(posicao.x,posicao.y);
+        gS = nullptr;
+        cR = new CorpoRigido(true,true,true);
         pos->setEscala(Vector2f(0.5,0.5));
-        texturaespinho.loadFromFile("Arquivos/Imagens/Espinho.png");
-        gS = new GraficoSprite(&texturaespinho,1,false);
+        textura.loadFromFile("Arquivos/Imagens/Espinho.png");
+        gS = new GraficoSprite(&textura,1,false);
         this->addComponente(static_cast<Componente*> (pos));
         this->addComponente(static_cast<Componente*> (gS));
         this->addComponente(static_cast<Componente*> (cR));
         this->addComponente(static_cast<Componente*> (cE));
-        this->addComponente(static_cast<Componente*> (vd));
         espinhos.push_front(this);
     }
     Espinho::~Espinho()

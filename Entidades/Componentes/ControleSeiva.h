@@ -1,16 +1,10 @@
 #pragma once
-#include "Componente.h"
-#include "Vida.h"
-#include "CorpoRigido.h"
-#include "Obstaculo.h"
-#include "Posicao.h"
-#include "Vida.h"
-#include "IEscutaColisao.h"
+#include "ControleObstaculo.h"
 
 using namespace sf;
 namespace Componentes
 {
-    class ControleSeiva: public Obstaculo
+    class ControleSeiva: public ControleObstaculo
     {
         private:
             void Colidiu(ObjetoFisico* obj);

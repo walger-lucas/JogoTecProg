@@ -1,6 +1,6 @@
 HEADERS = ./Entidades/Componentes ./Entidades ./ ./Colisoes ./Gerenciadores ./Graficos . ./Listas ./Cenas ./Configs
 
-OBJ = Jogo.o Entidade.o Componente.o Posicao.o Colisor.o Camera.o GerenciadorGrafico.o ImgSprite.o ImgTexto.o Grafico.o GraficoSprite.o ObjetoFisico.o GerenciadorColisoes.o CorpoRigido.o GerenciadorInputs.o EventoBotao.o Botao.o BotaoEntidade.o ListaEntidades.o Cena.o GerenciadorCenas.o Tempo.o CenaTeste.o Plataforma.o ControleJogador.o ControleAndador.o Ente.o ControleInimigo.o Projetil.o Jogador.o ControleExplodidor.o Movimento.o SeguidorCamera.o VidaUI.o Obstaculo.o ControleEspinho.o ControleSeiva.o ControleTrampolim.o MenuPrincipal.o MenuNovoJogo.o MenuPause.o Salvador.o MenuSalvar.o MenuCarregar.o Andador.o Explodidor.o Espinho.o Trampolim.o Seiva.o PlanicieAcoelhada.o ChefaoPulador.o ControleChefaoPulador.o NuvemAcoelhada.o
+OBJ = Jogo.o Entidade.o Componente.o Posicao.o Colisor.o Camera.o GerenciadorGrafico.o ImgSprite.o ImgTexto.o Grafico.o GraficoSprite.o ObjetoFisico.o GerenciadorColisoes.o CorpoRigido.o GerenciadorInputs.o EventoBotao.o Botao.o BotaoEntidade.o ListaEntidades.o Cena.o GerenciadorCenas.o Tempo.o CenaTeste.o Plataforma.o ControleJogador.o ControleAndador.o Ente.o ControleInimigo.o Projetil.o Jogador.o ControleExplodidor.o Movimento.o SeguidorCamera.o VidaUI.o ControleObstaculo.o ControleEspinho.o ControleSeiva.o ControleTrampolim.o MenuPrincipal.o MenuNovoJogo.o MenuPause.o Salvador.o MenuSalvar.o MenuCarregar.o Andador.o Explodidor.o Espinho.o Trampolim.o Seiva.o PlanicieAcoelhada.o ChefaoPulador.o ControleChefaoPulador.o NuvemAcoelhada.o
 
 OBJ_DIR = ./obj
 PROJ_NAME = JOGO
@@ -192,16 +192,16 @@ $(OBJ_DIR)/ChefaoPulador.o : Entidades/ChefaoPulador.cpp Entidades/ChefaoPulador
 	@ g++ $(CFLAGS) $(SFMLFLAGS) -c -o $@ $< $(PRE_HEADERS)
 	@ echo 'Compilando $@'
 
-$(OBJ_DIR)/Obstaculo.o : Entidades/Componentes/Obstaculo.cpp Entidades/Componentes/Obstaculo.h
+$(OBJ_DIR)/ControleObstaculo.o : Entidades/Componentes/ControleObstaculo.cpp Entidades/Componentes/ControleObstaculo.h
 	@ g++ $(CFLAGS) $(SFMLFLAGS) -c -o $@ $< $(PRE_HEADERS)
 	@ echo 'Compilando $@'
-$(OBJ_DIR)/ControleEspinho.o : Entidades/Componentes/ControleEspinho.cpp Entidades/Componentes/ControleEspinho.h $(OBJ_DIR)/Obstaculo.o
+$(OBJ_DIR)/ControleEspinho.o : Entidades/Componentes/ControleEspinho.cpp Entidades/Componentes/ControleEspinho.h $(OBJ_DIR)/ControleObstaculo.o
 	@ g++ $(CFLAGS) $(SFMLFLAGS) -c -o $@ $< $(PRE_HEADERS)
 	@ echo 'Compilando $@'
-$(OBJ_DIR)/ControleSeiva.o : Entidades/Componentes/ControleSeiva.cpp Entidades/Componentes/ControleSeiva.h $(OBJ_DIR)/Obstaculo.o
+$(OBJ_DIR)/ControleSeiva.o : Entidades/Componentes/ControleSeiva.cpp Entidades/Componentes/ControleSeiva.h $(OBJ_DIR)/ControleObstaculo.o
 	@ g++ $(CFLAGS) $(SFMLFLAGS) -c -o $@ $< $(PRE_HEADERS)
 	@ echo 'Compilando $@'
-$(OBJ_DIR)/ControleTrampolim.o : Entidades/Componentes/ControleTrampolim.cpp Entidades/Componentes/ControleTrampolim.h $(OBJ_DIR)/Obstaculo.o
+$(OBJ_DIR)/ControleTrampolim.o : Entidades/Componentes/ControleTrampolim.cpp Entidades/Componentes/ControleTrampolim.h $(OBJ_DIR)/ControleObstaculo.o
 	@ g++ $(CFLAGS) $(SFMLFLAGS) -c -o $@ $< $(PRE_HEADERS)
 	@ echo 'Compilando $@'
 
