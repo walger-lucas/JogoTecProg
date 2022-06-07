@@ -2,6 +2,7 @@
 #include "MenuPrincipal.h"
 #include "Lideranca.h"
 using namespace Gerenciadores;
+using namespace Menus;
 Menu* Jogo::menuAtual = nullptr;
 Menu* Jogo::proxMenu = nullptr;
 

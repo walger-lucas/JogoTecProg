@@ -20,11 +20,11 @@ namespace Componentes
         SeguirJogadores();
         if(Keyboard::isKeyPressed(Keyboard::Key::Escape))
         {
-            Jogo::MenuAtual(new MenuPause());
+            Jogo::MenuAtual(new Menus::MenuPause());
         } 
         if(Jogador::vidasJogador(0)==0 && Jogador::vidasJogador(1)==0)
         {
-            Jogo::MenuAtual(new MenuMorte());
+            Jogo::MenuAtual(new Menus::MenuMorte());
         }
         
     }

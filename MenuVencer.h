@@ -4,26 +4,29 @@
 #include "Componente.h"
 #include "Menu.h"
 
-class MenuVencer: public Menu
+namespace Menus
 {
-    private:
-        BotaoEntidade *nomeB,*menu,*lider;
-        Texture botaoApertado,botaoDesapertado;
-        string nome;
-        bool nomeApertado;
-        void VoltaMenu();   
-        void Nome();
-        void Lider();
-        void Iniciar();
-        void Atualizar();
-    public:
-        MenuVencer()
-        :nomeB(nullptr),menu(nullptr),lider(nullptr),
-        nome(""),nomeApertado(false)
-        {
-            botaoApertado.loadFromFile("Arquivos/Imagens/buttonA.png");
-            botaoDesapertado.loadFromFile("Arquivos/Imagens/buttonB.png");
-        }
-        ~MenuVencer();
-    
-};
+    class MenuVencer: public Menu
+    {
+        private:
+            BotaoEntidade *nomeB,*menu,*lider;
+            Texture botaoApertado,botaoDesapertado;
+            string nome;
+            bool nomeApertado;
+            void VoltaMenu();   
+            void Nome();
+            void Lider();
+            void Iniciar();
+            void Atualizar();
+        public:
+            MenuVencer()
+            :nomeB(nullptr),menu(nullptr),lider(nullptr),
+            nome(""),nomeApertado(false)
+            {
+                botaoApertado.loadFromFile("Arquivos/Imagens/buttonA.png");
+                botaoDesapertado.loadFromFile("Arquivos/Imagens/buttonB.png");
+            }
+            ~MenuVencer();
+        
+    };
+}

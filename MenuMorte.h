@@ -4,19 +4,22 @@
 #include "Componente.h"
 #include "Menu.h"
 
-class MenuMorte: public Menu
+namespace Menus
 {
-    private:
-        BotaoEntidade *voltarMenu;
-        Vector2f pos;
-        Font guest3D;
-        ImgTexto *textoGameOver;
-        void VoltarMenu();
-        void Iniciar();
-    public:
-        MenuMorte()
-        :voltarMenu(nullptr)
-        {}
-        ~MenuMorte();
-    
-};
+    class MenuMorte: public Menu
+    {
+        private:
+            BotaoEntidade *voltarMenu;
+            Vector2f pos;
+            Font guest3D;
+            ImgTexto *textoGameOver;
+            void VoltarMenu();
+            void Iniciar();
+        public:
+            MenuMorte()
+            :voltarMenu(nullptr)
+            {}
+            ~MenuMorte();
+        
+    };
+}

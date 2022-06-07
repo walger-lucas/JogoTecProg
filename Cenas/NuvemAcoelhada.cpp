@@ -19,7 +19,7 @@ namespace Cenas
     Portal* NuvemAcoelhada::portal = nullptr;
     void NuvemAcoelhada::PortalFunc()
     {
-        Jogo::MenuAtual(new MenuVencer());
+        Jogo::MenuAtual(new Menus::MenuVencer());
     }
     void NuvemAcoelhada::AbrirPortal()
     {
