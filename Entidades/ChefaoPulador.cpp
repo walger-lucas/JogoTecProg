@@ -100,7 +100,7 @@ namespace Entidades
         //dados escritos em ordem: Nome,NomeBaixo,Nome Cima
         int size;
         stream.read((char*)&size,sizeof(int));
-        char* nomeC = new char[size];
+        char* nomeC = new char[size+1];
         stream.read(nomeC,sizeof(char)*size);
         nomeC[size] = '\0';
         
@@ -117,7 +117,7 @@ namespace Entidades
         }
         else
         {
-            nomeC = new char[size];
+            nomeC = new char[size+1];
             stream.read(nomeC,sizeof(char)*size); 
             nomeC[size] = '\0';
             Entidade* cim= (*cena)[nomeC];
@@ -130,7 +130,7 @@ namespace Entidades
             ccp->setBaixo(nullptr);
         else
         {
-            nomeC = new char[size];
+            nomeC = new char[size+1];
             stream.read(nomeC,sizeof(char)*size);
             nomeC[size] = '\0';
             Entidade* bai= (*cena)[nomeC]; 
@@ -203,14 +203,13 @@ namespace Entidades
             }
             if(tam==0)
             {
-                NuvemAcoelhada::AbrirPortal();
+               NuvemAcoelhada::AbrirPortal();
             }
         }
         catch(const std::ifstream::failure &e)
         {
             cerr<<"Impossivel abrir dados dos Chefoes Puladores"<<endl;
         }
-        
         
     }
 }

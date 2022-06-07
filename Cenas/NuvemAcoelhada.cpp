@@ -95,4 +95,8 @@ namespace Cenas
         }
         
     }
+    void NuvemAcoelhada::DescarregarDados()
+    {
+        portal=nullptr;
+    }
 }

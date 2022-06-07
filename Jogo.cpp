@@ -77,7 +77,7 @@ Jogo::Jogo()
 Jogo::~Jogo()
 {
     if(menuAtual)
-        delete menuAtual;
+       delete menuAtual;
     delete window;
 }
 void Jogo::MenuAtual(Menu* menu)

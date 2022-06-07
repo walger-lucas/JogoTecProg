@@ -22,6 +22,7 @@ namespace Cenas
         ListaEntidade lista;
 
         void Descarregar();
+        virtual void DescarregarDados(){};
         void Atualizar();
         void AtualizarFixo();
         void Render();
