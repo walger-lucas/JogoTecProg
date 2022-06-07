@@ -178,25 +178,25 @@ $(OBJ_DIR)/NuvemAcoelhada.o : Cenas/NuvemAcoelhada.cpp Cenas/NuvemAcoelhada.h $(
 $(OBJ_DIR)/Plataforma.o : Entidades/Plataforma.cpp Entidades/Plataforma.h $(OBJ_DIR)/Entidade.o
 	@ g++ $(CFLAGS) $(SFMLFLAGS) -c -o $@ $< $(PRE_HEADERS)
 	@ echo 'Compilando $@'
-$(OBJ_DIR)/Jogador.o : Entidades/Jogador.cpp Entidades/Jogador.h $(OBJ_DIR)/Entidade.o
+$(OBJ_DIR)/Jogador.o : Entidades/Jogador.cpp Entidades/Jogador.h Entidades/Personagem.h $(OBJ_DIR)/Entidade.o
 	@ g++ $(CFLAGS) $(SFMLFLAGS) -c -o $@ $< $(PRE_HEADERS)
 	@ echo 'Compilando $@'
-$(OBJ_DIR)/Andador.o : Entidades/Andador.cpp Entidades/Andador.h $(OBJ_DIR)/Entidade.o
+$(OBJ_DIR)/Andador.o : Entidades/Andador.cpp Entidades/Andador.h Entidades/Personagem.h $(OBJ_DIR)/Entidade.o
 	@ g++ $(CFLAGS) $(SFMLFLAGS) -c -o $@ $< $(PRE_HEADERS)
 	@ echo 'Compilando $@'
-$(OBJ_DIR)/Explodidor.o : Entidades/Explodidor.cpp Entidades/Explodidor.h $(OBJ_DIR)/Entidade.o
+$(OBJ_DIR)/Explodidor.o : Entidades/Explodidor.cpp Entidades/Explodidor.h Entidades/Personagem.h $(OBJ_DIR)/Entidade.o
 	@ g++ $(CFLAGS) $(SFMLFLAGS) -c -o $@ $< $(PRE_HEADERS)
 	@ echo 'Compilando $@'
-$(OBJ_DIR)/Espinho.o : Entidades/Espinho.cpp Entidades/Espinho.h $(OBJ_DIR)/Entidade.o
+$(OBJ_DIR)/Espinho.o : Entidades/Espinho.cpp Entidades/Espinho.h Entidades/Obstaculo.h $(OBJ_DIR)/Entidade.o
 	@ g++ $(CFLAGS) $(SFMLFLAGS) -c -o $@ $< $(PRE_HEADERS)
 	@ echo 'Compilando $@'
-$(OBJ_DIR)/Trampolim.o : Entidades/Trampolim.cpp Entidades/Trampolim.h $(OBJ_DIR)/Entidade.o
+$(OBJ_DIR)/Trampolim.o : Entidades/Trampolim.cpp Entidades/Trampolim.h Entidades/Obstaculo.h $(OBJ_DIR)/Entidade.o
 	@ g++ $(CFLAGS) $(SFMLFLAGS) -c -o $@ $< $(PRE_HEADERS)
 	@ echo 'Compilando $@'
-$(OBJ_DIR)/Seiva.o : Entidades/Seiva.cpp Entidades/Seiva.h $(OBJ_DIR)/Entidade.o
+$(OBJ_DIR)/Seiva.o : Entidades/Seiva.cpp Entidades/Seiva.h Entidades/Obstaculo.h $(OBJ_DIR)/Entidade.o
 	@ g++ $(CFLAGS) $(SFMLFLAGS) -c -o $@ $< $(PRE_HEADERS)
 	@ echo 'Compilando $@'
-$(OBJ_DIR)/ChefaoPulador.o : Entidades/ChefaoPulador.cpp Entidades/ChefaoPulador.h $(OBJ_DIR)/Entidade.o
+$(OBJ_DIR)/ChefaoPulador.o : Entidades/ChefaoPulador.cpp Entidades/ChefaoPulador.h Entidades/Personagem.h $(OBJ_DIR)/Entidade.o
 	@ g++ $(CFLAGS) $(SFMLFLAGS) -c -o $@ $< $(PRE_HEADERS)
 	@ echo 'Compilando $@'
 

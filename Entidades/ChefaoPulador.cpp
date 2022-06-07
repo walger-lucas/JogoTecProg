@@ -102,6 +102,7 @@ namespace Entidades
         stream.read((char*)&size,sizeof(int));
         char* nomeC = new char[size];
         stream.read(nomeC,sizeof(char)*size);
+        nomeC[size] = '\0';
         
         Entidade* ent =(*cena)[nomeC];
         ControleChefaoPulador* ccp=nullptr;
@@ -118,6 +119,7 @@ namespace Entidades
         {
             nomeC = new char[size];
             stream.read(nomeC,sizeof(char)*size); 
+            nomeC[size] = '\0';
             Entidade* cim= (*cena)[nomeC];
             if(cim&&ccp)
                 ccp->setCima(cim->getComponente<ControleChefaoPulador>());
@@ -130,6 +132,7 @@ namespace Entidades
         {
             nomeC = new char[size];
             stream.read(nomeC,sizeof(char)*size);
+            nomeC[size] = '\0';
             Entidade* bai= (*cena)[nomeC]; 
             if(bai &&ccp)
                 ccp->setBaixo(bai->getComponente<ControleChefaoPulador>());
@@ -151,6 +154,7 @@ namespace Entidades
         stream.read((char*)&size,sizeof(int));
         char* nomeC = new char[size];
         stream.read(nomeC,sizeof(char)*size);
+        nomeC[size] = '\0';
         stream.read((char*)&vidas,sizeof(int));
         stream.read((char*)&pos.x,sizeof(float));
         stream.read((char*)&pos.y,sizeof(float));
