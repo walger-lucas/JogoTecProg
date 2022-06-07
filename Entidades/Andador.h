@@ -1,25 +1,15 @@
 #pragma once
-#include"Posicao.h"
-#include"Vida.h"
-#include"commons.h"
-#include"GraficoSprite.h"
-#include"Entidade.h"
-#include"CorpoRigido.h"
+#include "Personagem.h"
 #include"ControleAndador.h"
 #include "Cena.h"
 namespace Entidades
 {
     const static string TAG_ANDADOR = "andador";
-    class Andador: public Entidade{
+    class Andador: public Personagem{
 
         
         private:
-            Posicao* pos;
-            GraficoSprite* gS;
-            CorpoRigido* cR;
             ControleAndador* cA;
-            Vida* vd;
-            Texture texturaAndador;
             static list<Andador*> andadores;
             void escreverDadosPessoal(ofstream& stream);
             static void lerDadosPessoal(ifstream& stream,Cena* cena);

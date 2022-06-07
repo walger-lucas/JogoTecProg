@@ -9,7 +9,7 @@ using namespace Entidades;
 namespace Componentes
 {
     ControleTrampolim::ControleTrampolim():
-    Obstaculo()
+    ControleObstaculo()
     {}
 
     ControleTrampolim::~ControleTrampolim()

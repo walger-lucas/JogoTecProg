@@ -53,16 +53,16 @@ namespace Entidades
 
     }
     Explodidor::Explodidor(Vector2f posicao)
-    : Entidade("Explodidor"),
-    pos(new Posicao(posicao.x,posicao.y)),
-    gS(nullptr),
-    cR(new CorpoRigido(true,true,true)),
-    cE(new ControleExplodidor()),
-    vd(new Vida(3,0.3))
+    : Personagem("Explodidor"),
+    cE(new ControleExplodidor())
     {
-        texturaExplodidor.loadFromFile("Arquivos/Imagens/Explodidor_A.png");
+        pos = new Posicao(posicao.x,posicao.y);
+        gS = nullptr;
+        cR = new CorpoRigido(true,true,true);
+        vd = new Vida(3,0.3);
+        textura.loadFromFile("Arquivos/Imagens/Explodidor_A.png");
         pos->setEscala(Vector2f(1.5,1.5));
-        gS =new GraficoSprite(&texturaExplodidor,0,false);
+        gS =new GraficoSprite(&textura,0,false);
         this->addComponente(static_cast<Componente*> (pos));
         this->addComponente(static_cast<Componente*> (gS));
         this->addComponente(static_cast<Componente*> (cR));

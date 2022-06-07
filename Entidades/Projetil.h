@@ -20,9 +20,9 @@ namespace Entidades
             Vector2f velInit;
             float tam;
             const int dano;
+            static list<Projetil*> projeteis;
             void Colidiu(ObjetoFisico* obj);
             void Carregar();
-            static list<Projetil*> projeteis;
             void escreverDadosPessoal(ofstream& stream);
             static void lerDadosPessoal(ifstream& stream,Cena* cena);
         public:

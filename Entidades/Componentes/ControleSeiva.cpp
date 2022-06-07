@@ -1,9 +1,6 @@
 #include "ControleSeiva.h"
-#include "GerenciadorColisoes.h"
-#include "Componente.h"
-#include "IEscutaColisao.h"
-#include "Jogador.h"
-#include "Andador.h"
+#include "ControleJogador.h"
+#include "ControleInimigo.h"
 #include "Plataforma.h"
 
 using namespace sf;
@@ -11,7 +8,7 @@ using namespace Entidades;
 namespace Componentes
 {
     ControleSeiva::ControleSeiva():
-    Obstaculo()
+    ControleObstaculo()
     {}
 
     ControleSeiva::~ControleSeiva()

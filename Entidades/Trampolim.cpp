@@ -28,21 +28,19 @@ namespace Entidades
 
     }
     Trampolim::Trampolim(Vector2f posicao)
-    :Entidade("Trampolim"),
-    pos(new Posicao(posicao.x,posicao.y)),
-    gS(nullptr),
-    cR(new CorpoRigido(true,true,true)),
-    cT(new ControleTrampolim()),
-    vd(new Vida(1))
+    :Obstaculo("Trampolim"),
+    cT(new ControleTrampolim())
     {
-        texturaTrampolim.loadFromFile("Arquivos/Imagens/trampolim.png");
+        pos = new Posicao(posicao.x,posicao.y);
+        gS = nullptr;
+        cR = new CorpoRigido(true,true,true);
+        textura.loadFromFile("Arquivos/Imagens/trampolim.png");
         pos->setEscala(Vector2f(0.5,0.5));
-        gS = new GraficoSprite(&texturaTrampolim,1,false);
+        gS = new GraficoSprite(&textura,1,false);
         this->addComponente(static_cast<Componente*> (pos));
         this->addComponente(static_cast<Componente*> (gS));
         this->addComponente(static_cast<Componente*> (cR));
         this->addComponente(static_cast<Componente*> (cT));
-        this->addComponente(static_cast<Componente*> (vd));
         trampolins.push_front(this);
     }
     Trampolim::~Trampolim()

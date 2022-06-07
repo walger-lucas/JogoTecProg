@@ -8,24 +8,24 @@ namespace Entidades
     void Plataforma::Carregar()
     {
 
-        Vector2f dim = graficoSprite->getSprite()->getDim();
-        Vector2f esc =graficoSprite->getSprite()->getEscala();
-        corpoRigido->setDim(Vector2f(dim.x*esc.x,dim.y*esc.y));
-        graficoSprite->getSprite()->setOrigin(offset);
+        Vector2f dim = gS->getSprite()->getDim();
+        Vector2f esc =gS->getSprite()->getEscala();
+        cR->setDim(Vector2f(dim.x*esc.x,dim.y*esc.y));
+        gS->getSprite()->setOrigin(offset);
     }
-    Plataforma::Plataforma(Vector2f pos, const string& textura,Vector2f offset,Vector2f esc)
-    : Entidade("Plataforma"),
-    posicao(new Posicao(pos.x,pos.y)),
-    corpoRigido(new CorpoRigido(true,false,true)),
-    graficoSprite(nullptr),
+    Plataforma::Plataforma(Vector2f posicao, const string& text,Vector2f offset,Vector2f esc)
+    : Obstaculo("Plataforma"),
     offset(offset)
     {
-        texturaPlataforma.loadFromFile("Arquivos/Imagens/"+textura);
-        graficoSprite =new GraficoSprite(&texturaPlataforma,1,false);
-        posicao->setEscala(esc);
-        addComponente(posicao);
-        addComponente(corpoRigido);
-        addComponente(graficoSprite);
+        pos = new Posicao(posicao.x,posicao.y);
+        cR = new CorpoRigido(true,false,true);
+        gS = nullptr;
+        textura.loadFromFile("Arquivos/Imagens/"+text);
+        gS =new GraficoSprite(&textura,1,false);
+        pos->setEscala(esc);
+        addComponente(pos);
+        addComponente(cR);
+        addComponente(gS);
         addTag(TAG_GROUND);
     }
 
@@ -33,6 +33,6 @@ namespace Entidades
     {}
     void Plataforma::setOffsetTextura(Vector2f offset)
     {
-        graficoSprite->getSprite()->setOrigin(offset);
+        gS->getSprite()->setOrigin(offset);
     }
 }
