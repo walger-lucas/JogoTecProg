@@ -1,17 +1,11 @@
-#include "Entidade.h"
+#include "Personagem.h"
 #include "ControleChefaoPulador.h"
-#include "commons.h"
 namespace Entidades
 {
-    class ChefaoPulador: public Entidade
+    class ChefaoPulador: public Personagem
     {
         private:
-            Vida* vida;
-            Posicao* pos;
-            CorpoRigido* cR;
-            GraficoSprite* gS;
             ControleChefaoPulador* cCP;
-            Texture coelho;
             static int id;
             static list<ChefaoPulador*> puladores;
             void escreverDadosPessoal(ofstream& stream);
@@ -24,7 +18,7 @@ namespace Entidades
             static void escreverDados(ofstream& stream);
             static void escreverRelacoes(ofstream& stream);
             const static string TAG_CHEFAO;
-            ChefaoPulador(Vector2f pos);
+            ChefaoPulador(Vector2f posicao);
             ~ChefaoPulador();
     };
 }

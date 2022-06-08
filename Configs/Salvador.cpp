@@ -216,6 +216,7 @@ namespace Configs
         stream.read((char*)&size,sizeof(int));
         char* nomeC = new char[size];
         stream.read(nomeC,sizeof(char)*size);
+        nomeC[size] = '\0';
         nome=nomeC;
         delete [] nomeC;
         stream.read((char*)&pontos,sizeof(int));

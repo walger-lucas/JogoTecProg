@@ -1,24 +1,14 @@
 #pragma once
-#include "Posicao.h"
-#include "Vida.h"
-#include "commons.h"
-#include "GraficoSprite.h"
-#include "Entidade.h"
-#include "CorpoRigido.h"
+#include "Obstaculo.h"
 #include "ControleEspinho.h"
 
 namespace Entidades
 {
     const static string TAG_ESPINHO = "espinho";
-    class Espinho: public Entidade
+    class Espinho: public Obstaculo
     {
         private:
-            Posicao* pos;
-            GraficoSprite* gS;
-            CorpoRigido* cR;
             ControleEspinho* cE;
-            Vida* vd;
-            Texture texturaespinho;
             static list<Espinho*> espinhos;
             void escreverDadosPessoal(ofstream& stream);
             static void lerDadosPessoal(ifstream& stream,Cena* cena);

@@ -5,6 +5,7 @@
 #include "Menu.h"
 using namespace std;
 using namespace Cenas;
+using namespace Menus;
 
 namespace Gerenciadores
 {

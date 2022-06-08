@@ -6,6 +6,7 @@
 #include "Salvador.h"
 using namespace Gerenciadores;
 using namespace Configs;
+using namespace Menus;
 class Jogo
 {
     private:

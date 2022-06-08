@@ -5,6 +5,7 @@
 #include "Cena.h"
 #include "Jogo.h"
 #include "MenuPause.h"
+#include "MenuMorte.h"
 using namespace Entidades;
 using namespace Gerenciadores;
 using namespace Configs;
@@ -19,13 +20,17 @@ namespace Componentes
         SeguirJogadores();
         if(Keyboard::isKeyPressed(Keyboard::Key::Escape))
         {
-            Jogo::MenuAtual(new MenuPause());
+            Jogo::MenuAtual(new Menus::MenuPause());
         } 
+        if(Jogador::vidasJogador(0)==0 && Jogador::vidasJogador(1)==0)
+        {
+            Jogo::MenuAtual(new Menus::MenuMorte());
+        }
         
     }
     void SeguidorCamera::Atualizar()
     {
-  
+
     }
     Vector2f lerp(Vector2f a,Vector2f b , float f)
     {

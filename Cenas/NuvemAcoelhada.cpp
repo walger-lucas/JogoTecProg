@@ -11,12 +11,15 @@
 #include "Portal.h"
 #include "Seiva.h"
 #include "ChefaoPulador.h"
+#include "MenuVencer.h"
+#include "Jogo.h"
 using namespace Entidades;
 namespace Cenas
 {
     Portal* NuvemAcoelhada::portal = nullptr;
     void NuvemAcoelhada::PortalFunc()
     {
+        Jogo::MenuAtual(new Menus::MenuVencer());
     }
     void NuvemAcoelhada::AbrirPortal()
     {
@@ -91,5 +94,9 @@ namespace Cenas
             Configs::Salvador::salvador->carregarCena(this);
         }
         
+    }
+    void NuvemAcoelhada::DescarregarDados()
+    {
+        portal=nullptr;
     }
 }

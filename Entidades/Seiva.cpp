@@ -34,21 +34,19 @@ namespace Entidades
 
     }
     Seiva::Seiva(Vector2f posicao):
-    Entidade("Seiva"),
-    pos(new Posicao(posicao.x,posicao.y)),
-    gS(nullptr),
-    cR(new CorpoRigido(false,true,true)),
-    cS(new ControleSeiva()),
-    vd(new Vida(1))
+    Obstaculo("Seiva"),
+    cS(new ControleSeiva())
     {
-        texturaSeiva.loadFromFile("Arquivos/Imagens/seiva.png");
-        gS = new GraficoSprite(&texturaSeiva,2,false);
+        pos = new Posicao(posicao.x,posicao.y);
+        gS = nullptr;
+        cR = new CorpoRigido(false,true,true);
+        textura.loadFromFile("Arquivos/Imagens/seiva.png");
+        gS = new GraficoSprite(&textura,2,false);
         pos->setEscala(Vector2f(0.8,0.8));
         this->addComponente(static_cast<Componente*> (pos));
         this->addComponente(static_cast<Componente*> (gS));
         this->addComponente(static_cast<Componente*> (cR));
         this->addComponente(static_cast<Componente*> (cS));
-        this->addComponente(static_cast<Componente*> (vd));
         seivas.push_front(this);
     }
     void Seiva::escreverDados(ofstream& stream)

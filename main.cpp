@@ -2,5 +2,5 @@
 int main()
 {
     
-    Jogo jogo=Jogo();
+    Jogo jogo;
 }

@@ -8,6 +8,7 @@ namespace Cenas
         private:
             void Carregar();
             void PortalFunc();
+            void DescarregarDados();
             static Portal* portal;
         public:
             static void AbrirPortal();
@@ -15,7 +16,8 @@ namespace Cenas
             Cena(ger)
             {}
             ~NuvemAcoelhada()
-            {}
+            {
+            }
 
     };
 

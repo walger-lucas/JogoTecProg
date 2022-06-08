@@ -1,7 +1,5 @@
 HEADERS = ./Entidades/Componentes ./Entidades ./ ./Colisoes ./Gerenciadores ./Graficos . ./Listas ./Cenas ./Configs
-
-OBJ = Jogo.o Entidade.o Componente.o Posicao.o Colisor.o Camera.o GerenciadorGrafico.o ImgSprite.o ImgTexto.o Grafico.o GraficoSprite.o ObjetoFisico.o GerenciadorColisoes.o CorpoRigido.o GerenciadorInputs.o EventoBotao.o Botao.o BotaoEntidade.o ListaEntidades.o Cena.o GerenciadorCenas.o Tempo.o CenaTeste.o Plataforma.o ControleJogador.o ControleAndador.o Ente.o ControleInimigo.o Projetil.o Jogador.o ControleExplodidor.o Movimento.o SeguidorCamera.o VidaUI.o Obstaculo.o ControleEspinho.o ControleSeiva.o ControleTrampolim.o MenuPrincipal.o MenuNovoJogo.o MenuPause.o Salvador.o MenuSalvar.o MenuCarregar.o Andador.o Explodidor.o Espinho.o Trampolim.o Seiva.o PlanicieAcoelhada.o ChefaoPulador.o ControleChefaoPulador.o NuvemAcoelhada.o
-
+OBJ = Jogo.o Entidade.o Componente.o Posicao.o Colisor.o Camera.o GerenciadorGrafico.o ImgSprite.o ImgTexto.o Grafico.o GraficoSprite.o ObjetoFisico.o GerenciadorColisoes.o CorpoRigido.o GerenciadorInputs.o EventoBotao.o Botao.o BotaoEntidade.o ListaEntidades.o Cena.o GerenciadorCenas.o Tempo.o CenaTeste.o Plataforma.o ControleJogador.o ControleAndador.o Ente.o ControleInimigo.o Projetil.o Jogador.o ControleExplodidor.o Movimento.o SeguidorCamera.o VidaUI.o ControleObstaculo.o ControleEspinho.o ControleSeiva.o ControleTrampolim.o MenuPrincipal.o MenuNovoJogo.o MenuPause.o Salvador.o MenuSalvar.o MenuCarregar.o Andador.o Explodidor.o Espinho.o Trampolim.o Seiva.o PlanicieAcoelhada.o ChefaoPulador.o ControleChefaoPulador.o NuvemAcoelhada.o MenuMorte.o Lideranca.o MenuVencer.o MenuPlacar.o
 OBJ_DIR = ./obj
 PROJ_NAME = JOGO
 PRE_HEADERS = $(addprefix -I ,$(HEADERS))
@@ -93,14 +91,24 @@ $(OBJ_DIR)/MenuPrincipal.o : MenuPrincipal.cpp MenuPrincipal.h  $(OBJ_DIR)/Geren
 $(OBJ_DIR)/MenuNovoJogo.o : MenuNovoJogo.cpp MenuNovoJogo.h  $(OBJ_DIR)/GerenciadorInputs.o  $(OBJ_DIR)/Jogador.o  
 	@ g++ $(CFLAGS) -c -o $@ $< $(PRE_HEADERS)
 	@ echo 'Compilando $@'
+$(OBJ_DIR)/MenuPlacar.o : MenuPlacar.cpp MenuPlacar.h  $(OBJ_DIR)/Lideranca.o 
+	@ g++ $(CFLAGS) -c -o $@ $< $(PRE_HEADERS)
+	@ echo 'Compilando $@'
 $(OBJ_DIR)/MenuPause.o : MenuPause.cpp MenuPause.h  $(OBJ_DIR)/GerenciadorInputs.o  $(OBJ_DIR)/Jogador.o  
 	@ g++ $(CFLAGS) -c -o $@ $< $(PRE_HEADERS)
+$(OBJ_DIR)/MenuMorte.o : MenuMorte.cpp MenuMorte.h  $(OBJ_DIR)/GerenciadorInputs.o  $(OBJ_DIR)/Jogador.o  
+	@ g++ $(CFLAGS) -c -o $@ $< $(PRE_HEADERS)
 $(OBJ_DIR)/MenuSalvar.o : MenuSalvar.cpp MenuSalvar.h  $(OBJ_DIR)/GerenciadorInputs.o  $(OBJ_DIR)/Salvador.o  
+	@ g++ $(CFLAGS) -c -o $@ $< $(PRE_HEADERS)
+	@ echo 'Compilando $@'
+$(OBJ_DIR)/MenuVencer.o : MenuVencer.cpp MenuVencer.h  $(OBJ_DIR)/GerenciadorInputs.o  $(OBJ_DIR)/Salvador.o  
 	@ g++ $(CFLAGS) -c -o $@ $< $(PRE_HEADERS)
 	@ echo 'Compilando $@'
 $(OBJ_DIR)/MenuCarregar.o : MenuCarregar.cpp MenuCarregar.h  $(OBJ_DIR)/GerenciadorInputs.o  $(OBJ_DIR)/Salvador.o  
 	@ g++ $(CFLAGS) -c -o $@ $< $(PRE_HEADERS)
 	@ echo 'Compilando $@'
+$(OBJ_DIR)/Lideranca.o : Lideranca.cpp Lideranca.h 
+	@ g++ $(CFLAGS) -c -o $@ $< $(PRE_HEADERS)
 #Filhos de Componente End
 #Filhos de Entidade Start
 
@@ -170,38 +178,38 @@ $(OBJ_DIR)/NuvemAcoelhada.o : Cenas/NuvemAcoelhada.cpp Cenas/NuvemAcoelhada.h $(
 $(OBJ_DIR)/Plataforma.o : Entidades/Plataforma.cpp Entidades/Plataforma.h $(OBJ_DIR)/Entidade.o
 	@ g++ $(CFLAGS) $(SFMLFLAGS) -c -o $@ $< $(PRE_HEADERS)
 	@ echo 'Compilando $@'
-$(OBJ_DIR)/Jogador.o : Entidades/Jogador.cpp Entidades/Jogador.h $(OBJ_DIR)/Entidade.o
+$(OBJ_DIR)/Jogador.o : Entidades/Jogador.cpp Entidades/Jogador.h Entidades/Personagem.h $(OBJ_DIR)/Entidade.o
 	@ g++ $(CFLAGS) $(SFMLFLAGS) -c -o $@ $< $(PRE_HEADERS)
 	@ echo 'Compilando $@'
-$(OBJ_DIR)/Andador.o : Entidades/Andador.cpp Entidades/Andador.h $(OBJ_DIR)/Entidade.o
+$(OBJ_DIR)/Andador.o : Entidades/Andador.cpp Entidades/Andador.h Entidades/Personagem.h $(OBJ_DIR)/Entidade.o
 	@ g++ $(CFLAGS) $(SFMLFLAGS) -c -o $@ $< $(PRE_HEADERS)
 	@ echo 'Compilando $@'
-$(OBJ_DIR)/Explodidor.o : Entidades/Explodidor.cpp Entidades/Explodidor.h $(OBJ_DIR)/Entidade.o
+$(OBJ_DIR)/Explodidor.o : Entidades/Explodidor.cpp Entidades/Explodidor.h Entidades/Personagem.h $(OBJ_DIR)/Entidade.o
 	@ g++ $(CFLAGS) $(SFMLFLAGS) -c -o $@ $< $(PRE_HEADERS)
 	@ echo 'Compilando $@'
-$(OBJ_DIR)/Espinho.o : Entidades/Espinho.cpp Entidades/Espinho.h $(OBJ_DIR)/Entidade.o
+$(OBJ_DIR)/Espinho.o : Entidades/Espinho.cpp Entidades/Espinho.h Entidades/Obstaculo.h $(OBJ_DIR)/Entidade.o
 	@ g++ $(CFLAGS) $(SFMLFLAGS) -c -o $@ $< $(PRE_HEADERS)
 	@ echo 'Compilando $@'
-$(OBJ_DIR)/Trampolim.o : Entidades/Trampolim.cpp Entidades/Trampolim.h $(OBJ_DIR)/Entidade.o
+$(OBJ_DIR)/Trampolim.o : Entidades/Trampolim.cpp Entidades/Trampolim.h Entidades/Obstaculo.h $(OBJ_DIR)/Entidade.o
 	@ g++ $(CFLAGS) $(SFMLFLAGS) -c -o $@ $< $(PRE_HEADERS)
 	@ echo 'Compilando $@'
-$(OBJ_DIR)/Seiva.o : Entidades/Seiva.cpp Entidades/Seiva.h $(OBJ_DIR)/Entidade.o
+$(OBJ_DIR)/Seiva.o : Entidades/Seiva.cpp Entidades/Seiva.h Entidades/Obstaculo.h $(OBJ_DIR)/Entidade.o
 	@ g++ $(CFLAGS) $(SFMLFLAGS) -c -o $@ $< $(PRE_HEADERS)
 	@ echo 'Compilando $@'
-$(OBJ_DIR)/ChefaoPulador.o : Entidades/ChefaoPulador.cpp Entidades/ChefaoPulador.h $(OBJ_DIR)/Entidade.o
+$(OBJ_DIR)/ChefaoPulador.o : Entidades/ChefaoPulador.cpp Entidades/ChefaoPulador.h Entidades/Personagem.h $(OBJ_DIR)/Entidade.o
 	@ g++ $(CFLAGS) $(SFMLFLAGS) -c -o $@ $< $(PRE_HEADERS)
 	@ echo 'Compilando $@'
 
-$(OBJ_DIR)/Obstaculo.o : Entidades/Componentes/Obstaculo.cpp Entidades/Componentes/Obstaculo.h
+$(OBJ_DIR)/ControleObstaculo.o : Entidades/Componentes/ControleObstaculo.cpp Entidades/Componentes/ControleObstaculo.h
 	@ g++ $(CFLAGS) $(SFMLFLAGS) -c -o $@ $< $(PRE_HEADERS)
 	@ echo 'Compilando $@'
-$(OBJ_DIR)/ControleEspinho.o : Entidades/Componentes/ControleEspinho.cpp Entidades/Componentes/ControleEspinho.h $(OBJ_DIR)/Obstaculo.o
+$(OBJ_DIR)/ControleEspinho.o : Entidades/Componentes/ControleEspinho.cpp Entidades/Componentes/ControleEspinho.h $(OBJ_DIR)/ControleObstaculo.o
 	@ g++ $(CFLAGS) $(SFMLFLAGS) -c -o $@ $< $(PRE_HEADERS)
 	@ echo 'Compilando $@'
-$(OBJ_DIR)/ControleSeiva.o : Entidades/Componentes/ControleSeiva.cpp Entidades/Componentes/ControleSeiva.h $(OBJ_DIR)/Obstaculo.o
+$(OBJ_DIR)/ControleSeiva.o : Entidades/Componentes/ControleSeiva.cpp Entidades/Componentes/ControleSeiva.h $(OBJ_DIR)/ControleObstaculo.o
 	@ g++ $(CFLAGS) $(SFMLFLAGS) -c -o $@ $< $(PRE_HEADERS)
 	@ echo 'Compilando $@'
-$(OBJ_DIR)/ControleTrampolim.o : Entidades/Componentes/ControleTrampolim.cpp Entidades/Componentes/ControleTrampolim.h $(OBJ_DIR)/Obstaculo.o
+$(OBJ_DIR)/ControleTrampolim.o : Entidades/Componentes/ControleTrampolim.cpp Entidades/Componentes/ControleTrampolim.h $(OBJ_DIR)/ControleObstaculo.o
 	@ g++ $(CFLAGS) $(SFMLFLAGS) -c -o $@ $< $(PRE_HEADERS)
 	@ echo 'Compilando $@'
 

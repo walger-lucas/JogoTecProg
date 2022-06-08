@@ -6,35 +6,27 @@
 
 namespace Menus
 {
-    class MenuSalvar: public Menu
+    class MenuVencer: public Menu
     {
         private:
-            BotaoEntidade* salvar, *nomeB,*voltar,*saves[5]={nullptr};
+            BotaoEntidade *nomeB,*menu,*lider;
             Texture botaoApertado,botaoDesapertado;
             string nome;
-            int save=-1;
             bool nomeApertado;
-            void Voltar();
-            void Salvar();
-            void Save0();
-            void Save1();
-            void Save2();
-            void Save3();
-            void Save4();
-            void Save(int id);
-            
+            void VoltaMenu();   
             void Nome();
+            void Lider();
             void Iniciar();
             void Atualizar();
         public:
-            MenuSalvar()
-            :salvar(nullptr),nomeB(nullptr),voltar(nullptr),
+            MenuVencer()
+            :nomeB(nullptr),menu(nullptr),lider(nullptr),
             nome(""),nomeApertado(false)
             {
                 botaoApertado.loadFromFile("Arquivos/Imagens/buttonA.png");
                 botaoDesapertado.loadFromFile("Arquivos/Imagens/buttonB.png");
             }
-            ~MenuSalvar();
+            ~MenuVencer();
         
     };
 }

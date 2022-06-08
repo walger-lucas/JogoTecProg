@@ -1,23 +1,16 @@
 #pragma once
-#include "Componente.h"
-#include "Vida.h"
-#include "CorpoRigido.h"
-#include "Obstaculo.h"
-#include "Posicao.h"
-#include "Vida.h"
-#include "IEscutaColisao.h"
+#include "ControleObstaculo.h"
 #include "Jogador.h"
 
 using namespace sf;
 namespace Componentes
 {
-    class ControlePortal: public Componente, public IEscutaColisao
+    class ControlePortal: public ControleObstaculo
     {
         private:
             bool aberto;
             function<void(void)> entrar;
             Texture texturaAberto,texturaFechado;
-            Posicao* pos;
             GraficoSprite* gS;
             void Colidiu(ObjetoFisico* obj)
             {

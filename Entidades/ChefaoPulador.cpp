@@ -4,18 +4,23 @@
 namespace Entidades
 {
     int ChefaoPulador::id=0;
+
     list<ChefaoPulador*> ChefaoPulador::puladores= list<ChefaoPulador*>();
+
     const string ChefaoPulador::TAG_CHEFAO = "chefao";
-    ChefaoPulador::ChefaoPulador(Vector2f pos)
-    :Entidade("chefe"+to_string(id++)),vida(new Vida(1)),pos(new Posicao(pos.x,pos.y)),
-    cR(new CorpoRigido(true,true,true)),
-    gS(nullptr),
+
+    ChefaoPulador::ChefaoPulador(Vector2f posicao)
+    :Personagem("chefe"+to_string(id++)),
     cCP(new ControleChefaoPulador())
     {
-        coelho.loadFromFile("Arquivos/Imagens/chefeDir.png");
+        vd = new Vida(1);
+        pos = new Posicao(posicao.x,posicao.y);
+        cR = new CorpoRigido(true,true,true);
+        gS = nullptr;
+        textura.loadFromFile("Arquivos/Imagens/chefeDir.png");
         this->pos->setEscala(Vector2f(0.5,0.5));
-        gS = new GraficoSprite(&coelho,1,false);
-        addComponente(vida);
+        gS = new GraficoSprite(&textura,1,false);
+        addComponente(vd);
         addComponente(this->pos);
         addComponente(cR);
         addComponente(gS);
@@ -40,7 +45,7 @@ namespace Entidades
     void ChefaoPulador::escreverDadosPessoal(ofstream& stream)
     {
         //dados lidos em ordem: tam do nome, nome,Vida,Posicao,Velocidade,direcao, recarga,tempo,
-        int vidas = this->vida->getVida();
+        int vidas = this->vd->getVida();
         Vector2f pos = this->pos->getPos();
         Vector2f vel = this->cR->getVelocidade();
         bool dir = this->cCP->getIndoDireita();
@@ -95,18 +100,29 @@ namespace Entidades
         //dados escritos em ordem: Nome,NomeBaixo,Nome Cima
         int size;
         stream.read((char*)&size,sizeof(int));
-        char* nomeC = new char[size];
+        char* nomeC = new char[size+1];
         stream.read(nomeC,sizeof(char)*size);
-        ControleChefaoPulador* ccp = (*cena)[nomeC]->getComponente<ControleChefaoPulador>();
+        nomeC[size] = '\0';
+        
+        Entidade* ent =(*cena)[nomeC];
+        ControleChefaoPulador* ccp=nullptr;
+        if(ent)
+            ccp = ent->getComponente<ControleChefaoPulador>();
         delete [] nomeC;
         stream.read((char*)&size,sizeof(int));
         if(size==-1)
-            ccp->setCima(nullptr);
+        {
+            if(ccp)
+                ccp->setCima(nullptr);
+        }
         else
         {
-            nomeC = new char[size];
+            nomeC = new char[size+1];
             stream.read(nomeC,sizeof(char)*size); 
-            ccp->setCima((*cena)[nomeC]->getComponente<ControleChefaoPulador>());
+            nomeC[size] = '\0';
+            Entidade* cim= (*cena)[nomeC];
+            if(cim&&ccp)
+                ccp->setCima(cim->getComponente<ControleChefaoPulador>());
             delete [] nomeC;
         }
         stream.read((char*)&size,sizeof(int));
@@ -114,9 +130,12 @@ namespace Entidades
             ccp->setBaixo(nullptr);
         else
         {
-            nomeC = new char[size];
-            stream.read(nomeC,sizeof(char)*size); 
-            ccp->setBaixo((*cena)[nomeC]->getComponente<ControleChefaoPulador>());
+            nomeC = new char[size+1];
+            stream.read(nomeC,sizeof(char)*size);
+            nomeC[size] = '\0';
+            Entidade* bai= (*cena)[nomeC]; 
+            if(bai &&ccp)
+                ccp->setBaixo(bai->getComponente<ControleChefaoPulador>());
             delete [] nomeC;
         }
 
@@ -135,6 +154,7 @@ namespace Entidades
         stream.read((char*)&size,sizeof(int));
         char* nomeC = new char[size];
         stream.read(nomeC,sizeof(char)*size);
+        nomeC[size] = '\0';
         stream.read((char*)&vidas,sizeof(int));
         stream.read((char*)&pos.x,sizeof(float));
         stream.read((char*)&pos.y,sizeof(float));
@@ -183,14 +203,13 @@ namespace Entidades
             }
             if(tam==0)
             {
-                NuvemAcoelhada::AbrirPortal();
+               NuvemAcoelhada::AbrirPortal();
             }
         }
         catch(const std::ifstream::failure &e)
         {
             cerr<<"Impossivel abrir dados dos Chefoes Puladores"<<endl;
         }
-        
         
     }
 }

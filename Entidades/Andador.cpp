@@ -45,15 +45,15 @@ namespace Entidades{
 
     }
     Andador::Andador(Vector2f posicao)
-    : Entidade("Andador"),
-    pos(new Posicao(posicao.x,posicao.y)),
-    gS(nullptr),
-    cR(new CorpoRigido(true,true,true)),
-    cA(new ControleAndador()),
-    vd(new Vida(1))
+    : Personagem("Andador"),
+    cA(new ControleAndador())
     {
-        texturaAndador.loadFromFile("Arquivos/Imagens/Andador.png");
-        gS =new GraficoSprite(&texturaAndador,1,false);
+        pos = new Posicao(posicao.x,posicao.y);
+        gS = nullptr;
+        cR = new CorpoRigido(true,true,true);
+        vd = new Vida(1);
+        textura.loadFromFile("Arquivos/Imagens/Andador.png");
+        gS =new GraficoSprite(&textura,1,false);
         this->addComponente(static_cast<Componente*> (pos));
         this->addComponente(static_cast<Componente*> (gS));
         this->addComponente(static_cast<Componente*> (cR));
