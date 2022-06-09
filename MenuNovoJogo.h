@@ -8,7 +8,7 @@ namespace Menus
     {
         private:
             BotaoEntidade *umJog, *doisJog, *cena1, *cena2,*comecar,*voltar;
-            int cenaComecar=1;
+            int cenaComecar=0;
             bool inicio=false;
             Texture botaoDesapertado,botaoApertado;
             void UmJogador();
