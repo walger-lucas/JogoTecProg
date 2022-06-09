@@ -4,6 +4,7 @@
 #include "Tempo.h"
 #include "Menu.h"
 #include "Salvador.h"
+#include "Lideranca.h"
 using namespace Gerenciadores;
 using namespace Configs;
 using namespace Menus;

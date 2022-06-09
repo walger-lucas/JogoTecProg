@@ -1,3 +1,4 @@
+#pragma once
 #include "commons.h"
 using namespace std;
 class Lideranca
