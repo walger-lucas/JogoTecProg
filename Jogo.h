@@ -23,6 +23,7 @@ class Jogo
         static Menu* menuAtual;
         static Menu* proxMenu;
         Salvador salvador;
+        Lideranca lideranca;
     public:
         static void MenuAtual(Menu* menu);
         ~Jogo();

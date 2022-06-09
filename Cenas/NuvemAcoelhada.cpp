@@ -82,8 +82,8 @@ namespace Cenas
                     *this+= new Espinho(Vector2f(9+14*i+(((float)rand())/RAND_MAX)*8,3));
             }
             //invoca bosses
-            int coelo = 6 + rand()%10;
-            for(int i=0 ; i<coelo;i++)
+            int coelho = 6 + rand()%10;
+            for(int i=0 ; i<coelho;i++)
             {
                *this+= new ChefaoPulador(Vector2f(10+(((float)rand())/RAND_MAX)*15,(((float)rand())/RAND_MAX)*8-3));
             }
