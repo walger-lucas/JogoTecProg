@@ -68,6 +68,9 @@ namespace Gerenciadores
     {
         int i;
         for(i=0;i<MAXCENAS;i++)
+        {
             delete cenas[i];
+        }
+            
     }
 }

@@ -15,7 +15,6 @@ class Jogo
         RenderWindow* window;
         Tempo tempo;
         GerenciadorGrafico render;
-        GerenciadorCenas gerCenas;
         GerenciadorInputs gerInput;
         GerenciadorColisoes fisica;
         float tempoUltAtualizacaoFisica;
@@ -25,6 +24,7 @@ class Jogo
         static Menu* proxMenu;
         Salvador salvador;
         Lideranca lideranca;
+        GerenciadorCenas gerCenas;
     public:
         static void MenuAtual(Menu* menu);
         ~Jogo();
