@@ -45,7 +45,7 @@ namespace Entidades{
 
     }
     Andador::Andador(Vector2f posicao)
-    : Personagem("Andador"),
+    : Inimigo("Andador"),
     cA(new ControleAndador())
     {
         pos = new Posicao(posicao.x,posicao.y);

@@ -10,7 +10,7 @@ namespace Entidades
     const string ChefaoPulador::TAG_CHEFAO = "chefao";
 
     ChefaoPulador::ChefaoPulador(Vector2f posicao)
-    :Personagem("chefe"+to_string(id++)),
+    :Inimigo("chefe"+to_string(id++)),
     cCP(new ControleChefaoPulador())
     {
         vd = new Vida(1);

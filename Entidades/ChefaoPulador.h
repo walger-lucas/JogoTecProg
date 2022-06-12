@@ -1,8 +1,8 @@
-#include "Personagem.h"
+#include "Inimigo.h"
 #include "ControleChefaoPulador.h"
 namespace Entidades
 {
-    class ChefaoPulador: public Personagem
+    class ChefaoPulador: public Inimigo
     {
         private:
             ControleChefaoPulador* cCP;

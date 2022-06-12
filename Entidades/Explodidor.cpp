@@ -53,7 +53,7 @@ namespace Entidades
 
     }
     Explodidor::Explodidor(Vector2f posicao)
-    : Personagem("Explodidor"),
+    : Inimigo("Explodidor"),
     cE(new ControleExplodidor())
     {
         pos = new Posicao(posicao.x,posicao.y);

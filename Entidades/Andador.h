@@ -1,11 +1,11 @@
 #pragma once
-#include "Personagem.h"
+#include "Inimigo.h"
 #include"ControleAndador.h"
 #include "Cena.h"
 namespace Entidades
 {
     const static string TAG_ANDADOR = "andador";
-    class Andador: public Personagem{
+    class Andador: public Inimigo{
 
         
         private:
