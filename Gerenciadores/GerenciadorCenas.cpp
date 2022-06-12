@@ -1,5 +1,4 @@
 #include "GerenciadorCenas.h"
-#include "CenaTeste.h"
 #include "PlanicieAcoelhada.h"
 #include "NuvemAcoelhada.h"
 #include "Menu.h"

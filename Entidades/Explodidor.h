@@ -1,9 +1,9 @@
 #pragma once
-#include"Personagem.h"
+#include"Inimigo.h"
 #include"ControleExplodidor.h"
 namespace Entidades
 {
-    class Explodidor: public Personagem{
+    class Explodidor: public Inimigo{
 
         
         private:
